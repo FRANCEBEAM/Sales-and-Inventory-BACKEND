@@ -1,0 +1,567 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+div.main-container {
+  background: #FFFFFF;
+  font-family: "Poppins", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+nav {
+  box-shadow: -1px 6px 59px -35px rgba(41, 41, 41, 0.75);
+  -webkit-box-shadow: -1px 6px 59px -35px rgba(41, 41, 41, 0.75);
+  -moz-box-shadow: -1px 6px 59px -35px rgba(41, 41, 41, 0.75);
+  padding: 0 1em;
+}
+nav div.logo h1 {
+  font-size: 16px;
+  font-weight: bold;
+}
+nav div.logo span.ent {
+  font-size: 12px;
+  letter-spacing: 5px;
+}
+nav ul li.nav-item a {
+  color: #212529;
+  text-decoration: none;
+  list-style: none;
+}
+nav div.collapse ul.navbar-nav li.nav-item a.home:hover {
+  color: #FF432A;
+  transition: 0.4s;
+}
+nav div.collapse ul.navbar-nav li.nav-item a.shop:hover {
+  color: #FF432A;
+  transition: 0.4s;
+}
+nav div.collapse ul.navbar-nav li.nav-item a.about:hover {
+  color: #FF432A;
+  transition: 0.4s;
+}
+nav div.collapse ul.navbar-nav li.nav-item a.login:hover {
+  color: #FF432A;
+  transition: 0.4s;
+}
+
+div.search-container {
+  padding: 3em 1em;
+}
+div.search-container form input {
+  font-size: 12px;
+}
+div.search-container form button {
+  font-size: 12px;
+}
+
+div.hero-container {
+  padding: 7em 1em;
+}
+div.hero-container div.text-content h5 {
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  color: #6C6C6C;
+}
+div.hero-container div.text-content h1 {
+  text-align: center;
+  font-size: 36px;
+  font-weight: bold;
+}
+div.hero-container a.btn-dark {
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+  margin: 2em auto;
+  padding: 0.8em;
+  border-radius: 0.7em;
+  display: flex;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+}
+div.hero-container div.bg-hero img {
+  display: none;
+}
+
+div.store-info {
+  padding-top: 2em;
+  display: none;
+}
+
+p.shopCateg {
+  font-size: 14px;
+  padding: 1em 2em;
+}
+
+div.swiper {
+  padding: 1em 1em;
+  margin-bottom: 2em;
+}
+div.swiper div.wrapper {
+  padding-top: 4em;
+}
+div.swiper div.swiper-slide img {
+  width: 30%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+div.swiper div.swiper-slide p {
+  margin-top: 1em;
+  text-align: center;
+  font-size: 14px;
+}
+
+div.dropdown {
+  margin-bottom: 4em;
+  display: flex;
+  justify-content: center;
+  font-size: 14px;
+}
+
+div.item-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+div.item-container div.card {
+  padding-top: 3em;
+  margin-bottom: 4em;
+}
+div.item-container div.card img {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  width: 60%;
+}
+div.item-container div.card h5 {
+  font-size: 14px;
+}
+div.item-container div.card p {
+  font-size: 12px;
+}
+div.item-container div.card a {
+  font-size: 12px;
+}
+
+div.pagination-container {
+  justify-content: center;
+  display: flex;
+  margin-bottom: 12em;
+}
+
+div.about-container {
+  padding: 3em 1em;
+  background: #F2F2F2;
+}
+div.about-container h1 {
+  text-align: center;
+  font-weight: bold;
+}
+div.about-container div.about-text {
+  padding-top: 4em;
+  text-align: center;
+  font-size: 12px;
+}
+div.about-container div.about-socials {
+  padding-top: 2em;
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+  font-size: 1.4em;
+}
+
+@media screen and (min-width: 688px) {
+  div.hero-container div.left-content a.btn-dark {
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    margin: 2em auto;
+    padding: 1.4em;
+    border-radius: 0.7em;
+    display: flex;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  div.dropdown {
+    display: flex;
+    justify-content: center;
+    font-size: 14px;
+  }
+
+  div.item-container {
+    justify-content: center;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 2em;
+  }
+  div.item-container div.card {
+    margin: auto;
+  }
+}
+@media screen and (min-width: 768px) {
+  nav div.logo h1 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  nav div.logo span.ent {
+    font-size: 18px;
+    letter-spacing: 5px;
+  }
+
+  div.hero-container {
+    width: 100%;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+  }
+  div.hero-container div.left-content div.text-content {
+    text-align: center;
+  }
+  div.hero-container div.left-content div.text-content h5 {
+    font-size: 26px;
+  }
+  div.hero-container div.left-content div.text-content h1 {
+    font-size: 46px;
+  }
+  div.hero-container div.left-content a.btn-dark {
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    margin: 2em auto;
+    padding: 1.4em;
+    border-radius: 0.7em;
+    display: flex;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  div.hero-container div.right-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  div.hero-container div.right-content div.bg-hero img {
+    margin-top: 2em;
+    display: block;
+    width: 100%;
+  }
+
+  div.search-container input.form-control {
+    padding: 1em;
+  }
+
+  div.dropdown {
+    padding: 0 2.4em;
+  }
+
+  div.store-info {
+    display: flex;
+    margin-bottom: 4em;
+    justify-content: center;
+    align-items: center;
+    padding: 3em 7em;
+  }
+  div.store-info div.info-container {
+    justify-content: space-between;
+    display: flex;
+  }
+  div.store-info div.info-container div.truck-container {
+    padding: 0 2em;
+    text-align: center;
+  }
+  div.store-info div.info-container div.truck-container i {
+    font-size: 20px;
+  }
+  div.store-info div.info-container div.open-container {
+    padding: 0 2em;
+    text-align: center;
+  }
+  div.store-info div.info-container div.open-container i {
+    font-size: 20px;
+  }
+  div.store-info div.info-container div.loc-container {
+    padding: 0 2em;
+    text-align: center;
+  }
+  div.store-info div.info-container div.loc-container i {
+    font-size: 20px;
+  }
+
+  p.shopCateg {
+    font-size: 14px;
+    padding: 2em 3em;
+  }
+
+  div.item-container div.card div.body-card {
+    padding-top: 4em;
+  }
+
+  div.swiper div.swiper-wrapper div.swiper-slide img {
+    width: 30%;
+  }
+  div.swiper div.swiper-wrapper div.swiper-slide p {
+    font-size: 18px;
+  }
+
+  div.item-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1em;
+  }
+  div.item-container div.card {
+    padding-top: 3em;
+    margin-bottom: 4em;
+  }
+  div.item-container div.card img {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    width: 60%;
+  }
+  div.item-container div.card h5 {
+    font-size: 16px;
+  }
+  div.item-container div.card p {
+    font-size: 14px;
+  }
+  div.item-container div.card a {
+    font-size: 14px;
+  }
+
+  div.about-container div.about-text p {
+    font-size: 14px;
+    padding: 0 3em;
+  }
+}
+@media screen and (min-width: 992px) {
+  nav {
+    padding: 0 1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  nav div.logo h1 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  nav div.logo span.ent {
+    font-size: 16px;
+    letter-spacing: 5px;
+  }
+  nav ul li.nav-item a.btnRegister {
+    color: #FFFFFF;
+    border-radius: 0.4em;
+    padding: 0.6em;
+    background: #0d6efd;
+  }
+  nav ul li.nav-item a.btnRegister:hover {
+    background: #0853c4;
+    transition: 0.4s;
+  }
+  nav div.collapse ul.navbar-nav {
+    margin-left: auto;
+  }
+  nav div.collapse ul.navbar-nav li.nav-item a {
+    font-size: 16px;
+    margin-left: 2em;
+  }
+
+  div.hero-container div.left-content a.btn-dark {
+    width: 20%;
+    padding: 1.4em;
+  }
+
+  div.search-container {
+    width: 50%;
+    margin: auto;
+  }
+  div.search-container input.form-control {
+    padding: 1em;
+  }
+  div.search-container button.btn {
+    width: 20%;
+  }
+
+  p.shopCateg {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  div.dropdown {
+    padding: 0 3em;
+  }
+}
+@media screen and (min-width: 1200px) {
+  nav {
+    padding: 0 5em;
+  }
+
+  div.search-container {
+    padding: 2em 5em;
+  }
+
+  div.hero-container {
+    padding: 4em 5em;
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    margin-bottom: 4em;
+    justify-content: left;
+    align-items: center;
+  }
+  div.hero-container div.left-content div.text-content {
+    max-width: 1500px;
+    text-align: left;
+  }
+  div.hero-container div.left-content div.text-content h5 {
+    text-align: left;
+    font-size: 26px;
+  }
+  div.hero-container div.left-content div.text-content h1 {
+    text-align: left;
+    font-size: 46px;
+  }
+  div.hero-container div.left-content a.btn-dark {
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 40%;
+    padding: 1em;
+    font-weight: bold;
+  }
+  div.hero-container div.right-content {
+    margin: 0 auto;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  div.hero-container div.right-content div.bg-hero img {
+    display: flex;
+    justify-content: right;
+    display: flex;
+  }
+
+  p.shopCateg {
+    font-weight: 500;
+    padding: 0 6em;
+    font-size: 16px;
+    margin-bottom: 2em;
+  }
+
+  div.dropdown {
+    padding: 3em 6em;
+  }
+
+  div.swiper div.swiper-wrapper div.swiper-slide {
+    border-radius: 1em;
+    padding-top: 2em;
+  }
+  div.swiper div.swiper-wrapper div.swiper-slide img {
+    width: 20%;
+  }
+  div.swiper div.swiper-wrapper div.swiper-slide p {
+    font-size: 18px;
+  }
+  div.swiper div.swiper-button-next {
+    padding: 0 7em;
+  }
+  div.swiper div.swiper-button-prev {
+    padding: 0 7em;
+  }
+
+  div.item-container {
+    padding: 3em 6em;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  div.about-container div.about-text p {
+    padding: 0 12em;
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  nav a.navbar-brand h1 {
+    font-size: 22px;
+  }
+  nav a.navbar-brand span.ent {
+    font-size: 20px;
+  }
+  nav div.collapse ul li.nav-item a.nav-link {
+    font-size: 18px;
+  }
+
+  div.hero-container {
+    padding-top: 4em;
+  }
+  div.hero-container div.left-content div.text-content h1 {
+    font-size: 70px;
+  }
+  div.hero-container div.left-content a.btn-dark {
+    width: 30%;
+    padding: 1em;
+  }
+
+  p.shopCateg {
+    font-size: 20px;
+    padding: 0 5em;
+  }
+
+  div.item-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  div.item-container div.card div.card-body img {
+    margin: auto;
+    justify-content: center;
+    width: 10%;
+  }
+  div.item-container div.card div.card-body h5 {
+    font-size: 18px;
+  }
+  div.item-container div.card div.card-body p {
+    font-size: 14px;
+  }
+  div.item-container div.card div.card-body a {
+    font-size: 12px;
+  }
+}
+@media screen and (min-width: 1390px) {
+  div.hero-container {
+    max-width: 1280;
+    padding: 4em 2em;
+  }
+
+  div.item-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  div.item-container div.card div.card-body img {
+    margin: auto;
+    justify-content: center;
+    width: 10%;
+  }
+  div.item-container div.card div.card-body h5 {
+    font-size: 20px;
+  }
+  div.item-container div.card div.card-body p {
+    font-size: 18px;
+  }
+  div.item-container div.card div.card-body a {
+    font-size: 14px;
+  }
+}/*# sourceMappingURL=index.css.map */

@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css");
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+$colors:(
+    bg-body: #FFFFFF,
+    bg-orange: #FF432A,
+    bg-blue: #0094FF,
+    bg-gray: #F2F2F2,
+    bg-font: #212529
+);
+
+$font: 'Poppins', sans-serif;
+
+@function color($color-name){
+    @return map-get($colors, $color-name);
+}
+
+div.main-container{
+    background: color(bg-body);
+    font-family: $font;
+}
+
+//REGISTER FORM
+div.login-form{
+    div.left-content{
+        div.img-sign{ 
+            display: none;     
+        }
+    }
+    div.right-content{
+        div.login-header{
+            margin-top: 4em;
+            text-align: center;
+            h1{
+                font-size: 26px;
+                font-weight: bold;
+            }
+        }
+        form{
+            padding: 4em 1em;
+            label{
+                font-size: 14px;
+            }
+        }
+        div.d-grid{
+
+            button{
+                margin-top: 3em;
+            }
+        }
+        div.already-acc{
+            margin: 0 1.4em;
+            font-size: 14px;
+        }
+    }
+}
+
+//768 VIEW
+@media screen and(min-width: 768px){
+    //LOGIN FORM
+    div.login-form{
+        height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        div.left-content{
+          padding: 4em 1em;
+           display: inline-block;
+           background: color(bg-gray);
+           div.img-sign{
+            display: block;
+            h1{
+                font-size: 26px;
+                font-weight: bold;
+            }
+            p{
+                font-size: 16px;
+            }
+            text-align: center;
+            
+            img{
+                margin-top: 3em;
+                display: flex;
+             }
+           }
+        }
+    }
+}
+
+//1200 VIEW
+@media screen and(min-width: 1200px){
+    //LOGIN FORM
+    div.login-form{
+        div.left-content{
+        div.img-sign{
+            h1{
+                font-size: 32px;
+                font-weight: bold;
+            }
+            p{
+                font-size: 20px;
+            } 
+          }
+        }
+        div.right-content{
+            div.login-header{
+                h1{
+                    font-size: 32px;
+                }
+            }
+            form{
+                padding: 6em 4em;
+                label{
+                    font-size: 20px;
+                }
+                input{
+                    padding: .8em;
+                }
+                label.remember{
+                    margin-left: .7em;
+                }
+                label.terms{
+                    font-size: 16px;
+                }
+                button{
+                    padding: .8em;
+                }
+            }
+            div.already-acc{
+                padding: 0 2em;
+                font-size: 20px;
+            }
+        }
+    }
+}
+
+//1280 VIEW
+@media screen and(min-width: 1280px){
+    //LOGIN FORM
+    div.login-form{
+        div.left-content{
+        div.img-sign{
+            h1{
+                font-size: 32px;
+                font-weight: bold;
+            }
+            p{
+                font-size: 20px;
+            } 
+          }
+        }
+        div.right-content{
+            div.login-header{
+                h1{
+                    font-size: 32px;
+                }
+            }
+            form{
+                padding: 6em 6em;
+                label{
+                    font-size: 20px;
+                }
+            }
+            div.already-acc{
+                padding: 0 4.8em;
+                font-size: 16px;
+            }
+        }
+    }
+}
