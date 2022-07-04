@@ -53,7 +53,7 @@
                     </div>
                     <div class="link login-link text-center mt-5">Not yet a member? <a href="/pages/signup.php">Signup now</a></div>
                 </form>
-                </div>
+            </div>
     </div>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
