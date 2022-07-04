@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Sign in</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/styles/signin.css">
 </head>
@@ -20,7 +21,8 @@
                 </div>
 
                 <div class="right-content">
-                <form action="/pages/signin.php" method="POST" autocomplete="">
+                <form action="/pages/signin.php" method="POST" autocomplete="" data-aos="fade-up" data-aos-duration="1000"
+                data-aos-delay="200">
                     <h2 class="text-center">Sign in</h2>
                     <p class="text-center">Login with your email or username and password.</p>
 
@@ -53,6 +55,9 @@
                 </form>
                 </div>
     </div>
-    
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+  AOS.init();
+</script>
 </body>
 </html>
