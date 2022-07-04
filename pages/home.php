@@ -1,18 +1,25 @@
-<?php
-    session_start();
-    if (!isset($_SESSION['SESSION_EMAIL'])) {
-        header("Location: signin.php");
-        die();
-    }else if(!isset($_SESSION['SESSION_EMAIL'])) {
-      header("Location: signin.php");
-      die();
+<?php require_once "../config/controllerUserData.php"; ?>
+<?php 
+$email = $_SESSION['email'];
+$password = $_SESSION['password'];
+if($email != false && $password != false){
+    $sql = "SELECT * FROM usertable WHERE email = '$email'";
+    $run_Sql = mysqli_query($con, $sql);
+    if($run_Sql){
+        $fetch_info = mysqli_fetch_assoc($run_Sql);
+        $status = $fetch_info['status'];
+        $code = $fetch_info['code'];
+        if($status == "verified"){
+            if($code != 0){
+                header('Location: resetCode.php');
+            }
+        }else{
+            header('Location: otp.php');
+        }
     }
-
-    include 'configure.php';
-
-    $query = mysqli_query($conn, "SELECT * FROM users WHERE email='{$_SESSION['SESSION_EMAIL']}'");
-
-
+}else{
+    header('Location: signin.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,11 +68,7 @@
                 <a class="about" aria-current="page" href="#about-section">About</a>
               </li>
               <li class="nav-item">
-              <a><b><?php if (mysqli_num_rows($query) > 0) {
-                $row = mysqli_fetch_assoc($query);
-                echo "Welcome " . $row['username'];
-                }
-              ?></b></a>
+              <a><b><?php echo $fetch_info['name'] ?></b></a>
               </li>
               <li class="nav-item">
                 <a class="logout"  aria-current="page" href="/pages/logout.php">Logout</a>

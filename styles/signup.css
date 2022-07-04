@@ -11,90 +11,52 @@ div.main-container {
   font-family: "Poppins", sans-serif;
 }
 
-div.register-form div.left-content img {
+div.left-content {
   display: none;
 }
-div.register-form div.left-content div.tabimg-container {
-  display: none;
+
+div.right-content {
+  padding-top: 4em;
 }
-div.register-form div.right-content div.header-signup {
-  margin-top: 4em;
+div.right-content p.text-center {
+  margin-bottom: 4em;
 }
-div.register-form div.right-content div.header-signup h1 {
-  text-align: center;
-  font-size: 26px;
-}
-div.register-form div.right-content div.header-signup p {
-  font-size: 14px;
-  text-align: center;
-}
-div.register-form div.right-content form {
-  padding: 2em 1em;
-  margin-top: 3em;
-}
-div.register-form div.right-content form label {
-  font-size: 14px;
-}
-div.register-form div.right-content div.d-grid button {
-  margin-top: 4em;
+div.right-content form {
+  padding: 1em;
 }
 
 @media screen and (min-width: 768px) {
-  div.register-form {
-    height: 100vh;
+  div.main-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    height: 100vh;
   }
-  div.register-form div.left-content {
+
+  div.left-content {
     padding: 4em 1em;
     background: #F2F2F2;
     display: inline-block;
   }
-  div.register-form div.left-content h1 {
-    font-size: 26px;
+  div.left-content h1 {
+    font-size: 36px;
     font-weight: bold;
     text-align: center;
   }
-  div.register-form div.left-content div.tabimg-container {
-    display: block;
-  }
-  div.register-form div.left-content div.tabimg-container p {
+  div.left-content p {
+    font-size: 20px;
     text-align: center;
-    font-size: 16px;
-  }
-  div.register-form div.left-content div.tabimg-container img.tabimg {
-    margin-top: 2em;
-    display: flex;
   }
 }
 @media screen and (min-width: 1200px) {
-  div.register-form div.left-content {
-    padding: 4em 1em;
+  div.right-content {
+    padding: 4em 2em;
   }
-  div.register-form div.left-content div.tabimg-container h1 {
-    font-size: 32px;
+  div.right-content h2 {
+    font-size: 36px;
+    font-weight: bold;
   }
-  div.register-form div.left-content div.tabimg-container p {
+  div.right-content p {
     font-size: 20px;
-  }
-  div.register-form div.right-content div.header-signup h1 {
-    font-size: 32px;
-  }
-  div.register-form div.right-content div.header-signup p {
-    font-size: 20px;
-  }
-  div.register-form div.right-content form {
-    padding: 6em 4em;
-    margin-bottom: 4em;
-  }
-  div.register-form div.right-content form label {
-    font-size: 20px;
-  }
-  div.register-form div.right-content form input {
-    padding: 0.7em;
-  }
-  div.register-form div.right-content form button {
-    padding: 0.9em;
   }
 }
 @media screen and (min-width: 1280px) {

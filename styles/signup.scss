@@ -26,123 +26,68 @@ div.main-container{
     font-family: $font;
 }
 
-//REGISTER FORM
-div.register-form{
-    div.left-content{
-        img{
-            display: none;
-        }
-        div.tabimg-container{
-            display: none;  
-        }
-    }
-    div.right-content{
+//LEFT CONTENT
+div.left-content{
+    display: none;
+}
 
-        div.header-signup{
-            margin-top: 4em;
-            h1{      
-                text-align: center;
-                font-size: 26px;
-            }
-            p{
-                font-size: 14px;
-                text-align: center;
-            }
-        }
-        form{
-            padding: 2em 1em;
-            margin-top: 3em;
-            label{
-                font-size: 14px;
-            }
-        }
-
-        div.d-grid{
-            button{
-                margin-top: 4em;
-            }
-        }
-    }
+//RIGHT CONTENT
+div.right-content{
+    padding-top: 4em;
+  form{
+    padding: 1em;
+    h2.text-center{
+        font-weight: bold;
+        padding-top: 7em;
+      }
+  }
 }
 
 //768 VIEW
 @media screen and (min-width: 768px){
-    //REGISTER FORM
-    div.register-form{
-        height: 100vh;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-       
-        div.left-content{
-            padding: 4em 1em;
-            background: color(bg-gray);
-            display: inline-block;
-            h1{
-                font-size: 26px;
-                font-weight: bold;
-                text-align: center;
-            }
-            div.tabimg-container{
-                    display: block;
-                p{
-                    text-align: center;
-                    font-size: 16px;
-                }
-                img.tabimg{
-                    margin-top: 2em;
-                    display: flex;
-                }
-            }
-        }
+   div.main-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100vh;
+   }
+   div.left-content{
+    padding: 4em 1em;
+    background: color(bg-gray);
+    display: inline-block;
+
+    h1{
+        font-size: 36px;
+        font-weight: bold;
+        text-align: center;
     }
+    p{
+        font-size: 20px;
+        text-align: center;
+    }
+   }
 }
 
 //1200 VIEW
 @media screen and (min-width: 1200px){
-    // REGISTER FORM
-    div.register-form{
-        div.left-content{
-            padding: 4em 1em;
-            div.tabimg-container{
-                h1{
-                    font-size: 32px;
-                }
-                p{
-                    font-size: 20px;
-                }
-            }
+    div.right-content{
+        padding: 4em 2em;
+        h2{
+            font-size: 36px;
+            font-weight: bold;
         }
-        div.right-content{
-            div.header-signup{
-                h1{
-                    font-size: 32px;
-                }
-                p{
-                    font-size: 20px;
-                }
-            }
-            form{
-                padding: 6em 4em;
-                margin-bottom: 4em;
-                label{
-                    font-size: 20px;
-                }
-                input{
-                    padding: .7em;
-                }
-                button{
-                    padding: .9em;
-                }
-            }
+        p{
+            font-size: 20px;
         }
     }
 }
 
+
+
 //1280 VIEW
 @media screen and (min-width: 1280px){
-    //REGISTER FORM
     div.right-content{
         form{
+            
             padding: 0 7em;
             margin-bottom: 3em;
             label{

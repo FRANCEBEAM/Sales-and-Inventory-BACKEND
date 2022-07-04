@@ -24,152 +24,70 @@ $font: 'Poppins', sans-serif;
 div.main-container{
     background: color(bg-body);
     font-family: $font;
-}
-
-//REGISTER FORM
-div.login-form{
+    }
     div.left-content{
-        div.img-sign{ 
-            display: none;     
-        }
+        display:none;
     }
-    div.right-content{
-        div.login-header{
-            margin-top: 4em;
-            text-align: center;
-            h1{
-                font-size: 26px;
-                font-weight: bold;
-            }
-        }
-        form{
-            padding: 4em 1em;
-            label{
-                font-size: 14px;
-            }
-        }
-        div.d-grid{
 
-            button{
-                margin-top: 3em;
-            }
-        }
-        div.already-acc{
-            margin: 0 1.4em;
-            font-size: 14px;
-        }
+    //RIGHT CONTENT
+    div.right-content{
+        padding-top: 4em;
+    p.text-center{
+        margin-bottom: 4em;
     }
-}
+    form{
+        padding: 1em;
+      }
+    }
+    
 
 //768 VIEW
 @media screen and(min-width: 768px){
-    //LOGIN FORM
-    div.login-form{
-        height: 100vh;
+    div.main-container{
         display: grid;
         grid-template-columns: 1fr 1fr;
-
-        div.left-content{
-          padding: 4em 1em;
-           display: inline-block;
-           background: color(bg-gray);
-           div.img-sign{
-            display: block;
-            h1{
-                font-size: 26px;
-                font-weight: bold;
-            }
-            p{
-                font-size: 16px;
-            }
+        height: 100vh;
+       }
+       div.left-content{
+        padding: 4em 1em;
+        background: color(bg-gray);
+        display: inline-block;
+    
+        h1{
+            font-size: 36px;
+            font-weight: bold;
             text-align: center;
-            
-            img{
-                margin-top: 3em;
-                display: flex;
-             }
-           }
         }
-    }
+        p{
+            font-size: 20px;
+            text-align: center;
+        }
+       }
 }
 
 //1200 VIEW
 @media screen and(min-width: 1200px){
-    //LOGIN FORM
-    div.login-form{
-        div.left-content{
-        div.img-sign{
-            h1{
-                font-size: 32px;
-                font-weight: bold;
-            }
-            p{
-                font-size: 20px;
-            } 
-          }
+    div.right-content{
+        padding: 4em 4em;
+        h2{
+            font-size: 36px;
+            font-weight: bold;
         }
-        div.right-content{
-            div.login-header{
-                h1{
-                    font-size: 32px;
-                }
-            }
-            form{
-                padding: 6em 4em;
-                label{
-                    font-size: 20px;
-                }
-                input{
-                    padding: .8em;
-                }
-                label.remember{
-                    margin-left: .7em;
-                }
-                label.terms{
-                    font-size: 16px;
-                }
-                button{
-                    padding: .8em;
-                }
-            }
-            div.already-acc{
-                padding: 0 2em;
-                font-size: 20px;
-            }
+        p{
+            font-size: 20px;
         }
     }
 }
 
 //1280 VIEW
 @media screen and(min-width: 1280px){
-    //LOGIN FORM
-    div.login-form{
-        div.left-content{
-        div.img-sign{
-            h1{
-                font-size: 32px;
-                font-weight: bold;
-            }
-            p{
+    div.right-content{
+        form{
+            
+            padding: 0 7em;
+            margin-bottom: 3em;
+            label{
                 font-size: 20px;
-            } 
-          }
-        }
-        div.right-content{
-            div.login-header{
-                h1{
-                    font-size: 32px;
-                }
-            }
-            form{
-                padding: 6em 6em;
-                label{
-                    font-size: 20px;
-                }
-            }
-            div.already-acc{
-                padding: 0 4.8em;
-                font-size: 16px;
             }
         }
     }
