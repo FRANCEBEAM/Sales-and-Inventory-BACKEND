@@ -1,14 +1,16 @@
 <?php 
 session_start();
 require "../config/connect.php";
+$username ="";
 $email = "";
-$name = "";
+$fullname = "";
 $errors = array();
 
 // IF THE USER WANTS TO SIGNUP BUTTON
 if(isset($_POST['signup'])){
-    $name = mysqli_real_escape_string($con, $_POST['name']);
+    $username = mysqli_real_escape_string($con, $_POST['username']);
     $email = mysqli_real_escape_string($con, $_POST['email']);
+    $fullname = mysqli_real_escape_string($con, $_POST['fullname']);
     $password = mysqli_real_escape_string($con, $_POST['password']);
     $cpassword = mysqli_real_escape_string($con, $_POST['cpassword']);
     if($password !== $cpassword){
@@ -23,8 +25,8 @@ if(isset($_POST['signup'])){
         $encpass = password_hash($password, PASSWORD_BCRYPT);
         $code = rand(999999, 111111);
         $status = "notverified";
-        $insert_data = "INSERT INTO usertable (name, email, password, code, status)
-                        values('$name', '$email', '$encpass', '$code', '$status')";
+        $insert_data = "INSERT INTO usertable (username, email, fullname, password, code, status)
+                        values('$username', '$email', '$fullname', '$encpass', '$code', '$status')";
         $data_check = mysqli_query($con, $insert_data);
         if($data_check){
             $subject = "Email Verification Code";
@@ -62,7 +64,7 @@ if(isset($_POST['signup'])){
             $update_otp = "UPDATE usertable SET code = $code, status = '$status' WHERE code = $fetch_code";
             $update_res = mysqli_query($con, $update_otp);
             if($update_res){
-                $_SESSION['name'] = $name;
+                $_SESSION['fullname'] = $fullname;
                 $_SESSION['email'] = $email;
                 header('location: signin.php');
                 exit();
@@ -79,7 +81,9 @@ if(isset($_POST['signup'])){
         $email = mysqli_real_escape_string($con, $_POST['email']);
         $password = mysqli_real_escape_string($con, $_POST['password']);
         $check_email = "SELECT * FROM usertable WHERE email = '$email'";
+
         $res = mysqli_query($con, $check_email);
+     
         if(mysqli_num_rows($res) > 0){
             $fetch = mysqli_fetch_assoc($res);
             $fetch_pass = $fetch['password'];

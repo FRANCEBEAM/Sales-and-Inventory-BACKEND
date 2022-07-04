@@ -49,17 +49,20 @@
                     ?>
 
                       <!--LETS CREATE SIGN UP FORM-->
-                    <div class="form-group mb-4">
-                        <input class="form-control" type="text" name="name" placeholder="Full Name" required value="<?php echo $name ?>">
+                      <div class="form-group mb-4">
+                        <input class="form-control" type="text" name="username" placeholder="Enter Username" required value="<?php echo $username ?>">
                     </div>
                     <div class="form-group mb-4">
-                        <input class="form-control" type="email" name="email" placeholder="Email Address" required value="<?php echo $email ?>">
+                        <input class="form-control" type="email" name="email" placeholder="Enter Email Address" required value="<?php echo $email ?>">
                     </div>
                     <div class="form-group mb-4">
-                        <input class="form-control" type="password" name="password" placeholder="Password" required>
+                        <input class="form-control" type="text" name="fullname" placeholder=" Enter Full Name" required value="<?php echo $fullname ?>">
                     </div>
                     <div class="form-group mb-4">
-                        <input class="form-control" type="password" name="cpassword" placeholder="Confirm password" required>
+                        <input class="form-control" type="password" name="password" placeholder="Enter Password" required>
+                    </div>
+                    <div class="form-group mb-4">
+                        <input class="form-control" type="password" name="cpassword" placeholder="Enter Confirm password" required>
                     </div>
                     <div class="form-group mt-5">
                         <input class="form-control btn btn-primary" type="submit" name="signup" value="Signup">

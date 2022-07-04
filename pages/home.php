@@ -68,7 +68,7 @@ if($email != false && $password != false){
                 <a class="about" aria-current="page" href="#about-section">About</a>
               </li>
               <li class="nav-item">
-              <a><b><?php echo $fetch_info['name'] ?></b></a>
+              <a><b><?php echo $fetch_info['fullname'] ?></b></a>
               </li>
               <li class="nav-item">
                 <a class="logout"  aria-current="page" href="/pages/logout.php">Logout</a>
