@@ -5,8 +5,8 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-//Load Composer's autoloader
-require '../vendor/autoload.php';
+// //Load Composer's autoloader
+// require '../vendor/autoload.php';
 
 session_start();
 require "../config/connect.php";
@@ -22,11 +22,14 @@ if(isset($_POST['signup'])){
     $fullname = mysqli_real_escape_string($con, $_POST['fullname']);
     $password = mysqli_real_escape_string($con, $_POST['password']);
     $cpassword = mysqli_real_escape_string($con, $_POST['cpassword']);
+
     if($password !== $cpassword){
         $errors['password'] = "Confirm password not matched!";
     }
+
     $email_check = "SELECT * FROM usertable WHERE email = '$email'";
     $res = mysqli_query($con, $email_check);
+
     if(mysqli_num_rows($res) > 0){
         $errors['email'] = "Email that you have entered is already exist!";
     }
@@ -36,12 +39,31 @@ if(isset($_POST['signup'])){
         $status = "notverified";
         $insert_data = "INSERT INTO usertable (username, email, fullname, password, code, status)
                         values('$username', '$email', '$fullname', '$encpass', '$code', '$status')";
+
         $data_check = mysqli_query($con, $insert_data);
+
         if($data_check){
-            $subject = "Email Verification Code";
-            $message = "Your verification code is $code";
-            $sender = "From: donpapichulo2.8@gmail.com";
-            if(mail($email, $subject, $message, $sender)){
+          //Load Composer's autoloader
+            require '../vendor/autoload.php';
+            $mail = new PHPMailer;
+
+            $mail->isSMTP();
+            $mail->Host='smtp.gmail.com';
+            $mail->Port=587;
+            $mail->SMTPAuth=true;
+            $mail->SMTPSecure='tls';
+
+            $mail->Username = 'donpapichulo2.8@gmail.com'; 
+            $mail->Password = 'jzblakfsldyxokip'; 
+
+            $mail->setFrom('donpapichulo2.8@gmail.com', 'OTP Verification');
+            $mail->addAddress($_POST["email"]);
+
+            $mail->isHTML(true);
+            $mail->Subject="Your code verification";
+            $mail->Body="<p>Dear user, </p> <h3>Your verify OTP code is $code <br></h3>";
+
+            if($mail->send($email, $subject, $message, $sender)){
                 $info = "We've sent a verification code to your email - $email";
                 $_SESSION['info'] = $info;
                 $_SESSION['email'] = $email;
@@ -55,38 +77,25 @@ if(isset($_POST['signup'])){
             $errors['db-error'] = "Failed while inserting data into database!";
         }
     }
+}
+        //     $subject = "Email Verification Code";
+        //     $message = "Your verification code is $code";
+        //     $sender = "From: donpapichulo2.8@gmail.com";
 
-    //Create an instance; passing `true` enables exceptions
-    $mail = new PHPMailer(true);
-
-        try {
-            //Server settings
-            $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-            $mail->isSMTP();                                            //Send using SMTP
-            $mail->Host       = 'smtp.example.com';                     //Set the SMTP server to send through
-            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-            $mail->Username   = 'donpapichulo2.8@gmail.com';                     //SMTP username
-            $mail->Password   = 'jzblakfsldyxokip';                               //SMTP password
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-            $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-
-            //Recipients
-            $mail->setFrom('donpapichulo2.8@gmail.com', 'Papi always happy');
-            $mail->addAddress($email);     //Add a recipient
-
-            //Content
-            $mail->isHTML(true);                                  //Set email format to HTML
-            $mail->Subject = 'Here is the subject';
-            $mail->Body    = 'Here is the verification link <b>'.$code.'</b>';
-            $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
-            $mail->send();
-            echo 'Message has been sent';
-        } catch (Exception $e) {
-            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-        }
-
-    }
+        //     if(mail($email, $subject, $message, $sender)){
+        //         $info = "We've sent a verification code to your email - $email";
+        //         $_SESSION['info'] = $info;
+        //         $_SESSION['email'] = $email;
+        //         $_SESSION['password'] = $password;
+        //         header('location: otp.php');
+        //         exit();
+        //     }else{
+        //         $errors['otp-error'] = "Failed while sending code!";
+        //     }
+        //    }else{
+        //     $errors['db-error'] = "Failed while inserting data into database!";
+        
+    
 
     // IF USER WANTS TO CLICK VERIFICATION AND SUBMIT BUTTON
     if(isset($_POST['check'])){
@@ -114,6 +123,7 @@ if(isset($_POST['signup'])){
             $errors['otp-error'] = "You've entered incorrect code!";
         }
     }
+    
 
     //IF USER WANTS TO LOGIN
     if(isset($_POST['login'])){
@@ -155,11 +165,29 @@ if(isset($_POST['signup'])){
             $code = rand(999999, 111111);
             $insert_code = "UPDATE usertable SET code = $code WHERE email = '$email'";
             $run_query =  mysqli_query($con, $insert_code);
+
             if($run_query){
-                $subject = "Password Reset Code";
-                $message = "Your password reset code is $code";
-                $sender = "From: donpapichulo2.8gmail.com";
-                if(mail($email, $subject, $message, $sender)){
+                //Load Composer's autoloader
+                require '../vendor/autoload.php';
+                $mail = new PHPMailer;
+
+                $mail->isSMTP();
+                $mail->Host='smtp.gmail.com';
+                $mail->Port=587;
+                $mail->SMTPAuth=true;
+                $mail->SMTPSecure='tls';
+    
+                $mail->Username = 'donpapichulo2.8@gmail.com'; 
+                $mail->Password = 'jzblakfsldyxokip'; 
+    
+                $mail->setFrom('donpapichulo2.8@gmail.com', 'OTP Verification');
+                $mail->addAddress($_POST["email"]);
+    
+                $mail->isHTML(true);
+                $mail->Subject="Your reset code verification";
+                $mail->Body="<p>Dear user, </p> <h3>Your Reset OTP code is $code <br></h3>";
+                
+                 if($mail->send($email, $subject, $message, $sender)){
                     $info = "We've sent a passwrod reset otp to your email - $email";
                     $_SESSION['info'] = $info;
                     $_SESSION['email'] = $email;
@@ -175,6 +203,7 @@ if(isset($_POST['signup'])){
             $errors['email'] = "This email address does not exist!";
         }
     }
+
 
     //RESET OTP BUTTON
     if(isset($_POST['check-reset-otp'])){
