@@ -1,0 +1,147 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+div.main-container {
+  background: #FFFFFF;
+  font-family: "Poppins", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+nav {
+  box-shadow: -1px 6px 59px -35px rgba(41, 41, 41, 0.75);
+  -webkit-box-shadow: -1px 6px 59px -35px rgba(41, 41, 41, 0.75);
+  -moz-box-shadow: -1px 6px 59px -35px rgba(41, 41, 41, 0.75);
+  padding: 0 1em;
+}
+nav div.logo h1 {
+  font-size: 16px;
+  font-weight: bold;
+}
+nav div.logo span.ent {
+  font-size: 12px;
+  letter-spacing: 5px;
+}
+nav ul li.nav-item a {
+  color: #212529;
+  text-decoration: none;
+  list-style: none;
+}
+nav ul li.nav-item ul {
+  list-style: none;
+}
+nav div.collapse ul.navbar-nav li.nav-item a.home:hover {
+  color: #FF432A;
+  transition: 0.4s;
+}
+nav div.collapse ul.navbar-nav li.nav-item a.shop:hover {
+  color: #FF432A;
+  transition: 0.4s;
+}
+nav div.collapse ul.navbar-nav li.nav-item a.about:hover {
+  color: #FF432A;
+  transition: 0.4s;
+}
+nav div.collapse ul.navbar-nav li.nav-item a.login:hover {
+  color: #FF432A;
+  transition: 0.4s;
+}
+
+div.main-container {
+  padding: 4em 1em;
+}
+div.main-container h1.profileInfo {
+  text-align: center;
+  margin-bottom: 4em;
+  font-weight: bold;
+}
+div.main-container div.profname-container {
+  text-align: center;
+  margin-bottom: 4em;
+}
+div.main-container div.profile-container form {
+  font-size: 16px;
+}
+div.main-container form div.detail-container h2 {
+  font-size: 20px;
+}
+div.main-container form button {
+  padding: 0.6em;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  nav div.logo h1 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  nav div.logo span.ent {
+    font-size: 18px;
+    letter-spacing: 5px;
+  }
+  div.profile-container form {
+    padding: 0 6em;
+  }
+}
+@media screen and (min-width: 992px) {
+  nav {
+    padding: 0 1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  nav div.logo h1 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  nav div.logo span.ent {
+    font-size: 16px;
+    letter-spacing: 5px;
+  }
+  nav ul li.nav-item a.btnRegister {
+    color: #FFFFFF;
+    border-radius: 0.4em;
+    padding: 0.6em;
+    background: #0d6efd;
+  }
+  nav ul li.nav-item a.btnRegister:hover {
+    background: #0853c4;
+    transition: 0.4s;
+  }
+  nav div.collapse ul.navbar-nav {
+    margin-left: auto;
+  }
+  nav div.collapse ul.navbar-nav li.nav-item a {
+    font-size: 16px;
+    margin-left: 2em;
+  }
+  div.profile-container form {
+    padding: 0 10em;
+  }
+}
+@media screen and (min-width: 1200px) {
+  nav {
+    padding: 0 5em;
+  }
+  div.profile-container form {
+    padding: 0 20%;
+  }
+}
+@media screen and (min-width: 1280px) {
+  nav a.navbar-brand h1 {
+    font-size: 22px;
+  }
+  nav a.navbar-brand span.ent {
+    font-size: 20px;
+  }
+  nav div.collapse ul li.nav-item a.nav-link {
+    font-size: 18px;
+  }
+}/*# sourceMappingURL=profile.css.map */

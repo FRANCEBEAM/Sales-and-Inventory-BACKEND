@@ -59,7 +59,7 @@ if($email != false && $password != false){
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav navbar-nav-scroll" style="--bs-scroll-height: 200px;">
               <li class="nav-item">
-                <a class="home" aria-current="page" href="#">Home</a>
+                <a class="home" aria-current="page" href="/pages/home.php">Home</a>
               </li>
               <li class="nav-item">
                 <a class="shop" aria-current="page" href="#">Shop</a>
@@ -67,11 +67,14 @@ if($email != false && $password != false){
               <li class="nav-item">
                 <a class="about" aria-current="page" href="#about-section">About</a>
               </li>
-              <li class="nav-item">
-              <a><b><?php echo $fetch_info['fullname'] ?></b></a>
-              </li>
-              <li class="nav-item">
-                <a class="logout"  aria-current="page" href="/pages/logout.php">Logout</a>
+              <li class="nav-item dropdown">
+                <a class="dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                <b><?php echo $fetch_info['fullname'] ?></b>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                  <li><a class="dropdown-item" href="/pages/profile.php">Profile</a></li>
+                  <li><a class="dropdown-item" href="/index.php">Logout</a></li>
+                </ul>
               </li>
             </ul>
           </div>

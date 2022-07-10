@@ -31,7 +31,6 @@ div.right-content form {
     grid-template-columns: 1fr 1fr;
     height: 100vh;
   }
-
   div.left-content {
     padding: 4em 1em;
     background: #F2F2F2;
