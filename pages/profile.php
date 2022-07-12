@@ -22,6 +22,9 @@ if($email != false && $password != false){
 }
 ?>
 
+<?php require_once "../config/editProfile.php" ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,7 +49,6 @@ if($email != false && $password != false){
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </head>
 <body>
-
 
       <!--NAVIGATION-->
   <head>
@@ -105,19 +107,20 @@ if($email != false && $password != false){
             <p><?php echo $fetch_info['email'] ?></p>
         </div>
         </div>
-
+      
     <div class="profile-container">
         <!---NAME INFORMATION-->
-    <form action="/config/editProfile.php" method="post">
-     <div class="detail-container">
+    <form action="/pages/profile.php" method="post">
+<div class="detail-container">
+  
         <div class="phone mb-4">
             <h2><i class="bi bi-phone"></i> Phone Number</h1>
-                <input type="text" class="form-control mt-3" id="formGroupExampleInput" name="phone" placeholder="Enter your phone number">
+                <input type="number" class="form-control mt-3" id="formGroupExampleInput" name="phone" placeholder="Enter your phone number" value="<?php echo $fetch_info['phone'] ?>">
         </div>
 
         <div class="address mb-4">
             <h2><i class="bi bi-geo-alt"></i> Address</h2>
-            <input type="text" class="form-control mt-3" id="formGroupExampleInput" name="address" placeholder="Enter your address">
+            <input type="text" class="form-control mt-3" id="formGroupExampleInput" name="address" placeholder="Enter your address" value="<?php echo $fetch_info['address'] ?>">
         </div>
 
         <div class="birthdate mb-4">
@@ -127,7 +130,7 @@ if($email != false && $password != false){
                             <div class='input-group date' id='startDate'>
                                 <span class="input-group-addon input-group-text mt-3"><span class="fa fa-calendar"></span>
                                   </span>
-                                 <input type='text' class="form-control mt-3" name="datebirth"/>
+                                 <input type='text' class="form-control mt-3" name="datebirth" placeholder= "mm/dd/yyyy" value='<?php echo $fetch_info['datebirth'] ?>'>
                             </div>
                         </div>
                     </div>
@@ -135,9 +138,10 @@ if($email != false && $password != false){
 
           <div class="gender mb-4">
             <h2><i class="bi bi-person"></i> Gender</h2>
-            <select class="form-select" aria-label="Default select example" name="gender">
-                <option value="1">Male</option>
-                <option value="2">Female</option>
+            <select class="form-select" aria-label="Default select example" name="gender" value='<?php echo $fetch_info['fullname'] ?>'>
+             
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
               </select>
            </div>
           </div>
@@ -146,6 +150,43 @@ if($email != false && $password != false){
         </form>
     </div>
 </div>
+
+<?php
+
+// echo "        <div class='phone mb-4'>
+// <h2><i class='bi bi-phone'></i> Phone Number</h1>
+//     <input type='text' class='form-control mt-3' id='formGroupExampleInput' name='phone' placeholder='Enter your phone number'>
+// </div>
+
+// <div class='address mb-4'>
+// <h2><i class='bi bi-geo-alt'></i> Address</h2>
+// <input type='text' class='form-control mt-3' id='formGroupExampleInput' name='address' placeholder='Enter your address'>
+// </div>
+
+// <div class='birthdate mb-4'>
+// <h2><i class='bi bi-calendar'></i> Date of Birth</h2>
+//     <div class=''>
+//             <div class='form-group'>
+//                 <div class='input-group date' id='startDate'>
+//                     <span class='input-group-addon input-group-text mt-3'><span class='fa fa-calendar'></span>
+//                       </span>
+//                      <input type='text' class='form-control mt-3' name='datebirth'/>
+//                 </div>
+//             </div>
+//         </div>
+//   </div>
+
+// <div class='gender mb-4'>
+// <h2><i class='bi bi-person'></i> Gender</h2>
+// <select class='form-select' aria-label='Default select example' name='gender'>
+ 
+//     <option value='Male'>Male</option>
+//     <option value='Female'>Female</option>
+//   </select>
+// </div>";
+
+?>
+
 
 
  <script src="/js/datepicker.js"></script>

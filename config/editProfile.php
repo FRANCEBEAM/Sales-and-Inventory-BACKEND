@@ -1,12 +1,14 @@
 <?php
  session_start();
- include "../config/connect.php";
+require "../config/connect.php";
+
  if(isset($_POST['btnSave']))
  {
     $email=$_SESSION['email'];
     $phone=$_POST['phone'];
     $address=$_POST['address'];
     $datebirth=$_POST['datebirth'];
+    $gender=$_POST['gender'];
     $select= "select * from usertable where email='$email'";
     $sql = mysqli_query($con,$select);
     $row = mysqli_fetch_assoc($sql);
@@ -14,12 +16,12 @@
     if($res === $email)
     {
    
-       $update = "update usertable set phone='$phone',address='$address', datebirth='$datebirth' where email='$email'";
+       $update = "update usertable set phone='$phone',address='$address', datebirth='$datebirth', gender= '$gender' where email='$email'";
        $sql2=mysqli_query($con,$update);
 if($sql2)
        { 
            /*Successful*/
-        //    header('location: profile.php');
+         //   header('location: profile.php');
            echo "Saved Changes";
        }
        else

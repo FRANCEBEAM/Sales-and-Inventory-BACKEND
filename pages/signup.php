@@ -25,7 +25,7 @@
                     <?php
                     if(count($errors) == 1){
                         ?>
-                        <div class="alert alert-danger text-cente">
+                        <div class="alert alert-danger text-center">
                             <?php
                             foreach($errors as $showerror){
                                 echo $showerror;
