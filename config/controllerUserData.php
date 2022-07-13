@@ -78,24 +78,6 @@ if(isset($_POST['signup'])){
         }
     }
 }
-        //     $subject = "Email Verification Code";
-        //     $message = "Your verification code is $code";
-        //     $sender = "From: donpapichulo2.8@gmail.com";
-
-        //     if(mail($email, $subject, $message, $sender)){
-        //         $info = "We've sent a verification code to your email - $email";
-        //         $_SESSION['info'] = $info;
-        //         $_SESSION['email'] = $email;
-        //         $_SESSION['password'] = $password;
-        //         header('location: otp.php');
-        //         exit();
-        //     }else{
-        //         $errors['otp-error'] = "Failed while sending code!";
-        //     }
-        //    }else{
-        //     $errors['db-error'] = "Failed while inserting data into database!";
-        
-    
 
     // IF USER WANTS TO CLICK VERIFICATION AND SUBMIT BUTTON
     if(isset($_POST['check'])){
@@ -251,4 +233,24 @@ if(isset($_POST['signup'])){
     if(isset($_POST['login-now'])){
         header('Location: signin.php');
     }
-?>
+
+    //IF USERS WANTS TO UPDATE PROFILE
+    $success = "";
+if (isset($_POST["btnSave"])) {
+    $phone = mysqli_real_escape_string($con, $_POST["phone"]);
+    $address = mysqli_real_escape_string($con, $_POST["address"]);
+    $datebirth = mysqli_real_escape_string($con, $_POST["datebirth"]);
+    $gender = mysqli_real_escape_string($con, $_POST["gender"]);
+
+    
+    $sql = "UPDATE usertable SET phone='$phone', address='$address', datebirth='$datebirth', gender= '$gender' WHERE email='{$_SESSION["email"]}'";
+    $result = mysqli_query($con, $sql);
+    if ($result) {
+        $success = 'Profile updated successfully';
+
+    } else {
+        echo "<script>alert('Profile can not Updated.');</script>";
+        echo  $con->error;
+    }
+}
+    ?>

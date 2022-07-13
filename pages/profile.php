@@ -1,4 +1,5 @@
 <?php require_once "../config/controllerUserData.php"; ?>
+
 <?php 
 $email = $_SESSION['email'];
 $password = $_SESSION['password'];
@@ -21,8 +22,6 @@ if($email != false && $password != false){
     header('Location: signin.php');
 }
 ?>
-
-<?php require_once "../config/editProfile.php" ?>
 
 
 <!DOCTYPE html>
@@ -85,7 +84,7 @@ if($email != false && $password != false){
 
               <li class="nav-item dropdown">
               <a class="dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                <b><?php echo $fetch_info['fullname'] ?></b>
+                <b><?php echo $fetch_info['fullname']; ?></b>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                   <li><a class="dropdown-item" href="#">Profile</a></li>
@@ -99,6 +98,20 @@ if($email != false && $password != false){
         <!--PROFILE SECTION-->
   <h1 class="profileInfo">Profile Information</h1>
 
+  <?php 
+            if($success){
+                ?>
+                 <div class="row justify-content-center">
+                      <div class="alert alert-success text-center col-4">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                    </svg> <?php echo $success; ?>
+                      </div>
+                </div>
+                <?php
+            }
+            ?>
+
       <div class="profname-container">
         <div class="fullname">
                 <h1><?php echo $fetch_info['fullname'] ?></h1>
@@ -110,7 +123,7 @@ if($email != false && $password != false){
       
     <div class="profile-container">
         <!---NAME INFORMATION-->
-    <form action="/pages/profile.php" method="post">
+    <form action= "/pages/profile.php" method="POST" >
 <div class="detail-container">
   
         <div class="phone mb-4">
@@ -138,57 +151,22 @@ if($email != false && $password != false){
 
           <div class="gender mb-4">
             <h2><i class="bi bi-person"></i> Gender</h2>
-            <select class="form-select" aria-label="Default select example" name="gender" value='<?php echo $fetch_info['fullname'] ?>'>
-             
+            <select class="form-select" id = "genderSelect" aria-label="Default select example" name="gender">
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
               </select>
            </div>
           </div>
-
-            <button class="btn btn-primary mt-4" name="btnSave">Save changes</button>
+            <button type="submit" class="btn btn-primary mt-4" name="btnSave">Save changes</button>
         </form>
     </div>
 </div>
 
-<?php
 
-// echo "        <div class='phone mb-4'>
-// <h2><i class='bi bi-phone'></i> Phone Number</h1>
-//     <input type='text' class='form-control mt-3' id='formGroupExampleInput' name='phone' placeholder='Enter your phone number'>
-// </div>
-
-// <div class='address mb-4'>
-// <h2><i class='bi bi-geo-alt'></i> Address</h2>
-// <input type='text' class='form-control mt-3' id='formGroupExampleInput' name='address' placeholder='Enter your address'>
-// </div>
-
-// <div class='birthdate mb-4'>
-// <h2><i class='bi bi-calendar'></i> Date of Birth</h2>
-//     <div class=''>
-//             <div class='form-group'>
-//                 <div class='input-group date' id='startDate'>
-//                     <span class='input-group-addon input-group-text mt-3'><span class='fa fa-calendar'></span>
-//                       </span>
-//                      <input type='text' class='form-control mt-3' name='datebirth'/>
-//                 </div>
-//             </div>
-//         </div>
-//   </div>
-
-// <div class='gender mb-4'>
-// <h2><i class='bi bi-person'></i> Gender</h2>
-// <select class='form-select' aria-label='Default select example' name='gender'>
- 
-//     <option value='Male'>Male</option>
-//     <option value='Female'>Female</option>
-//   </select>
-// </div>";
-
-?>
-
-
-
+<script>
+  document.querySelector('#genderSelect').value = "<?php echo $fetch_info['gender']   
+            ?>";
+</script>
  <script src="/js/datepicker.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script>
