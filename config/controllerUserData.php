@@ -295,7 +295,7 @@ if (isset($_POST["btnChange"]))
   }
   else
   {
-    $passChange = "<div class='alert alert-danger'>Password is not correct.</div>";
+    $passChange = "<div class='alert alert-danger'>Old password is not correct.</div>";
   
   }
 }
