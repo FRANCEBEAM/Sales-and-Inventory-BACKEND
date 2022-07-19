@@ -1,6 +1,6 @@
-<?php require_once "../config/controllerUserData.php"; ?>
 
 <?php 
+ require_once "../config/controllerUserData.php";
 $email = $_SESSION['email'];
 $password = $_SESSION['password'];
 if($email != false && $password != false){
@@ -24,6 +24,8 @@ if($email != false && $password != false){
 ?>
 
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,7 +44,7 @@ if($email != false && $password != false){
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
     <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
-    <link rel="stylesheet" href="/styles/profile.css">
+    <link rel="stylesheet" href="/styles/account.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
@@ -87,7 +89,7 @@ if($email != false && $password != false){
                 <b><?php echo $fetch_info['fullname']; ?></b>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                  <li><a class="dropdown-item" href="/pages/profile.php">Profile</a></li>
+                <li><a class="dropdown-item" href="/pages/profile.php">Profile</a></li>
                   <li><a class="dropdown-item" href="/pages/account.php">Account</a></li>
                   <li><a class="dropdown-item" href="/index.php">Logout</a></li>
                 </ul>
@@ -96,78 +98,48 @@ if($email != false && $password != false){
 </head>
 
 <div class="main-container">
-        <!--PROFILE SECTION-->
-  <h1 class="profileInfo">Profile Information</h1>
+        <!--ACCOUNT SECTION-->
+  <h1 class="profileInfo">Account Setting</h1>
 
-  <?php 
-            if($success){
+    <div class="profile-container">
+ <form method="POST" action="../pages/account.php" >
+
+ <!--SHOW VALIDATION SUCCESS-->
+ <?php 
+            if($passChange){
                 ?>
-                 <div class="row justify-content-center">
-                      <div class="alert alert-success text-center col-4">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                    </svg> <?php echo $success; ?>
-                      </div>
+                 <div class="row justify-content-center">            
+                   <?php echo $passChange; ?>              
                 </div>
                 <?php
             }
             ?>
 
-      <div class="profname-container">
-        <div class="fullname">
-                <h1><?php echo $fetch_info['fullname'] ?></h1>
-        </div>
-        <div class="email">
-            <p><?php echo $fetch_info['email'] ?></p>
-        </div>
-        </div>
-      
-    <div class="profile-container">
-        <!---NAME INFORMATION-->
-    <form action= "/pages/profile.php" method="POST" >
+
 <div class="detail-container">
   
-        <div class="phone mb-4">
-            <h2><i class="bi bi-phone"></i> Phone Number</h1>
-                <input type="number" class="form-control mt-3" id="formGroupExampleInput" name="phone" placeholder="Enter your phone number" value="<?php echo $fetch_info['phone'] ?>">
+        <div class="oldpass mb-4">
+            <h1>Old Password</h1>
+                <input type="password" class="form-control mt-3" id="formGroupExampleInput" name="oldpass" placeholder="Enter your old password" required>
         </div>
 
-        <div class="address mb-4">
-            <h2><i class="bi bi-geo-alt"></i> Address</h2>
-            <input type="text" class="form-control mt-3" id="formGroupExampleInput" name="address" placeholder="Enter your address" value="<?php echo $fetch_info['address'] ?>">
+        <div class="newpass mb-4">
+            <h1>New Password</h1>
+                <input type="password" class="form-control mt-3" id="formGroupExampleInput" name="newpass" placeholder="Enter your new password" required>
         </div>
 
-        <div class="birthdate mb-4">
-            <h2><i class="bi bi-calendar"></i> Date of Birth</h2>
-                <div class="">
-                        <div class="form-group">
-                            <div class='input-group date' id='startDate'>
-                                <span class="input-group-addon input-group-text mt-3"><span class="fa fa-calendar"></span>
-                                  </span>
-                                 <input type='text' class="form-control mt-3" name="datebirth" placeholder= "mm/dd/yyyy" value='<?php echo $fetch_info['datebirth'] ?>'>
-                            </div>
-                        </div>
-                    </div>
-              </div>
+        <div class="conpass mb-4">
+            <h1>Confirm Password</h1>
+                <input type="password" class="form-control mt-3" id="formGroupExampleInput" name="conpass" placeholder="Re-enter your old password" required>
+        </div>
 
-          <div class="gender mb-4">
-            <h2><i class="bi bi-person"></i> Gender</h2>
-            <select class="form-select" id = "genderSelect" aria-label="Default select example" name="gender">
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-              </select>
-           </div>
           </div>
-            <button type="submit" class="btn btn-primary mt-4" name="btnSave">Save changes</button>
+            <button type="submit" class="btn btn-primary mt-4" name="btnChange">Save changes</button>
         </form>
     </div>
 </div>
 
 
-<script>
-  document.querySelector('#genderSelect').value = "<?php echo $fetch_info['gender']   
-            ?>";
-</script>
  <script src="/js/datepicker.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script>

@@ -253,4 +253,51 @@ if (isset($_POST["btnSave"])) {
         echo  $con->error;
     }
 }
-    ?>
+
+//IF USERS WANTS TO CHANGE THEIR PASSWORD
+$user_id = $_SESSION['email'];
+
+// Connect with database
+include "../config/connect.php";
+
+$passChange = "";
+// This will be called once form is submitted
+if (isset($_POST["btnChange"]))
+{
+  // Get all input fields
+  $oldpass = $_POST["oldpass"];
+  $newpass = $_POST["newpass"];
+  $conpass = $_POST["conpass"];
+
+
+  // Check if current password is correct
+ 	$sql = "SELECT * FROM usertable WHERE email = '".$user_id."'";
+  $result = mysqli_query($con, $sql);
+  $row = mysqli_fetch_object($result);
+  
+  if (password_verify($oldpass, $row->password))
+  {
+    // Check if password is same
+    if ($newpass == $conpass)
+    {
+				// Change password
+				$sql = "UPDATE usertable SET password = '" . password_hash($newpass, PASSWORD_DEFAULT) . "' WHERE email = '".$user_id."'";
+				mysqli_query($con, $sql);
+
+				$passChange = "<div class='alert alert-success'>Password has been changed.</div>.";
+     
+    }
+    else
+    {
+      $passChange = "<div class='alert alert-danger'>Password does not match.</div>";
+    
+    }
+  }
+  else
+  {
+    $passChange = "<div class='alert alert-danger'>Password is not correct.</div>";
+  
+  }
+}
+
+?>
