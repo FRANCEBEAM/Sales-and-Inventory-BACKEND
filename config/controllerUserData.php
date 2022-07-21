@@ -1,4 +1,6 @@
+
 <?php 
+error_reporting(0);
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
@@ -37,8 +39,9 @@ if(isset($_POST['signup'])){
         $encpass = password_hash($password, PASSWORD_BCRYPT);
         $code = rand(999999, 111111);
         $status = "notverified";
-        $insert_data = "INSERT INTO usertable (username, email, fullname, password, code, status)
-                        values('$username', '$email', '$fullname', '$encpass', '$code', '$status')";
+        $usertype = "user";
+        $insert_data = "INSERT INTO usertable (username, email, fullname, password, code, status, usertype)
+                        values('$username', '$email', '$fullname', '$encpass', '$code', '$status', '$usertype')";
 
         $data_check = mysqli_query($con, $insert_data);
 
@@ -121,11 +124,17 @@ if(isset($_POST['signup'])){
             if(password_verify($password, $fetch_pass)){
                 $_SESSION['email'] = $email;
                 $status = $fetch['status'];
-                if($status == 'verified'){
+                $usertype = $fetch['usertype'];
+                if(($status == 'verified') && ($usertype == 'user')){
                   $_SESSION['email'] = $email;
                   $_SESSION['password'] = $password;
                     header('location: home.php');
-                }else{
+                }else if(($status == 'verified') && ($usertype == 'admin')){
+                    $_SESSION['email'] = $email;
+                    $_SESSION['password'] = $password;
+                    header('location: /pages/administrator/merchandise.php');
+                }
+                else{
                     $info = "It's look like you haven't still verify your email - $email";
                     $_SESSION['info'] = $info;
                     header('location: otp.php');
@@ -255,8 +264,7 @@ if (isset($_POST["btnSave"])) {
 }
 
 //IF USERS WANTS TO CHANGE THEIR PASSWORD
-$user_id = $_SESSION['email'];
-
+$user_id = $_SESSION["email"];
 // Connect with database
 include "../config/connect.php";
 
@@ -271,7 +279,7 @@ if (isset($_POST["btnChange"]))
 
 
   // Check if current password is correct
- 	$sql = "SELECT * FROM usertable WHERE email = '".$user_id."'";
+  $sql = "SELECT * FROM usertable WHERE email = '".$user_id."'";
   $result = mysqli_query($con, $sql);
   $row = mysqli_fetch_object($result);
   
