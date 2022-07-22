@@ -130,7 +130,10 @@ if($email != false && $password != false){
         <div class="search-container pt-5">
           <form class="d-flex">
           <input class="form-control me-1" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <!-- <button class="btn btn-outline-success" type="submit">Search</button> --no NEED BTN-->
+          <a href="/pages/cart.php">
+              <i class="bi bi-bag-check"></i>
+           </a>
           </form>
           </div>
 

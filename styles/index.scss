@@ -93,9 +93,12 @@ div.search-container{
     form{ 
         input{
             font-size: 12px;
+            width: 100%;
         }
-        button{
-            font-size: 12px;
+        i.bi.bi-bag-check{
+            padding: 0 .4em;
+            font-size: 1.4em;
+            align-items: center;
         }
     }
 }
@@ -345,9 +348,13 @@ div.about-container{
     div.search-container{
         input.form-control{
             padding: 1em;
-            
         }
+        a{
+            i.bi.bi-bag-check{
+                font-size: 1.7em;
+            }
         }
+     }
 
     //DROP DOWN SECTION
     div.dropdown{
@@ -525,8 +532,10 @@ nav{
         input.form-control{
             padding: 1em;
         }
-        button.btn{
-            width: 20%;
+        a{
+            i.bi.bi-bag-check{
+                font-size: 2em;
+            }
         }
        }
 

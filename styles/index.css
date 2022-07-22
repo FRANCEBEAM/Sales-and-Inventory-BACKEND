@@ -56,9 +56,12 @@ div.search-container {
 }
 div.search-container form input {
   font-size: 12px;
+  width: 100%;
 }
-div.search-container form button {
-  font-size: 12px;
+div.search-container form i.bi.bi-bag-check {
+  padding: 0 0.4em;
+  font-size: 1.4em;
+  align-items: center;
 }
 
 div.hero-container {
@@ -257,6 +260,9 @@ div.about-container div.about-socials {
   div.search-container input.form-control {
     padding: 1em;
   }
+  div.search-container a i.bi.bi-bag-check {
+    font-size: 1.7em;
+  }
   div.dropdown {
     padding: 0 2.4em;
   }
@@ -378,8 +384,8 @@ div.about-container div.about-socials {
   div.search-container input.form-control {
     padding: 1em;
   }
-  div.search-container button.btn {
-    width: 20%;
+  div.search-container a i.bi.bi-bag-check {
+    font-size: 2em;
   }
   p.shopCateg {
     font-size: 18px;
