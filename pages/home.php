@@ -1,4 +1,5 @@
 <?php require_once "../config/controllerUserData.php"; ?>
+
 <?php 
 $email = $_SESSION['email'];
 $password = $_SESSION['password'];
@@ -20,6 +21,46 @@ if($email != false && $password != false){
 }else{
     header('Location: signin.php');
 }
+
+
+//FOR CART SECTION
+require_once "../config/cartComponent.php";
+require_once "../config/controllerCartData.php";
+
+
+$database = new productList("rjavancena", "productlist");
+
+if(isset($_POST['add'])){
+    // print_r($_POST['productid']);
+  if(isset($_SESSION['cart'])){
+
+        $item_array_id = array_column($_SESSION['cart'], "productid");
+
+        if(in_array($_POST['productid'], $item_array_id)){
+            echo "<script>alert('Product is already added in the cart..!')</script>";
+        
+        }else{
+
+            $count = count($_SESSION['cart']);
+            $item_array = array(
+                'productid' => $_POST['productid']
+            );
+
+            $_SESSION['cart'][$count] = $item_array;
+        }
+
+    }else{
+      $item_array = array(
+        'product_id' => $_POST['product_id']
+        );
+
+        // Create new session variable
+        $_SESSION['cart'][0] = $item_array;
+        print_r($_SESSION['cart']);
+        }
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,14 +99,22 @@ if($email != false && $password != false){
 
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav navbar-nav-scroll" style="--bs-scroll-height: 200px;">
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a class="home" aria-current="page" href="/pages/home.php">Home</a>
-              </li>
+              </li> -->
               <li class="nav-item">
-                <a class="shop" aria-current="page" href="#">Shop</a>
-              </li>
-              <li class="nav-item">
-                <a class="about" aria-current="page" href="#about-section">About</a>
+                <a href='../pages/cart.php'>
+                  <i class="bi-bag-check"> 
+                  </i>
+                  </a>
+                    <?php
+                          if (isset($_SESSION['cart'])){
+                              $count = count($_SESSION['cart']);
+                              echo "<span id='cart_count'>$count</span>";
+                          }else{
+                              echo "<span id='cart_count' class='text-warning bg-light'>0</span>";
+                          }
+                      ?>
               </li>
               <li class="nav-item dropdown">
                 <a class="dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
@@ -131,9 +180,9 @@ if($email != false && $password != false){
           <form class="d-flex">
           <input class="form-control me-1" type="search" placeholder="Search" aria-label="Search">
           <!-- <button class="btn btn-outline-success" type="submit">Search</button> --no NEED BTN-->
-          <a href="/pages/cart.php">
+          <!-- <a href="/pages/cart.php">
               <i class="bi bi-bag-check"></i>
-           </a>
+           </a> -->
           </form>
           </div>
 
@@ -226,48 +275,27 @@ if($email != false && $password != false){
 
     <!--ITEM LIST SECTION-->
       <div class="item-container" id="item-list">
-        <!-- 1 item -->
-        <div class="card" style="width: 20rem; height: 22rem;">
-          <img src="/img/item1.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title"><b>₱749</b></h5>
-            <p class="card-text">Dual TIG/MMA with Welding Mask</p>
-            <a href="#" class="btn btn-primary">Add to cart</a>
-          </div>
-        </div>
 
-          <!-- 2 item -->
-          <div class="card" style="width: 20rem; height: 22rem;">
-            <img src="/img/item1.png" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title"><b>₱749</b></h5>
-              <p class="card-text">Dual TIG/MMA with Welding Mask</p>
-              <a href="#" class="btn btn-primary">Add to cart</a>
-            </div>
-          </div>
+     <?php 
 
-        <!-- 3 item -->
-        <div class="card" style="width: 20rem; height: 22rem;">
-          <img src="/img/item1.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title"><b>₱749</b></h5>
-            <p class="card-text">Dual TIG/MMA with Welding Mask</p>
-            <a href="#" class="btn btn-primary">Add to cart</a>
-          </div>
-        </div>
+      // component(productname: "Dual TIG/MMA with Welding Mask", productprice: 749, productimage: "../img/item1.png");
 
-          <!-- 4 item -->
-          <div class="card" style="width: 20rem; height: 22rem;">
-            <img src="/img/item1.png" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title"><b>₱749</b></h5>
-              <p class="card-text">Dual TIG/MMA with Welding Mask</p>
-              <a href="#" class="btn btn-primary">Add to cart</a>
-            </div>
-          </div>
+      // component(productname: "BOYSEN Semi - Gloss Latex", productprice: 432, productimg: "../img/item2.png");
+
+      // component(productname: "ELECTRIC JIGSAW", productprice: 800, productimg: "../img/item3.png");
+
+      // component(productname: "Davies Sun & Rain", productprice: 1299, productimg: "../img/item4.png");
+
+   
+      $result = $database->getData();
+      while ($row = mysqli_fetch_assoc($result)){
+          component($row['productname'], $row['productprice'], $row['productimage'], $row['id']);
+      }
+    ?>
+
 
           <!-- 5 item -->
-          <div class="card" style="width: 20rem; height: 22rem;">
+          <!-- <div class="card" style="width: 20rem; height: 22rem;">
             <img src="/img/item1.png" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title"><b>₱749</b></h5>
@@ -363,7 +391,7 @@ if($email != false && $password != false){
           <a class="page-link" href="#">Next</a>
         </li>
       </ul>
-  </div>
+  </div> -->
 
     <!--ABOUT SECTION-->
     <div class="about-container" id="about-section">

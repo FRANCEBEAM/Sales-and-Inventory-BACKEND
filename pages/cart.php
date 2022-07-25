@@ -20,6 +20,28 @@ if($email != false && $password != false){
 }else{
     header('Location: signin.php');
 }
+
+
+//CART SECTION
+require_once "../config/cartComponent.php";
+require_once "../config/controllerCartData.php";
+
+
+$database = new productList("rjavancena", "productlist");
+
+
+if (isset($_POST['remove'])){
+  if ($_GET['action'] == 'remove'){
+      foreach ($_SESSION['cart'] as $key => $value){
+          if($value["id"] == $_GET['id']){
+              unset($_SESSION['cart'][$key]);
+              echo "<script>alert('Product has been Removed...!')</script>";
+              echo "<script>window.location = 'cart.php'</script>";
+          }
+      }
+  }
+}
+
 ?>
 
 
@@ -61,98 +83,45 @@ if($email != false && $password != false){
                 
                           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                               <ul class="navbar-nav navbar-nav-scroll" style="--bs-scroll-height: 200px;">
-                                <li class="nav-item">
-                                  <a class="home" aria-current="page" href="/pages/home.php">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                  <a class="shop" aria-current="page" href="#">Shop</a>
-                                </li>
-                                <li class="nav-item">
-                                  <a class="about" aria-current="page" href="#about-section">About</a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                  <a class="dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                  <b><?php echo $fetch_info['fullname'] ?></b>
-                                  </a>
-                                  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="/pages/profile.php">Profile</a></li>
-                                    <li><a class="dropdown-item" href="/pages/account.php">Account</a></li>
-                                    <li><a class="dropdown-item" href="/index.php">Logout</a></li>
-                                  </ul>
-                                </li>
+                                  <li class="nav-item">
+                                    <a class="home" aria-current="page" href="/pages/home.php">Home</a>
+                                  </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <b><?php echo $fetch_info['fullname'] ?></b>
+                                         </a>
+                                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                                            <li><a class="dropdown-item" href="/pages/profile.php">Profile</a></li>
+                                            <li><a class="dropdown-item" href="/pages/account.php">Account</a></li>
+                                            <li><a class="dropdown-item" href="/index.php">Logout</a></li>
+                                      </ul>
+                                    </li>
                               </ul>
                             </div>
                         </div>
                       </nav>
                 </head>
 
-      <div class="cartList-container mt-5">
-      <table class="table">
-        <thead>
-          <tr>
-            <td scope="col">PRODUCT DETAILS</td>
-        
-            <td scope="col">QUANTITY</td>
-            <td scope="col">PRICE</td>
-            <td scope="col">TOTAL</td>
-            <td scope="col"></td>
-          </tr>
-        </thead>
+          <div class='cartList-container mt-5'>
+                    <?php
+                $total = 0;
+                if (isset($_SESSION['cart'])){
+                    $productid = array_column($_SESSION['cart'], 'productid');
 
-        <tbody class=" mt-2">
-          <tr class="item mt-2">
-            <td>
-                <img src="/img/item1.png" alt="">
-                <p>Lorem ipsum dolor sit amet</p>
-            </td>
-
-            <td>
-              <div class="qty-container">
-              <button>-</button>
-              <input type="text" style="width: 30px;">
-              <button>+</button>
-            </div>
-            </td>
-            <td class="productPrice">₱749</td>
-            <td class="productTotal">₱1250</td>
-            <td><i class="bi bi-trash3"></i></td>
-          </tr>
-
-          <tr class="item mt-2">
-            <td class="item"><img src="/img/item1.png" alt="">
-              <p>Lorem ipsum dolor sit amet</p>
-          </td>
-
-            <td>
-              <div class="qty-container">
-              <button>-</button>
-              <input type="text" style="width: 30px;">
-              <button>+</button>
-            </div>
-            </td>
-            <td class="productPrice">₱749</td>
-            <td class="productTotal">₱1250</td>
-            <td><i class="bi bi-trash3"></i></td>
-          </tr>
-
-          <tr class="item mt-2">
-            <td class="item">
-              <img src="/img/item1.png" alt="">
-                <p>Lorem ipsum dolor sit amet</p>
-            </td>
-            <td>
-              <div class="qty-container">
-              <button>-</button>
-              <input type="text" style="width: 30px;">
-              <button>+</button>
-            </div>
-            </td>
-            <td class="productPrice">₱749</td>
-            <td class="productTotal">₱1250</td>
-            <td><i class="bi bi-trash3"></i></td>
-          </tr>
-        </tbody>
-      </table>
+                    $result = $database->getData();
+                    while ($row = mysqli_fetch_assoc($result)){
+                        foreach ($productid as $id){
+                            if ($row['id'] == $id){
+                              cartElement($row['productimage'], $row['productname'],$row['productprice'], $row['id']);
+                                $total = $total + (int)$row['productprice'];
+                            }
+                        }
+                    }
+                }else{
+                    echo "<h5>Cart is Empty</h5>";
+                }
+                ?>
+          </div>
 
      <div class="foot-container mt-5">
         <div class="total-container">
