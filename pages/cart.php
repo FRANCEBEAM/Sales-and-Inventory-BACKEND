@@ -22,21 +22,41 @@ if($email != false && $password != false){
 }
 
 
+// //CART SECTION
+// require_once ("../config/cartComponent.php");
+// require_once ("../config/controllerCartData.php");
+
+
+// $db = new productlist("rjavancena", "productlist");
+
+
+// if (isset($_POST['remove'])){
+//   if ($_GET['action'] == 'remove'){
+//       foreach ($_SESSION['cart'] as $key => $value){
+//           if($value["productid"] == $_GET['id']){
+//               unset($_SESSION['cart'][$key]);
+//               echo "<script>alert('Product has been Removed...!')</script>";
+//           }
+//       }
+//   }
+// }
+?>
+
+<?php
 //CART SECTION
-require_once "../config/cartComponent.php";
-require_once "../config/controllerCartData.php";
+require_once ("../config/cartComponent.php");
+require_once ("../config/controllerCartData.php");
 
 
-$database = new productList("rjavancena", "productlist");
+$db = new productlist("rjavancena", "productlist");
 
 
 if (isset($_POST['remove'])){
   if ($_GET['action'] == 'remove'){
       foreach ($_SESSION['cart'] as $key => $value){
-          if($value["id"] == $_GET['id']){
+          if($value["productid"] == $_GET['id']){
               unset($_SESSION['cart'][$key]);
               echo "<script>alert('Product has been Removed...!')</script>";
-              echo "<script>window.location = 'cart.php'</script>";
           }
       }
   }
@@ -101,44 +121,85 @@ if (isset($_POST['remove'])){
                         </div>
                       </nav>
                 </head>
+                <div class="cartList-container mt-5">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <td scope="col">PRODUCT DETAILS</td>
+                      
+                          <td scope="col">QUANTITY</td>
+                          <td scope="col">PRICE</td>
+                          <td scope="col">TOTAL</td>
+                          <td scope="col"></td>
+                        </tr>
+                      </thead>
 
-          <div class='cartList-container mt-5'>
-                    <?php
-                $total = 0;
-                if (isset($_SESSION['cart'])){
-                    $productid = array_column($_SESSION['cart'], 'productid');
+                      <!-- <tbody class=" mt-2">
+                        <tr class="item mt-2">
+                          <td>
+                              <img src="/img/item1.png" alt="">
+                              <p>Lorem ipsum dolor sit amet</p>
+                          </td>
 
-                    $result = $database->getData();
-                    while ($row = mysqli_fetch_assoc($result)){
-                        foreach ($productid as $id){
-                            if ($row['id'] == $id){
-                              cartElement($row['productimage'], $row['productname'],$row['productprice'], $row['id']);
-                                $total = $total + (int)$row['productprice'];
+                          <td>
+                            <div class="qty-container">
+                            <button>-</button>
+                            <input type="text" style="width: 30px;">
+                            <button>+</button>
+                          </div>
+                          </td>
+                          <td class="productPrice">₱749</td>
+                          <td class="productTotal">₱1250</td>
+                          <td><i class="bi bi-trash3"></i></td>
+                        </tr>
+
+                      </tbody> -->
+
+        <?php
+                  $total = 0;
+                      if (isset($_SESSION['cart'])){
+                          $productid = array_column($_SESSION['cart'], 'productid');
+
+                          $result = $db->getData();
+                          while ($row = mysqli_fetch_assoc($result)){
+                              foreach ($productid as $id){
+                                  if ($row['id'] == $id){
+                                      cartElement($row['productimage'], $row['productname'],$row['productprice'], $row['id']);
+                                      $total = $total + (int)$row['productprice'];
+                                  }
+                              }
+                          }
+                      }else{
+                          echo "<h5>Cart is Empty</h5>";
+                      }
+
+        ?>
+                    </table>
+
+                  <div class="foot-container mt-5">
+                      <div class="total-container">
+                          <h1>Total items:</h1>
+                          <?php
+                            if (isset($_SESSION['cart'])){
+                                $count  = count($_SESSION['cart']);
+                                echo "<p>$count items</p>";
+                            }else{
+                                echo "<h6>0 items</h6>";
                             }
-                        }
-                    }
-                }else{
-                    echo "<h5>Cart is Empty</h5>";
-                }
-                ?>
-          </div>
+                        ?>
+                      </div>
 
-     <div class="foot-container mt-5">
-        <div class="total-container">
-            <h1>Total items:</h1>
-            <p>3</p>
-        </div>
+                          <div class="subtotal-container ">
+                              <h1>Subtotal:</h1>
+                              <p>$<?php echo $total; ?></p>
+                          </div>
 
-            <div class="subtotal-container ">
-                <h1>Subtotal:</h1>
-                <p>₱4999</p>
-            </div>
-
-            <div class="checkout-container"> 
-              <a class="btn btn-dark" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Checkout</a>
-              <i class="bi bi-bag-check"></i>
-            </div>
-    </div>
+                          <div class="checkout-container"> 
+                            <a class="btn btn-dark" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Checkout</a>
+                            <i class="bi bi-bag-check"></i>
+                          </div>
+                  </div>
+      </div>
       </div>
 
     <!-- MODAL -->

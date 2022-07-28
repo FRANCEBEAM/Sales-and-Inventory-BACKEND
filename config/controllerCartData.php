@@ -1,12 +1,9 @@
 <?php 
-
-require "../config/connect.php";
-
-
-class productList{
+//   include "../config/connect.php";
+class productlist{
         // get product from the database
         public function getData(){
-          require "../config/connect.php";
+            include "../config/connect.php";
           $sql = "SELECT * FROM productlist";
     
           $result = mysqli_query($con, $sql);

@@ -28,7 +28,7 @@ require_once "../config/cartComponent.php";
 require_once "../config/controllerCartData.php";
 
 
-$database = new productList("rjavancena", "productlist");
+$database = new productlist("rjavancena", "productlist");
 
 if(isset($_POST['add'])){
     // print_r($_POST['productid']);
@@ -38,7 +38,7 @@ if(isset($_POST['add'])){
 
         if(in_array($_POST['productid'], $item_array_id)){
             echo "<script>alert('Product is already added in the cart..!')</script>";
-        
+            echo "<script>window.location = '../pages/home.php'</script>";
         }else{
 
             $count = count($_SESSION['cart']);
@@ -51,7 +51,7 @@ if(isset($_POST['add'])){
 
     }else{
       $item_array = array(
-        'product_id' => $_POST['product_id']
+        'productid' => $_POST['productid']
         );
 
         // Create new session variable
@@ -293,88 +293,8 @@ if(isset($_POST['add'])){
       }
     ?>
 
-
-          <!-- 5 item -->
-          <!-- <div class="card" style="width: 20rem; height: 22rem;">
-            <img src="/img/item1.png" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title"><b>₱749</b></h5>
-              <p class="card-text">Dual TIG/MMA with Welding Mask</p>
-              <a href="#" class="btn btn-primary">Add to cart</a>
-            </div>
-          </div>
-
-              <!-- 6 item -->
-              <div class="card" style="width: 20rem; height: 22rem;">
-                <img src="/img/item1.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title"><b>₱749</b></h5>
-                  <p class="card-text">Dual TIG/MMA with Welding Mask</p>
-                  <a href="#" class="btn btn-primary">Add to cart</a>
-                </div>
-              </div>
-
-        <!-- 7 item -->
-        <div class="card" style="width: 20rem; height: 22rem;">
-          <img src="/img/item1.png" class="card-img-top">
-          <div class="card-body">
-            <h5 class="card-title"><b>₱749</b></h5>
-            <p class="card-text">Dual TIG/MMA with Welding Mask</p>
-            <a href="#" class="btn btn-primary">Add to cart</a>
-          </div>
-        </div>
-
-        <!-- 8 item -->
-        <div class="card" style="width: 20rem; height: 22rem;">
-          <img src="/img/item1.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title"><b>₱749</b></h5>
-            <p class="card-text">Dual TIG/MMA with Welding Mask</p>
-            <a href="#" class="btn btn-primary">Add to cart</a>
-          </div>
-        </div>
-
-      <!-- 9 item -->
-      <div class="card" style="width: 20rem; height: 22rem;">
-        <img src="/img/item1.png" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title"><b>₱749</b></h5>
-          <p class="card-text">Dual TIG/MMA with Welding Mask</p>
-          <a href="#" class="btn btn-primary">Add to cart</a>
-        </div>
-      </div>
-
-            <!-- 10 item -->
-            <div class="card" style="width: 20rem; height: 22rem;">
-              <img src="/img/item1.png" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title"><b>₱749</b></h5>
-                <p class="card-text">Dual TIG/MMA with Welding Mask</p>
-                <a href="#" class="btn btn-primary">Add to cart</a>
-              </div>
-            </div>
-
-        <!-- 11 item -->
-        <div class="card" style="width: 20rem; height: 22rem;">
-        <img src="/img/item1.png" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title"><b>₱749</b></h5>
-          <p class="card-text">Dual TIG/MMA with Welding Mask</p>
-          <a href="#" class="btn btn-primary">Add to cart</a>
-        </div>
-      </div>
-
-      <!-- 12 item -->
-      <div class="card" style="width: 20rem; height: 22rem;">
-        <img src="/img/item1.png">
-        <div class="card-body">
-          <h5 class="card-title"><b>₱749</b></h5>
-          <p class="card-text">Dual TIG/MMA with Welding Mask</p>
-          <a href="#" class="btn btn-primary">Add to cart</a>
-        </div>
-      </div>
-      
-      </div>
+     
+    </div>
 
     <!--PAGINATION-->
     <div class="pagination-container">

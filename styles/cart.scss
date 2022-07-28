@@ -88,7 +88,9 @@ nav{
 
     }
 }
-
+img{
+    max-width: 70%;
+}
 //TABLE
 div.cartList-container{
     padding: 0 1em;
@@ -97,9 +99,6 @@ table{
   td{
       justify-content: center;
       align-items: center;
-      img{
-          max-width: 80%;
-      }
       p{
           font-size: 12px;
       }
