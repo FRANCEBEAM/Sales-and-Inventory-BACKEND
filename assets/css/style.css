@@ -382,3 +382,54 @@ div.salesReport-container div.bestInformation-container div{
     justify-content: flex-start;
 }
 
+
+    /* INVENTORY */
+    div.top-function{
+        display: flex;
+        justify-content: flex-end;
+       padding: 1em 60px;
+       align-items: center;
+    }
+
+    /* Button Add Item */
+    div.top-function button{
+        padding: .7em;
+        /* color: var(--primary-color-light);
+        background:var(--button-primary); */
+        /* border-radius:  5px;
+        border:none; */
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Selection */
+    div.top-function select{
+        background: var(--primary-color-light);
+        border: none;
+        padding: .4em;
+        border-radius: 5px;
+    }
+
+    /* Select Label */
+    div.top-function div.status label{
+    justify-content: space-between;
+    padding-left: 3em;
+    }
+
+    /* Item Label */
+    div.top-function div.item-name label{
+    justify-content: space-between;
+    padding-left: 4em;
+    }
+
+    /* Item Search */
+    div.top-function input{
+        border: none;
+        padding: .4em;
+        border-radius: 5px;
+    }
+
+    div.inventory-container{
+        padding: 2em 60px;
+    }
+
