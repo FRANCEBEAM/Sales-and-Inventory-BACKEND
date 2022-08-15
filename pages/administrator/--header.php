@@ -6,6 +6,7 @@
     <!-- Tab Icon -->
     <link rel ="icon" href="/assets/img/store.svg">
     <!----======== CSS ======== -->
+    <link rel="stylesheet" href="/assets/css/merchandize.css">
     <link rel="stylesheet" href="/assets/css/style.css">
     <!-- Bootstrap Local CSS -->
     <link href='/assets/css/bootstrap.css' rel='stylesheet'>

@@ -1,0 +1,138 @@
+div.search-container {
+  padding: 12px 60px;
+}
+div.search-container div.input-group.input-group-lg {
+  width: 420px;
+  box-shadow: 9px 11px 5px -4px rgba(0, 0, 0, 0.11);
+  border-radius: 17px;
+}
+
+div.merchandize-container {
+  padding: 2em 60px;
+  display: grid;
+  grid-template-columns: 5fr 2fr;
+  grid-template-areas: "left-content right-content";
+}
+div.merchandize-container div.left-content {
+  grid-area: left-content;
+}
+div.merchandize-container div.left-content div.category-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+div.merchandize-container div.left-content div.category-container button.card {
+  width: 14.4rem;
+  padding: 1em 1em;
+  border-radius: 17px;
+  box-shadow: 9px 11px 5px -4px rgba(0, 0, 0, 0.11);
+}
+div.merchandize-container div.left-content div.category-container button.card div.card-body {
+  text-align: left;
+  padding: 0;
+}
+div.merchandize-container div.left-content div.category-container button.card div.card-body h5 {
+  font-size: 18px;
+}
+div.merchandize-container div.left-content div.category-container button.card div.card-body p {
+  font-size: 14px;
+  color: #6C757D;
+}
+div.merchandize-container div.left-content div.productlist-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+div.merchandize-container div.left-content div.productlist-container div.card {
+  box-shadow: 0 0.5rem 1rem rgba(33, 37, 41, 0.15);
+  width: 14.4rem;
+  padding: 1em 1em;
+  border-radius: 17px;
+  box-shadow: 0 1rem 3rem rgba(33, 37, 41, 0.175);
+}
+div.merchandize-container div.left-content div.productlist-container div.card img {
+  margin: auto;
+  width: auto;
+  align-items: center;
+  justify-content: center;
+}
+div.merchandize-container div.left-content div.productlist-container div.card div.card-body {
+  padding: 0;
+  margin-top: 1em;
+}
+div.merchandize-container div.right-content {
+  grid-area: right-content;
+}
+div.merchandize-container div.right-content div.sales-invoice {
+  height: 100vh;
+}
+div.merchandize-container div.right-content div.sales-invoice div.head-invoice {
+  padding: 1em 1em;
+  background: white;
+  border-radius: 7px;
+  display: flex;
+  justify-content: space-between;
+}
+div.merchandize-container div.right-content div.sales-invoice div.head-invoice p {
+  color: #6C757D;
+  font-size: 14px;
+}
+div.merchandize-container div.right-content div.sales-invoice div.body-invoice {
+  height: 100vh;
+  padding: 1em 1em;
+  background: white;
+  align-items: center;
+  justify-content: center;
+}
+div.merchandize-container div.right-content div.sales-invoice div.body-invoice div.bill-pay img {
+  margin-top: 1.7em;
+  align-items: center;
+  justify-content: center;
+}
+div.merchandize-container div.right-content div.sales-invoice div.body-invoice div.bill-pay div.card {
+  border-radius: 7px;
+}
+div.merchandize-container div.right-content div.sales-invoice div.body-invoice div.qty {
+  display: flex;
+  justify-content: space-between;
+}
+div.merchandize-container div.right-content div.sales-invoice div.body-invoice div.qty input {
+  width: 50px;
+}
+div.merchandize-container div.right-content div.sales-invoice div.body-invoice div.qty i.bi.bi-trash3 {
+  font-size: 20px;
+}
+div.merchandize-container div.right-content div.sales-invoice div.body-invoice div.total-container div.total-items {
+  display: flex;
+  justify-content: space-between;
+}
+div.merchandize-container div.right-content div.sales-invoice div.body-invoice div.total-container div.subtotal {
+  display: flex;
+  justify-content: space-between;
+}
+div.merchandize-container div.right-content div.sales-invoice div.body-invoice div.payment-container {
+  align-items: center;
+  justify-content: center;
+}
+div.merchandize-container div.right-content div.sales-invoice div.body-invoice div.payment-container h5 {
+  padding-top: 2em;
+  font-size: 20px;
+}
+div.merchandize-container div.right-content div.sales-invoice div.body-invoice div.payment-container div.method {
+  align-items: center;
+  justify-content: center;
+  border: #6C757D 1px solid;
+  padding: 0.4em;
+  border-radius: 7px;
+  margin: auto;
+  width: auto;
+}
+div.merchandize-container div.right-content div.sales-invoice div.body-invoice div.payment-container div.method i {
+  font-size: 26px;
+}
+div.merchandize-container div.right-content div.sales-invoice div.body-invoice div.payment-container button {
+  margin-top: 2em;
+  width: 100%;
+}/*# sourceMappingURL=merchandize.css.map */

@@ -1,0 +1,175 @@
+
+//Colours
+$white: #ffff;
+$black: #212529;
+$fadewhite: #6C757D;
+$background: #E4E9F7;;
+
+//Box Shadow
+$box-shadow:                  0 .5rem 1rem rgba($black, .15);
+$box-shadow-sm:               0 .125rem .25rem rgba($black, .075);
+$box-shadow-lg:               0 1rem 3rem rgba($black, .175);
+$box-shadow-inset:            inset 0 1px 2px rgba($black, .075);
+
+
+//Search Container
+div.search-container{
+  padding: 12px 60px;
+
+  div.input-group.input-group-lg{
+    width: 420px;
+    box-shadow: 9px 11px 5px -4px rgba(0,0,0,0.11);
+    border-radius: 17px;
+  }
+}
+
+//Merchandize Container
+div.merchandize-container{
+  padding: 2em 60px;
+  display: grid;
+  grid-template-columns: 5fr 2fr;
+  grid-template-areas: "left-content right-content";
+
+  // Left Content
+  div.left-content{
+    grid-area: left-content;
+    div.category-container{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 1em;
+
+      button.card{
+        width: 14.4rem;
+        padding: 1em 1em;
+        border-radius: 17px;
+        box-shadow: 9px 11px 5px -4px rgba(0,0,0,0.11);
+        div.card-body{
+          text-align: left;
+          padding: 0;
+          h5{
+            font-size: 18px;
+          }
+          p{
+            font-size: 14px;
+            color: $fadewhite;
+          }
+        }
+      }
+    }
+
+    div.productlist-container{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 1em;
+      div.card{
+        box-shadow: $box-shadow;
+        img{
+          margin: auto;
+          width: auto;
+          align-items: center;
+          justify-content: center;
+        }
+        width: 14.4rem;
+        padding: 1em 1em;
+        border-radius: 17px;
+        box-shadow: $box-shadow-lg;
+        div.card-body{
+          padding: 0;
+          margin-top: 1em;
+        }
+      }
+    }
+  }
+
+  // Right Content
+  div.right-content{
+    grid-area: right-content;
+    div.sales-invoice{
+      height: 100vh;
+      div.head-invoice{
+        padding: 1em 1em;
+        background: $white;
+        border-radius:  7px;
+        display: flex;
+        justify-content: space-between;
+        p{
+          color: $fadewhite;
+          font-size: 14px;
+        }
+      }
+
+      div.body-invoice{
+        height: 100vh;
+        padding: 1em 1em;
+        background: $white;
+        align-items: center;
+        justify-content: center;
+
+
+        div.bill-pay{
+
+          img{
+            margin-top: 1.7em;
+            align-items: center;
+            justify-content: center;
+          }
+          div.card{
+            border-radius: 7px;
+          }
+        }
+
+        div.qty{
+          display: flex;
+          justify-content: space-between;
+          input{
+            width: 50px;
+          }
+          i.bi.bi-trash3{
+            font-size: 20px;
+          }
+        }
+
+        div.total-container{
+          div.total-items{
+            display: flex;
+            justify-content: space-between;
+          }
+          div.subtotal{
+            display: flex;
+            justify-content: space-between;
+          }
+        }
+
+        div.payment-container{
+     
+          align-items: center;
+          justify-content: center;
+          h5{
+            padding-top: 2em;
+            font-size: 20px;
+          }
+   
+          div.method{
+            align-items: center;
+            justify-content: center;
+            border: #6C757D 1px solid;
+            padding: .4em;
+            border-radius: 7px;
+            margin: auto;
+            width: auto;
+            i{
+              font-size: 26px;
+            }
+          }
+
+          button{
+            margin-top: 2em;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
