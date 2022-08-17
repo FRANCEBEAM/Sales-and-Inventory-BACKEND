@@ -14,16 +14,14 @@
 
 <?php include '--sidebar.php'; ?>
 
-    <!-- Start Here -->
-    <section class="home">
+   <!-- Start Here -->
+   <section class="home">
         <div class="text">Merchandise</div>
 
         <!-- Search Container -->
         <div class="search-container">
             <div class="input-group input-group-lg mt-3">
-                <span class="input-group-text" id="inputGroup-sizing-lg" style="background: #fff;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                  </svg></span>
+                <span class="input-group-text" id="inputGroup-sizing-lg"><i class="bi bi-search"></i></span>
                 <input type="text" class="form-control" placeholder= "Search" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
               </div> 
         </div>
@@ -39,11 +37,9 @@
                             <path d="M57.3245 52.258C57.3245 51.9684 57.1314 51.7754 56.9385 51.5825L52.6922 48.6873L35.8037 31.7987L37.1548 30.4476C37.3479 30.2545 37.4444 30.0616 37.4444 29.772C37.4444 29.4825 37.3479 29.2895 37.1548 29.0965L34.8304 26.7721L37.4153 23.8788C38.1296 24.282 38.8967 24.5476 39.664 24.6572C40.2431 24.7537 40.6291 24.7537 41.0152 24.7537C41.7872 24.7537 41.9802 24.7537 42.7523 25.4292C42.3663 25.7187 42.1732 26.2013 42.1732 26.6837C42.1732 27.1662 42.3663 27.7453 42.7523 28.1313L46.13 31.509C46.6126 32.0881 47.3845 32.3776 48.1566 32.3776C48.9287 32.3776 49.7007 32.0881 50.1832 31.4126L57.0352 24.5606C57.6142 24.0781 57.9038 23.3061 57.9038 22.534C57.9038 21.7619 57.6142 21.0864 57.0352 20.5074L53.6575 17.1296C53.2715 16.7436 52.7889 16.5506 52.3063 16.5506C51.8238 16.5506 51.3413 16.8401 50.9552 17.1296C50.1831 16.4541 50.1831 16.2611 50.1831 15.489C50.1831 15.103 50.1831 14.6204 49.9901 14.0414C49.797 12.6903 49.1215 11.3393 48.0599 10.2777L44.5857 6.80346C42.5591 4.77684 41.5941 3.81181 38.9884 2.65374C33.3911 0.0480853 27.6972 0.530653 19.3977 4.29438C18.9151 4.48743 18.7222 4.87342 18.8186 5.35598C18.9151 5.83855 19.3012 6.12807 19.7837 6.12807H21.0382C25.2845 6.12807 27.5041 6.12807 31.3644 9.98827C33.0547 11.6786 33.1034 14.2703 31.589 16.1773C31.3848 16.208 31.2295 16.2996 31.0749 16.4542L28.0193 19.8646L9.36103 1.20638C7.81698 -0.337674 5.30779 -0.337674 3.76373 1.20638L1.15807 3.81204C0.385986 4.58401 0 5.54915 0 6.61064C0 7.67213 0.385986 8.63726 1.15807 9.40934L20.2666 28.5178L1.15807 49.8453C0.385986 50.6173 0 51.6789 0 52.7405C0 53.8021 0.385986 54.7671 1.15807 55.5392L2.50919 56.8904C3.28128 57.5659 4.14983 57.952 5.21132 57.952C6.27281 57.952 7.23794 57.4694 8.01003 56.7939L27.1805 35.3353L29.0483 37.2032C29.2414 37.3962 29.4343 37.4927 29.7238 37.4927C30.0134 37.4927 30.2064 37.3962 30.3029 37.2996L31.7505 35.852L48.639 52.7405L51.5341 56.9868C51.7272 57.1799 51.9201 57.3728 52.2096 57.3728L56.8419 57.9518H56.9384C57.2279 57.9518 57.421 57.8554 57.7105 57.7588C57.9035 57.5657 58 57.2762 58 56.9867L57.3245 52.258ZM32.619 8.44432C29.5308 5.45257 27.2147 4.48754 24.609 4.19803C30.1098 2.46092 34.1631 2.55739 38.2163 4.39108C40.5325 5.3561 41.3046 6.12818 43.3312 8.15481L46.8054 11.629C47.5775 12.4011 48.0599 13.3661 48.1565 14.3311C48.253 14.8137 48.253 15.1997 48.253 15.4892C48.253 16.5508 48.3494 17.3228 49.5075 18.4809C49.8935 18.8668 50.4725 19.0599 50.9551 19.0599C51.5341 19.0599 52.0167 18.8668 52.3062 18.4809L55.684 21.8586C55.877 22.0517 55.9735 22.2446 55.9735 22.5341C55.9735 22.8236 55.877 23.0167 55.684 23.2096L48.832 30.0616C48.446 30.4476 47.867 30.4476 47.4809 30.0616L44.1032 26.6838C44.4891 26.3943 44.6822 25.9117 44.5857 25.3327C44.5857 24.8501 44.3927 24.2711 44.0067 23.8851C42.8486 22.727 42.0765 22.6306 41.015 22.6306C40.7255 22.6306 40.3395 22.6306 39.857 22.5341C38.7954 22.4376 37.9268 21.9551 37.1548 21.183L33.0051 17.0333C35.1281 14.4276 34.9352 10.7605 32.619 8.44432ZM2.50919 8.05822C2.1232 7.67224 1.93016 7.18967 1.93016 6.61064C1.93016 6.0316 2.1232 5.54903 2.50919 5.16305L5.11485 2.55739C5.50084 2.1714 6.07987 1.97835 6.56244 1.97835C7.045 1.97835 7.62404 2.1714 8.01003 2.55739L26.7321 21.2796L25.3655 22.8267L21.589 27.0418L2.50919 8.05822ZM6.65891 55.4427C6.27292 55.8286 5.79035 56.0217 5.21132 56.0217C4.72875 56.0217 4.2463 55.8286 3.8602 55.4427L2.50908 54.1881C2.12309 53.8021 1.93004 53.3196 1.93004 52.837C1.93004 52.258 2.12309 51.7754 2.60555 51.2929L31.8013 18.6284L35.9001 22.7273L33.0427 25.9242C32.962 25.97 32.8868 26.03 32.8118 26.105L26.4425 33.2465C26.3549 33.334 26.2883 33.4317 26.2406 33.5345L6.65891 55.4427ZM29.7238 35.1764L28.4693 33.9219L30.3865 31.7467L33.5107 28.2496L35.1283 29.772L29.7238 35.1764ZM34.5491 33.1498L50.6656 49.4592L49.3145 50.8104L33.1015 34.5009L34.5491 33.1498ZM52.8853 55.5391L50.6656 52.258L52.3062 50.6173L55.4909 52.837L55.8769 55.9252L52.8853 55.5391Z" fill="black"/>
                             <path d="M22.8719 21.5691L6.46585 5.16302C6.07986 4.77704 5.50083 4.77704 5.11473 5.16302C4.72863 5.54901 4.72874 6.12805 5.11473 6.51414L21.5208 22.9202C21.7138 23.1132 21.9068 23.2097 22.1963 23.2097C22.4858 23.2097 22.6788 23.1132 22.8718 22.9202C23.2579 22.5341 23.2579 21.955 22.8719 21.5691Z" fill="black"/>
                             </svg>
-                            
-                            <div class="card-body">
-                                <h5 class="card-text mt-5">Hand tools</h5>
-                                <p>30 items</p>
-                            </div>
+        
+                                <h5 class="card-text mt-5 text-start">Hand tools</h5>
+                                <p class="text-start">30 items</p>            
                       </button>
 
                       <button class="card">
@@ -59,11 +55,8 @@
                             <path d="M28.0318 36.7946L9.53761 18.3004L12.152 15.5892C12.5392 15.202 12.5392 14.621 12.152 14.2336C11.7647 13.8462 11.1837 13.8463 10.7963 14.2336L7.40743 17.6226C7.21373 17.8163 7.11694 18.0099 7.11694 18.3004C7.11694 18.5909 7.21373 18.7846 7.40743 18.9781L26.5794 38.1501C26.7731 38.3438 26.9666 38.4406 27.2571 38.4406C27.5476 38.4406 27.8381 38.3438 28.0318 38.1501C28.4191 37.7628 28.4191 37.1818 28.0318 36.7946Z" fill="black"/>
                             </svg>
                             
-                            
-                            <div class="card-body">
-                                <h5 class="card-text mt-5">Cutting tools</h5>
-                                <p>30 items</p>
-                            </div>
+                                <h5 class="card-text mt-5 text-start">Cutting tools</h5>
+                                <p class="text-start">30 items</p>  
                       </button>
 
                       <button class="card">
@@ -77,12 +70,9 @@
                             </clipPath>
                             </defs>
                             </svg>
-                            
-                            
-                            <div class="card-body">
-                                <h5 class="card-text mt-5">Paint tools</h5>
-                                <p>30 items</p>
-                            </div>
+                                         
+                                <h5 class="card-text mt-5 text-start">Paint tools</h5>
+                                <p class="text-start">30 items</p> 
                       </button>
 
                       <button class="card">
@@ -105,12 +95,9 @@
                             </clipPath>
                             </defs>
                             </svg>
-                            
-                            
-                            <div class="card-body">
-                                <h5 class="card-text mt-5">Woods</h5>
-                                <p>30 items</p>
-                            </div>
+                                              
+                                <h5 class="card-text mt-5 text-start">Woods</h5>
+                                <p class="text-start">30 items</p>
                       </button>
 
                       <button class="card">
@@ -125,23 +112,17 @@
                             </defs>
                             </svg>
                             
-                            
-                            <div class="card-body">
-                                <h5 class="card-text mt-5">Walls</h5>
-                                <p>30 items</p>
-                            </div>
+                                <h5 class="card-text mt-5 text-start">Walls</h5>
+                                <p class="text-start">30 items</p>                       
                       </button>
 
                       <button class="card">
                         <svg width="58" height="58" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M50.75 18.125H47.125V12.6875C47.125 7.68319 43.0668 3.625 38.0625 3.625H19.9375C14.9332 3.625 10.875 7.68319 10.875 12.6875V18.125H7.25C6.2495 18.125 5.4375 18.937 5.4375 19.9375V25.375C5.4375 26.3755 6.2495 27.1875 7.25 27.1875H10.875V32.6613C10.875 35.0483 11.1106 37.4299 11.5783 39.7699L13.6246 50.0032C14.1339 52.5462 16.3651 54.375 18.9569 54.375H39.0413C41.6331 54.375 43.8643 52.5462 44.3736 50.0032L46.4199 39.7699C46.8894 37.4281 47.125 35.0483 47.125 32.6613V27.1875H50.75C51.7505 27.1875 52.5625 26.3755 52.5625 25.375V19.9375C52.5625 18.937 51.7505 18.125 50.75 18.125ZM12.6875 12.6875C12.6875 8.68912 15.9391 5.4375 19.9375 5.4375H38.0625C42.0609 5.4375 45.3125 8.68912 45.3125 12.6875V21.75H43.5V18.125C43.5 16.1222 41.8778 14.5 39.875 14.5H18.125C16.1222 14.5 14.5 16.1222 14.5 18.125V21.75H12.6875V12.6875ZM41.6875 18.125V27.1875C41.6875 28.1862 40.8737 29 39.875 29H18.125C17.1263 29 16.3125 28.1862 16.3125 27.1875V18.125C16.3125 17.1263 17.1263 16.3125 18.125 16.3125H39.875C40.8737 16.3125 41.6875 17.1263 41.6875 18.125ZM7.25 25.375V19.9375H10.875V25.375H7.25ZM45.3125 32.6613C45.3125 34.9233 45.0878 37.1961 44.6437 39.4146L42.5974 49.648C42.2584 51.3373 40.7649 52.5625 39.0431 52.5625H18.9569C17.2351 52.5625 15.7398 51.3373 15.4026 49.648L13.3563 39.4146C12.9122 37.1961 12.6875 34.9233 12.6875 32.6613V23.5625H14.5V27.1875C14.5 29.1903 16.1222 30.8125 18.125 30.8125H39.875C41.8778 30.8125 43.5 29.1903 43.5 27.1875V23.5625H45.3125V32.6613ZM50.75 25.375H47.125V19.9375H50.75V25.375ZM18.125 27.1875H39.875V18.125H18.125V27.1875ZM19.9375 19.9375H38.0625V25.375H19.9375V19.9375Z" fill="#111918"/>
                             </svg>
-                            
-                            
-                            <div class="card-body">
-                                <h5 class="card-text mt-5">Welding/Equipment</h5>
-                                <p>30 items</p>
-                            </div>
+
+                                <h5 class="card-text mt-5 text-start">Welding/Equipment</h5>
+                                <p class="text-start">30 items</p>                   
                       </button>
 
                       <button class="card">
@@ -153,22 +134,19 @@
                             </svg>
                             
                             
-                            <div class="card-body">
-                                <h5 class="card-text mt-5">Drill tools</h5>
-                                <p>30 items</p>
-                            </div>
+                          
+                                <h5 class="card-text mt-5 text-start">Drill tools</h5>
+                                <p class="text-start">30 items</p>
+                       
                       </button>
 
                       <button class="card">
                         <svg width="58" height="58" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M43.5 42.5334H29V0.966629C29 0.386629 28.6133 0 28.0333 0H14.5C13.92 0 13.5333 0.386629 13.5333 0.966629V57.0333C13.5333 57.1776 13.5738 57.3219 13.6396 57.4511C13.7209 57.7227 13.9485 57.8939 14.2147 57.9636C14.3121 57.9992 14.4307 57.9999 14.5001 57.9999H43.5001C44.0801 57.9999 44.4667 57.6133 44.4667 57.0333V43.5C44.4666 42.92 44.08 42.5334 43.5 42.5334ZM27.0666 1.93337V43.1134L15.4666 54.7134V48.3334H19.3332C19.9132 48.3334 20.2998 47.9467 20.2998 47.3667C20.2998 46.7867 19.9132 46.4001 19.3332 46.4001H15.4666V44.4667H17.4C17.98 44.4667 18.3666 44.0801 18.3666 43.5001C18.3666 42.9201 17.98 42.5335 17.4 42.5335H15.4666V40.6H19.3332C19.9132 40.6 20.2998 40.2134 20.2998 39.6334C20.2998 39.0534 19.9132 38.6667 19.3332 38.6667H15.4666V36.7334H17.4C17.98 36.7334 18.3666 36.3467 18.3666 35.7667C18.3666 35.1867 17.98 34.8001 17.4 34.8001H15.4666V32.8667H19.3332C19.9132 32.8667 20.2998 32.4801 20.2998 31.9001C20.2998 31.3201 19.9132 30.9335 19.3332 30.9335H15.4666V29H17.4C17.98 29 18.3666 28.6134 18.3666 28.0334C18.3666 27.4534 17.98 27.0667 17.4 27.0667H15.4666V25.1334H19.3332C19.9132 25.1334 20.2998 24.7467 20.2998 24.1667C20.2998 23.5867 19.9132 23.2001 19.3332 23.2001H15.4666V21.2667H17.4C17.98 21.2667 18.3666 20.8801 18.3666 20.3001C18.3666 19.7201 17.98 19.3335 17.4 19.3335H15.4666V17.4H19.3332C19.9132 17.4 20.2998 17.0134 20.2998 16.4334C20.2998 15.8534 19.9132 15.4667 19.3332 15.4667H15.4666V13.5334H17.4C17.98 13.5334 18.3666 13.1467 18.3666 12.5667C18.3666 11.9867 17.98 11.6001 17.4 11.6001H15.4666V9.66663H19.3332C19.9132 9.66663 20.2998 9.28 20.2998 8.7C20.2998 8.12 19.9132 7.73337 19.3332 7.73337H15.4666V5.8H17.4C17.98 5.8 18.3666 5.41337 18.3666 4.83337C18.3666 4.25337 17.98 3.86674 17.4 3.86674H15.4666V1.93337H27.0666ZM42.5333 56.0666H16.82L28.42 44.4666H42.5333V56.0666Z" fill="black"/>
                             </svg>
-                            
-                            
-                            <div class="card-body">
-                                <h5 class="card-text mt-5">Measure tools</h5>
-                                <p>30 items</p>
-                            </div>
+  
+                                <h5 class="card-text mt-5 text-start">Measure tools</h5>
+                                <p class="text-start">30 items</p>                       
                       </button>
                  </div>
 
@@ -177,78 +155,77 @@
                  <div class="productlist-container">
                     <div class="card text-center">
                         <img src="/assets/img/image 1.jpg" alt="">
-                        <div class="card-body">
+                       
                           <h5 class="card-title">Behr Premium Plus</h5>
-                          <p class="card-text">₱699</p>
-                             <button type="button" class="btn btn-outline-dark">Add to bill</button>
-                        </div>
+                             <p class="card-text">₱699</p>
+                                 <button type="button" class="btn btn-outline-dark">Add to bill</button>
                       </div>
 
                       <div class="card text-center">
                         <img src="/assets/img/image 2.jpg" alt="">
-                        <div class="card-body">
+                  
                           <h5 class="card-title">Behr Premium Plus</h5>
                           <p class="card-text">₱699</p>
                              <button type="button" class="btn btn-outline-dark">Add to bill</button>
-                        </div>
+                 
                       </div>
 
 
                       <div class="card text-center">
                         <img src="/assets/img/image 3.jpg" alt="">
-                        <div class="card-body">
+                      
                           <h5 class="card-title">Behr Premium Plus</h5>
                           <p class="card-text">₱699</p>
                              <button type="button" class="btn btn-outline-dark">Add to bill</button>
-                        </div>
+                 
                       </div>
 
 
                       <div class="card text-center">
                         <img src="/assets/img/image 4.jpg" alt="">
-                        <div class="card-body">
+                   
                           <h5 class="card-title">Behr Premium Plus</h5>
                           <p class="card-text">₱699</p>
                              <button type="button" class="btn btn-outline-dark">Add to bill</button>
-                        </div>
+                   
                       </div>
 
                       <div class="card text-center">
                         <img src="/assets/img/image 1.jpg" alt="">
-                        <div class="card-body">
+                     
                           <h5 class="card-title">Behr Premium Plus</h5>
                           <p class="card-text">₱699</p>
                              <button type="button" class="btn btn-outline-dark">Add to bill</button>
-                        </div>
+                      
                       </div>
 
                       <div class="card text-center">
                         <img src="/assets/img/image 2.jpg" alt="">
-                        <div class="card-body">
+                  
                           <h5 class="card-title">Behr Premium Plus</h5>
                           <p class="card-text">₱699</p>
                              <button type="button" class="btn btn-outline-dark">Add to bill</button>
-                        </div>
+                     
                       </div>
 
 
                       <div class="card text-center">
                         <img src="/assets/img/image 3.jpg" alt="">
-                        <div class="card-body">
+                     
                           <h5 class="card-title">Behr Premium Plus</h5>
                           <p class="card-text">₱699</p>
                              <button type="button" class="btn btn-outline-dark">Add to bill</button>
-                        </div>
+                       
                       </div>
 
 
                       <div class="card text-center">
                         <img src="/assets/img/image 4.jpg" alt="">
-                        <div class="card-body">
+                     
                           <h5 class="card-title">Behr Premium Plus</h5>
                           <p class="card-text">₱699</p>
                              <button type="button" class="btn btn-outline-dark">Add to bill</button>
-                        </div>
+                      
                       </div>
 
 
@@ -274,7 +251,7 @@
                                 <div class="card mb-3" style="max-width: 540px;">
                                     <div class="row g-0">
                                       <div class="col-md-4">
-                                        <img src="/assets/img/image 1.jpg" class="img-fluid rounded-start" alt="...">
+                                        <img src="/assets/img/image 2.jpg" class="img-fluid rounded-start" alt="...">
                                       </div>
                                       <div class="col-md-8">
                                         <div class="card-body">
@@ -282,18 +259,40 @@
                                           <p class="card-text">₱699</p>
                                             
                                           <div class="qty">
-                                                <button type="button" class="btn bg-light border rounded-circle">-</button>
+                                                <button type="button" class="btn bg-light border rounded-circle"><i class="fa-solid fa-minus"></i></button>
                                                     <input type="text" value="1" class="form-control d-inline">
-                                                <button type="button" class="btn bg-light border rounded-circle">+</button>
+                                                <button type="button" class="btn bg-light border rounded-circle"><i class="fa-solid fa-plus"></i></button>
 
-                                                <i class="bi bi-trash3"></i>
+                                                <button class="btn-remove" type="button" style="background: none; border:none;"><i class="bi bi-trash3"></i></button>
                                             </div>
                                       </div>
                                     </div>
                                   </div>
-                            </div>        
+                            </div>       
                             
-                            <div class="total-container">
+                            <div class="card mb-3" style="max-width: 540px;">
+                                <div class="row g-0">
+                                  <div class="col-md-4">
+                                    <img src="/assets/img/image 1.jpg" class="img-fluid rounded-start" alt="...">
+                                  </div>
+                                  <div class="col-md-8">
+                                    <div class="card-body">
+                                      <h5 class="card-title fw-bold">Behr Premium Plus</h5>
+                                      <p class="card-text">₱699</p>
+                                        
+                                      <div class="qty">
+                                            <button type="button" class="btn bg-light border rounded-circle"><i class="fa-solid fa-minus"></i></button>
+                                                <input type="text" value="1" class="form-control d-inline">
+                                            <button type="button" class="btn bg-light border rounded-circle"><i class="fa-solid fa-plus"></i></button>
+
+                                            <button class="btn-remove" type="button" style="background: none; border:none;"><i class="bi bi-trash3"></i></button>
+                                        </div>
+                                  </div>
+                                </div>
+                              </div>
+                        </div>   
+                            
+                            <div class="total-container mt-4">
                                 <div class="total-items">
                                     <p>Total Items</p>
                                         <p class="fw-bold">2</p>
@@ -303,22 +302,19 @@
                                             <p class="fw-bold" style="color: #198754;">₱1,398</p>
                                     </div>                  
                             </div>
-                            <h5 class="fw-bold">Payment Method</h5>
-                                <div class="payment-container">
-                                        <div class="method">
-                                            <i class="bi bi-cash-coin"></i>
-                                            <p>CASH</p>
-                                   
-                                        </div>
-                                            <div class="method">
-                                                <i class="bi bi-credit-card"></i>
-                                                <p> MASTER CARD</p>
-                                            </div>
-                                                <div class="method">
-                                                    <i class="bi bi-bank"></i>
-                                                    <p>BANK</p>
-                                                </div>
-                                             <button type="button" class="btn btn-primary btn-lg">PAY</button>
+                            <h5 class="fw-bold mt-4">Payment Method</h5>
+                                <div class="payment-container w-auto mt-3">
+                                    
+                                    <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked>
+                                    <label class="btn btn-outline-secondary" for="option1"><i class="bi bi-cash-coin"></i>Cash</label>
+
+                                    <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off" checked>
+                                    <label class="btn btn-outline-secondary" for="option2"><i class="bi bi-credit-card"></i>Master Card</label>
+
+                                    <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off" checked>
+                                    <label class="btn btn-outline-secondary" for="option3"><i class="bi bi-bank"></i>Bank</label>
+
+                                    <button type="button" class="btn btn-primary btn-lg">PAY</button>
                                 </div>   
                          
                           
