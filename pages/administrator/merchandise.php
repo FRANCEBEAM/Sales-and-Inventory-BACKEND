@@ -59,6 +59,10 @@ if(isset($_GET["action"]))
 <head>
     
     <?php include '--header.php'; ?>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <title>Merchandise</title> 
 
@@ -88,11 +92,14 @@ if(isset($_GET["action"]))
                       <!-- Category -->
                       <select class="form-select" aria-label="Default select example">
                         <option selected>Choose category</option>
-                        <option value="1">Leather</option>
-                        <option value="2">Stone</option>
-                        <option value="3">Iron</option>
-                        <option value="4">Gold</option>
-                        <option value="5">Diamond</option>
+                        <option value="1">Hand tools</option>
+                        <option value="2">Cutting tools</option>
+                        <option value="3">Paint tools</option>
+                        <option value="4">Woods</option>
+                        <option value="5">Walls</option>
+                        <option value="6">Welding/Equipment</option>
+                        <option value="7">Drill tools</option>
+                        <option value="8">Measure tools</option>
                       </select>
                  </div>
 
@@ -111,10 +118,10 @@ if(isset($_GET["action"]))
                           <div class="card text-center">
                             <img src="/assets/img/image 1.jpg" alt="">
                             <input type="text" name="quantity" value="1" class="form-control mt-4" />
-                          <h5  class="card-title mt-5" name="hidden_name"><?php echo $row["product"]; ?></inp>
-                             <p class="card-text" name="hidden_price">₱ <?php echo $row["price"]; ?></p>
+                              <input  type= "hidden" class="card-title mt-5" name="hidden_name"><?php echo $row["product"]; ?></input>
+                                <input type= "hidden" class="card-text" name="hidden_price">₱ <?php echo $row["price"]; ?></input>
 
-                                 <button type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-outline-dark">Add to bill</button>
+                                    <button type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-outline-dark">Add to bill</button>
                             </div>
                         </form>
                       <?php
@@ -133,22 +140,23 @@ if(isset($_GET["action"]))
                                 <p>trn202206</p>
                             </div>
                                 <div class="head2">
-                                    <p>Monday, 8 Aug, 2022</p>
-                                    <p>2:11 PM</p>
+                                    <p><span id="day"></span> , <span id="year"></span></p>
+                                    <p id="time"></p>
                                 </div>
                     </div>  
                     <br>
            
-                        <div class="body-invoice">
-                            <div class="bill-pay">
-                            <?php
+                        <div class="body-invoice">                   
+                        <?php
                                   if(!empty($_SESSION["shopping_cart"]))
                                   {
                                     $total = 0;
                                     foreach($_SESSION["shopping_cart"] as $keys => $values)
                                     {
                                   ?>
+                            <div class="bill-pay">
                                 <div class="card mb-3" style="max-width: 540px;">
+
                                     <div class="row g-0">
                                       <div class="col-md-4">
                                         <!-- <img src="/assets/img/image 2.jpg" class="img-fluid rounded-start" alt="..."> -->
@@ -157,39 +165,35 @@ if(isset($_GET["action"]))
                                         <div class="card-body">
                                           <h5 class="card-title fw-bold"><?php echo $values["item_name"]; ?></h5>
                                           <p class="card-text">₱ <?php echo $values["item_price"]; ?></p>
-                                            
+              
                                           <div class="qty">
-                                                <button type="button" class="btn bg-light border rounded-circle"><i class="fa-solid fa-minus"></i></button>
+                                                <!-- <button type="button" class="btn bg-light border rounded-circle"><i class="fa-solid fa-minus"></i></button> -->
 
-                                                    <input type="text" value="<?php echo $values["item_quantity"]; ?>" class="form-control d-inline">
+                                                <p><?php echo $values["item_quantity"]; ?></p>
 
-                                                <button type="button" class="btn bg-light border rounded-circle"><i class="fa-solid fa-plus"></i></button>
-  
-                                                <a class="btn-remove" type="button"  href="/pages/administrator/merchandise.php?action=delete&id=<?php echo $values["item_id"]; ?>" style="background: none; border:none;"><i class="bi bi-trash3"></i></a>                     
+                                                <!-- <button type="button" class="btn bg-light border rounded-circle"><i class="fa-solid fa-plus"></i></button> -->
+                                                  <a class="btn-remove" type="button"  href="/pages/administrator/merchandise.php?action=delete&id=<?php echo $values["item_id"]; ?>" style="background: none; border:none;"><i class="bi bi-trash3"></i></a>                     
                                             </div>
+                                            <?php
+                                                  $total = $total + ($values["item_quantity"] * $values["item_price"]);
+                                                    }
+                                                  ?>
                                       </div>
                                     </div>
                                   </div>
-                            </div>       
 
-                            <?php
-                              $total = $total + ($values["item_quantity"] * $values["item_price"]);
-                            }
-                          ?>
+                            </div>       
                             <div class="total-container mt-4">
                                 <div class="total-items">
                                     <p>Total Items</p>
-                                        <p class="fw-bold">2</p>
+                                        <p class="fw-bold"></p>
                                 </div>
                                     <div class="subtotal">
                                         <p>subtotal</p>
                                             <p class="fw-bold" style="color: #198754;">$ <?php echo number_format($total, 2); ?></p>
-                                    </div>                  
+                                    </div>   
+                             
                             </div>
-                            <?php
-                          }
-                          ?>
-
                             <h5 class="fw-bold mt-4">Payment Method</h5>
                                 <div class="payment-container w-auto mt-3">
                                     
@@ -205,6 +209,9 @@ if(isset($_GET["action"]))
                                     <button type="button" class="btn btn-primary btn-lg">PAY</button>
                                 </div>   
                         </div>  
+                        <?php
+                          }
+                          ?>
                 </div>
             </div>
     </div>
@@ -212,6 +219,47 @@ if(isset($_GET["action"]))
     </section>
 
     <script src="/assets/js/script.js"></script>
+    <script>
+  $(document).ready(function(){
+           // Code for year 
+             
+           var currentdate = new Date(); 
+             var datetime = currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/"
+                + currentdate.getFullYear();
+                $('#year').text(datetime);
+ 
+           // Code for extract Weekday     
+                function myFunction()
+                 {
+                    var d = new Date();
+                    var weekday = new Array(7);
+                    weekday[0] = "Sunday";
+                    weekday[1] = "Monday";
+                    weekday[2] = "Tuesday";
+                    weekday[3] = "Wednesday";
+                    weekday[4] = "Thursday";
+                    weekday[5] = "Friday";
+                    weekday[6] = "Saturday";
+ 
+                    var day = weekday[d.getDay()];
+                    return day;
+                    }
+                var day = myFunction();
+                $('#day').text(day);
+     });
+    </script>
+
+    <!--Code for TIME -->
+<script>
+    window.onload = displayClock();
+ 
+     function displayClock(){
+       var time = new Date().toLocaleTimeString();
+       document.getElementById("time").innerHTML = time;
+        setTimeout(displayClock, 1000); 
+     }
+</script>
 
 </body>
 </html>
