@@ -1,58 +1,50 @@
 <!-- Coding by RJ Avanceña Enterprises -->
-<?php 
+<?php
 session_start();
-$connect = mysqli_connect("localhost", "root", "", "rjavancena");
-
-if(isset($_POST["add_to_cart"]))
-{
-	if(isset($_SESSION["shopping_cart"]))
-	{
-		$item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
-		if(!in_array($_GET["id"], $item_array_id))
-		{
-			$count = count($_SESSION["shopping_cart"]);
-			$item_array = array(
-				'item_id'			=>	$_GET["id"],
-				'item_name'			=>	$_POST["hidden_name"],
-				'item_price'		=>	$_POST["hidden_price"],
-				'item_quantity'		=>	$_POST["quantity"]
-			);
-			$_SESSION["shopping_cart"][$count] = $item_array;
-		}
-		else
-		{
-			echo '<script>alert("Item Already Added")</script>';
-		}
-	}
-	else
-	{
-		$item_array = array(
-			'item_id'			=>	$_GET["id"],
-			'item_name'			=>	$_POST["hidden_name"],
-			'item_price'		=>	$_POST["hidden_price"],
-			'item_quantity'		=>	$_POST["quantity"]
-		);
-		$_SESSION["shopping_cart"][0] = $item_array;
-	}
-}
-
-if(isset($_GET["action"]))
-{
-	if($_GET["action"] == "delete")
-	{
-		foreach($_SESSION["shopping_cart"] as $keys => $values)
-		{
-			if($values["item_id"] == $_GET["id"])
-			{
-				unset($_SESSION["shopping_cart"][$keys]);
-				echo '<script>alert("Item Removed")</script>';
-				echo '<script>window.location="/pages/administrator/merchandise.php"</script>';
+require_once("--merchandize-controller.php");
+$db_handle = new DBController();
+if(!empty($_GET["action"])) {
+switch($_GET["action"]) {
+	case "add":
+		if(!empty($_POST["quantity"])) {
+			$productByCode = $db_handle->runQuery("SELECT * FROM inventory WHERE serialnumber='" . $_GET["serialnumber"] . "'");
+			$itemArray = array($productByCode[0]["serialnumber"]=>array('product'=>$productByCode[0]["product"], 'serialnumber'=>$productByCode[0]["serialnumber"], 'quantity'=>$_POST["quantity"], 'price'=>$productByCode[0]["price"], 'image'=>$productByCode[0]["image"]));
+			
+			if(!empty($_SESSION["cart_item"])) {
+				if(in_array($productByCode[0]["serialnumber"],array_keys($_SESSION["cart_item"]))) {
+					foreach($_SESSION["cart_item"] as $k => $v) {
+							if($productByCode[0]["serialnumber"] == $k) {
+								if(empty($_SESSION["cart_item"][$k]["quantity"])) {
+									$_SESSION["cart_item"][$k]["quantity"] = 0;
+								}
+								$_SESSION["cart_item"][$k]["quantity"] += $_POST["quantity"];
+							}
+					}
+				} else {
+					$_SESSION["cart_item"] = array_merge($_SESSION["cart_item"],$itemArray);
+				}
+			} else {
+				$_SESSION["cart_item"] = $itemArray;
 			}
 		}
-	}
+	break;
+	case "remove":
+		if(!empty($_SESSION["cart_item"])) {
+			foreach($_SESSION["cart_item"] as $k => $v) {
+					if($_GET["serialnumber"] == $k)
+						unset($_SESSION["cart_item"][$k]);				
+					if(empty($_SESSION["cart_item"]))
+						unset($_SESSION["cart_item"]);
+			}
+		}
+	break;
+	case "empty":
+		unset($_SESSION["cart_item"]);
+	break;	
 }
-
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -63,7 +55,7 @@ if(isset($_GET["action"]))
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <title>Merchandise</title> 
 
 </head>
@@ -90,7 +82,7 @@ if(isset($_GET["action"]))
 
                 <div class="category-container">
                       <!-- Category -->
-                      <select class="form-select" aria-label="Default select example">
+                      <select class="form-select w-25" aria-label="Default select example">
                         <option selected>Choose category</option>
                         <option value="1">Hand tools</option>
                         <option value="2">Cutting tools</option>
@@ -106,27 +98,23 @@ if(isset($_GET["action"]))
                  <hr>
 
                  <div class="productlist-container">
-                			<?php
-                        $query = "SELECT * FROM inventory ORDER BY id ASC";
-                        $result = mysqli_query($connect, $query);
-                        if(mysqli_num_rows($result) > 0)
-                        {
-                          while($row = mysqli_fetch_array($result))
-                          {
-                        ?>
-                        <form method="post" action="/pages/administrator/merchandise.php?action=add&id=<?php echo $row["id"]; ?>">
+                 <?php
+                  $product_array = $db_handle->runQuery("SELECT * FROM inventory ORDER BY id ASC");
+                  if (!empty($product_array)) { 
+                    foreach($product_array as $key=>$value){
+                  ?>
+                        <form method="post" class="product-form" action="/pages/administrator/merchandise.php?action=add&serialnumber=<?php echo $product_array[$key]["serialnumber"]; ?>">
                           <div class="card text-center">
                             <img src="/assets/img/image 1.jpg" alt="">
-                            <input type="text" name="quantity" value="1" class="form-control mt-4" />
-                              <input  type= "hidden" class="card-title mt-5" name="hidden_name"><?php echo $row["product"]; ?></input>
-                                <input type= "hidden" class="card-text" name="hidden_price">₱ <?php echo $row["price"]; ?></input>
-
-                                    <button type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-outline-dark">Add to bill</button>
+                            <div class="product-title mt-3"><?php echo $product_array[$key]["product"]; ?></div>
+                             <div class="product-price mt-1"><?php echo "₱".$product_array[$key]["price"]; ?></div>
+                             <input type="text" class="product-quantity mt-3 w-50" name="quantity" value="1" size="2"  style="align-items: center; margin:auto;"/>
+                               <input type="submit" value="Add to bill" style="align-items: center; margin:auto;" class="btn btn-outline-dark mt-3 w-50 text-center"/>
                             </div>
                         </form>
-                      <?php
-                          }
+                    <?php
                         }
+                      }
                       ?>
                  </div>
               </div>
@@ -145,73 +133,75 @@ if(isset($_GET["action"]))
                                 </div>
                     </div>  
                     <br>
-           
-                        <div class="body-invoice">                   
-                        <?php
-                                  if(!empty($_SESSION["shopping_cart"]))
-                                  {
-                                    $total = 0;
-                                    foreach($_SESSION["shopping_cart"] as $keys => $values)
-                                    {
-                                  ?>
+      
+                        <div class="body-invoice">     
+                        <a id="btnEmpty" class ="text-danger" href="/pages/administrator/merchandise.php?action=empty" style="text-decoration: none">Clear all</a>         
                             <div class="bill-pay">
+                            <?php
+                                if(isset($_SESSION["cart_item"])){
+                                    $total_quantity = 0;
+                                    $total_price = 0;
+                                ?>	  
                                 <div class="card mb-3" style="max-width: 540px;">
-
+                                    <?php		
+                                    foreach ($_SESSION["cart_item"] as $item){
+                                        $item_price = $item["quantity"]*$item["price"];
+                                    ?>
                                     <div class="row g-0">
                                       <div class="col-md-4">
                                         <!-- <img src="/assets/img/image 2.jpg" class="img-fluid rounded-start" alt="..."> -->
                                       </div>
                                       <div class="col-md-8">
                                         <div class="card-body">
-                                          <h5 class="card-title fw-bold"><?php echo $values["item_name"]; ?></h5>
-                                          <p class="card-text">₱ <?php echo $values["item_price"]; ?></p>
-              
+                                        <h5 class="card-title fw-bold"><?php echo $item["product"]; ?></h5>
+                                          <p class="card-text"><?php echo "₱ ".$item["price"]; ?></p>                    
                                           <div class="qty">
-                                                <!-- <button type="button" class="btn bg-light border rounded-circle"><i class="fa-solid fa-minus"></i></button> -->
-
-                                                <p><?php echo $values["item_quantity"]; ?></p>
-
-                                                <!-- <button type="button" class="btn bg-light border rounded-circle"><i class="fa-solid fa-plus"></i></button> -->
-                                                  <a class="btn-remove" type="button"  href="/pages/administrator/merchandise.php?action=delete&id=<?php echo $values["item_id"]; ?>" style="background: none; border:none;"><i class="bi bi-trash3"></i></a>                     
-                                            </div>
-                                            <?php
-                                                  $total = $total + ($values["item_quantity"] * $values["item_price"]);
-                                                    }
-                                                  ?>
-                                      </div>
+                                                <p><?php echo "Qty: ". $item["quantity"]; ?></p>
+                                                <a href="/pages/administrator/merchandise.php?action=remove&serialnumber=<?php echo $item["serialnumber"]; ?>" class="btnRemoveAction"><i class="bi bi-trash3"></i></a>                                   
+                                            </div>                   
+                                          </div>
+                                        </div>
                                     </div>
-                                  </div>
-
+                                    <?php
+                                        $total_quantity += $item["quantity"];
+                                        $total_price += ($item["price"]*$item["quantity"]);
+                                    }
+                                ?>
+                              </div>
                             </div>       
+  
                             <div class="total-container mt-4">
                                 <div class="total-items">
-                                    <p>Total Items</p>
-                                        <p class="fw-bold"></p>
+                                   <p>Total Items</p>
+                                      <p class="fw-bold"><?php echo $total_quantity; ?></p>
                                 </div>
-                                    <div class="subtotal">
-                                        <p>subtotal</p>
-                                            <p class="fw-bold" style="color: #198754;">$ <?php echo number_format($total, 2); ?></p>
-                                    </div>   
-                             
+                                <div class="subtotal">
+                                    <p>subtotal</p>
+                                      <p class="fw-bold" style="color: #198754;"><?php echo "₱ ".number_format($total_price, 2); ?></p>
+                                </div>   
                             </div>
+                            <?php
+                                  } else {
+                                  ?>
+                                  <div class="no-records mt-3" style="text-align: center;">No item reciept <i class="bi bi-shop"></i></div>
+                                  <?php 
+                                  }
+                              ?>
+
                             <h5 class="fw-bold mt-4">Payment Method</h5>
-                                <div class="payment-container w-auto mt-3">
-                                    
+                                <div class="payment-container w-auto mt-3">    
                                     <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked>
-                                    <label class="btn btn-outline-secondary" for="option1"><i class="bi bi-cash-coin"></i>Cash</label>
+                                      <label class="btn btn-outline-secondary" for="option1"><i class="bi bi-cash-coin"></i>Cash</label>
 
                                     <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off" checked>
-                                    <label class="btn btn-outline-secondary" for="option2"><i class="bi bi-credit-card"></i>Master Card</label>
+                                      <label class="btn btn-outline-secondary" for="option2"><i class="bi bi-credit-card"></i>Master Card</label>
 
                                     <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off" checked>
-                                    <label class="btn btn-outline-secondary" for="option3"><i class="bi bi-bank"></i>Bank</label>
+                                      <label class="btn btn-outline-secondary" for="option3"><i class="bi bi-bank"></i>Bank</label>
 
-                                    <button type="button" class="btn btn-primary btn-lg">PAY</button>
+                                    <button type="button" class="btn btn-success btn-lg">PAY</button>
                                 </div>   
                         </div>  
-                        <?php
-                          }
-                          ?>
                 </div>
             </div>
     </div>

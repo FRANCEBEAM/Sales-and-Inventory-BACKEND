@@ -93,6 +93,17 @@ div.merchandize-container{
           margin-top: 1em;
         }
       }
+      form.product-form{
+        div.card.text-center{
+          input{
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            background: black;
+            margin: auto;
+          }
+        }
+      }
     }
   }
 
@@ -114,7 +125,6 @@ div.merchandize-container{
       }
 
       div.body-invoice{
-        height: 100vh;
         border-radius:  7px;
         padding: 1em 1em;
         background: $white;
