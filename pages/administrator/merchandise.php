@@ -1,19 +1,26 @@
 <!-- Coding by RJ Avanceña Enterprises -->
 <?php
 session_start();
+
+// LETS REQUIRE ONCE THE MERCHANDIZE, IT'S A CONTROLLER OF OUR DATA
 require_once("--merchandize-controller.php");
+// CALL THE DBCONTROLLER CLASS 
 $db_handle = new DBController();
+//WE DECIDE TO USE SWITCH CASE IF THE CONDITION ARE MET, IT WILL INITIALIZE
 if(!empty($_GET["action"])) {
 switch($_GET["action"]) {
+  //WE CALL THIS AS "ADD" CASE WHEN IT TRIGGER THE BUTTON
 	case "add":
 		if(!empty($_POST["quantity"])) {
-			$productByCode = $db_handle->runQuery("SELECT * FROM inventory WHERE serialnumber='" . $_GET["serialnumber"] . "'");
-			$itemArray = array($productByCode[0]["serialnumber"]=>array('product'=>$productByCode[0]["product"], 'serialnumber'=>$productByCode[0]["serialnumber"], 'quantity'=>$_POST["quantity"], 'price'=>$productByCode[0]["price"], 'image'=>$productByCode[0]["image"]));
+    // VARIABLE productSerialNumber AS THE UNIQUE REFERENCE/KEY ACCESS IN OUR DATABASE
+			$productSerialNumber = $db_handle->runQuery("SELECT * FROM inventory WHERE serialnumber='" . $_GET["serialnumber"] . "'");
+			$itemArray = array($productSerialNumber[0]["serialnumber"]=>array('product'=>$productSerialNumber[0]["product"], 'serialnumber'=>$productSerialNumber[0]["serialnumber"], 'quantity'=>$_POST["quantity"], 'price'=>$productSerialNumber[0]["price"], 'image'=>$productSerialNumber[0]["image"]));
 			
+      //LETS TEST THE CONDITION INSIDE OF OUR ARRAY THAT HAVE PRODUCT
 			if(!empty($_SESSION["cart_item"])) {
-				if(in_array($productByCode[0]["serialnumber"],array_keys($_SESSION["cart_item"]))) {
+				if(in_array($productSerialNumber[0]["serialnumber"],array_keys($_SESSION["cart_item"]))) {
 					foreach($_SESSION["cart_item"] as $k => $v) {
-							if($productByCode[0]["serialnumber"] == $k) {
+							if($productSerialNumber[0]["serialnumber"] == $k) {
 								if(empty($_SESSION["cart_item"][$k]["quantity"])) {
 									$_SESSION["cart_item"][$k]["quantity"] = 0;
 								}
@@ -28,6 +35,8 @@ switch($_GET["action"]) {
 			}
 		}
 	break;
+
+  // INCASE WE WANT TO REMOVE THE PRODUCT IN THE LIST
 	case "remove":
 		if(!empty($_SESSION["cart_item"])) {
 			foreach($_SESSION["cart_item"] as $k => $v) {
@@ -37,6 +46,8 @@ switch($_GET["action"]) {
 						unset($_SESSION["cart_item"]);
 			}
 		}
+
+    // THEN SHOW ME A NO ITEM RECIEPT FOUND
 	break;
 	case "empty":
 		unset($_SESSION["cart_item"]);
@@ -97,6 +108,7 @@ switch($_GET["action"]) {
 
                  <hr>
 
+                 <!-- OUR PRODUCT LIST THAT WILL ADD IN THE INVENTORY/DATABASE-->
                  <div class="productlist-container">
                  <?php
                   $product_array = $db_handle->runQuery("SELECT * FROM inventory ORDER BY id ASC");
@@ -109,7 +121,7 @@ switch($_GET["action"]) {
                             <div class="product-title mt-3"><?php echo $product_array[$key]["product"]; ?></div>
                              <div class="product-price mt-1"><?php echo "₱".$product_array[$key]["price"]; ?></div>
                              <input type="text" class="product-quantity mt-3 w-50" name="quantity" value="1" size="2"  style="align-items: center; margin:auto;"/>
-                               <input type="submit" value="Add to bill" style="align-items: center; margin:auto;" class="btn btn-outline-dark mt-3 w-50 text-center"/>
+                               <input type="submit" value="Add to bill" style="align-items: center; margin:auto; text-align:center;" class="btn btn-primary mt-3 w-50 text-center"/>
                             </div>
                         </form>
                     <?php
@@ -122,6 +134,7 @@ switch($_GET["action"]) {
             <!-- Right Content -->
             <div class="right-content">
                 <div class="sales-invoice">
+                  <!-- HEAD INVOICE CONTENT SHOWS DATE/TIME AND TRANSACTION -->
                     <div class="head-invoice">
                             <div class="head1">
                                 <h5 class="fw-bold">Sales Invoice</h5>
@@ -133,26 +146,26 @@ switch($_GET["action"]) {
                                 </div>
                     </div>  
                     <br>
-      
-                        <div class="body-invoice">     
-                        <a id="btnEmpty" class ="text-danger" href="/pages/administrator/merchandise.php?action=empty" style="text-decoration: none">Clear all</a>         
+                        <!-- BODY INVOICE WILL REPRESENT AS THE ADD PRODUCT LIST -->
+                        <div class="body-invoice">
+                        <a id="btnEmpty" class ="text-danger" href="/pages/administrator/merchandise.php?action=empty" style="text-decoration: none">Clear all</a>     
                             <div class="bill-pay">
                             <?php
                                 if(isset($_SESSION["cart_item"])){
                                     $total_quantity = 0;
                                     $total_price = 0;
                                 ?>	  
-                                <div class="card mb-3" style="max-width: 540px;">
+                                <div class="card" style="max-width: 540px;">
                                     <?php		
                                     foreach ($_SESSION["cart_item"] as $item){
                                         $item_price = $item["quantity"]*$item["price"];
-                                    ?>
+                                    ?>  
                                     <div class="row g-0">
                                       <div class="col-md-4">
                                         <!-- <img src="/assets/img/image 2.jpg" class="img-fluid rounded-start" alt="..."> -->
                                       </div>
                                       <div class="col-md-8">
-                                        <div class="card-body">
+                                        <div class="card-body mb-3">
                                         <h5 class="card-title fw-bold"><?php echo $item["product"]; ?></h5>
                                           <p class="card-text"><?php echo "₱ ".$item["price"]; ?></p>                    
                                           <div class="qty">
@@ -170,6 +183,7 @@ switch($_GET["action"]) {
                               </div>
                             </div>       
   
+                            <!-- TOTAL CONTENT -->
                             <div class="total-container mt-4">
                                 <div class="total-items">
                                    <p>Total Items</p>
@@ -183,11 +197,12 @@ switch($_GET["action"]) {
                             <?php
                                   } else {
                                   ?>
-                                  <div class="no-records mt-3" style="text-align: center;">No item reciept <i class="bi bi-shop"></i></div>
+                                  <div class="no-records" style="text-align: center; padding-top: 4em; padding-bottom: 4em;">No item reciept <i class="bi bi-bag-check"></i></div>
                                   <?php 
                                   }
                               ?>
 
+                              <!-- PAYMENT METHOD -->
                             <h5 class="fw-bold mt-4">Payment Method</h5>
                                 <div class="payment-container w-auto mt-3">    
                                     <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked>

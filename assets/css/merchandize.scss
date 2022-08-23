@@ -93,22 +93,12 @@ div.merchandize-container{
           margin-top: 1em;
         }
       }
-      form.product-form{
-        div.card.text-center{
-          input{
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            background: black;
-            margin: auto;
-          }
-        }
-      }
     }
   }
 
   // Right Content
   div.right-content{
+    overflow-y: scroll;
     grid-area: right-content;
     div.sales-invoice{
       height: 100vh;
@@ -130,9 +120,16 @@ div.merchandize-container{
         background: $white;
         align-items: center;
         justify-content: center;
-
+        
+        div.no-records{
+          font-size: 18px;
+          i{
+            margin-left: .3em;
+          }
+        }
 
         div.bill-pay{
+          
           img{
             margin-top: 1.7em;
             align-items: center;
@@ -140,6 +137,7 @@ div.merchandize-container{
           }
           div.card{
             border-radius: 7px;      
+          
           }
         }
 

@@ -1,10 +1,20 @@
 div.search-container {
   padding: 12px 60px;
 }
+div.search-container div.input-group.input-group-lg.mt-3 {
+  background: white;
+}
+div.search-container span.input-group-text {
+  background: white;
+  border: none;
+}
 div.search-container div.input-group.input-group-lg {
   width: 420px;
   box-shadow: 9px 11px 5px -4px rgba(0, 0, 0, 0.11);
   border-radius: 17px;
+}
+div.search-container div.input-group.input-group-lg input {
+  border: none;
 }
 
 div.merchandize-container {
@@ -28,16 +38,16 @@ div.merchandize-container div.left-content div.category-container button.card {
   border-radius: 17px;
   box-shadow: 9px 11px 5px -4px rgba(0, 0, 0, 0.11);
 }
-div.merchandize-container div.left-content div.category-container button.card div.card-body {
-  text-align: left;
-  padding: 0;
+div.merchandize-container div.left-content div.category-container button.card h5 {
+  font-size: 16px;
 }
-div.merchandize-container div.left-content div.category-container button.card div.card-body h5 {
-  font-size: 18px;
-}
-div.merchandize-container div.left-content div.category-container button.card div.card-body p {
+div.merchandize-container div.left-content div.category-container button.card p {
   font-size: 14px;
   color: #6C757D;
+}
+div.merchandize-container div.left-content div.category-container button.card:hover {
+  background: #F2F2F2;
+  transition: ease-in-out 0.3s;
 }
 div.merchandize-container div.left-content div.productlist-container {
   display: flex;
@@ -63,6 +73,7 @@ div.merchandize-container div.left-content div.productlist-container div.card di
   margin-top: 1em;
 }
 div.merchandize-container div.right-content {
+  overflow-y: scroll;
   grid-area: right-content;
 }
 div.merchandize-container div.right-content div.sales-invoice {
@@ -80,11 +91,17 @@ div.merchandize-container div.right-content div.sales-invoice div.head-invoice p
   font-size: 14px;
 }
 div.merchandize-container div.right-content div.sales-invoice div.body-invoice {
-  height: 100vh;
+  border-radius: 7px;
   padding: 1em 1em;
   background: white;
   align-items: center;
   justify-content: center;
+}
+div.merchandize-container div.right-content div.sales-invoice div.body-invoice div.no-records {
+  font-size: 18px;
+}
+div.merchandize-container div.right-content div.sales-invoice div.body-invoice div.no-records i {
+  margin-left: 0.3em;
 }
 div.merchandize-container div.right-content div.sales-invoice div.body-invoice div.bill-pay img {
   margin-top: 1.7em;
@@ -124,7 +141,7 @@ div.merchandize-container div.right-content div.sales-invoice div.body-invoice d
   align-items: center;
   justify-content: center;
   border: #6C757D 1px solid;
-  padding: 0.4em;
+  padding: 2em;
   border-radius: 7px;
   margin: auto;
   width: auto;
