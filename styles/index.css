@@ -6,9 +6,13 @@
   box-sizing: border-box;
 }
 
-div.main-container {
-  background: #FFFFFF;
+body {
   font-family: "Poppins", sans-serif;
+  background: #F8F9FA;
+}
+
+div.main-container {
+  background: color(bg-body);
 }
 
 html {
@@ -21,13 +25,16 @@ nav {
   -moz-box-shadow: -1px 6px 59px -35px rgba(41, 41, 41, 0.75);
   padding: 0 1em;
 }
-nav div.logo h1 {
-  font-size: 16px;
-  font-weight: bold;
+nav a.navbar-brand {
+  width: 50%;
 }
-nav div.logo span.ent {
-  font-size: 12px;
-  letter-spacing: 5px;
+nav a.navbar-brand img {
+  max-width: 176px;
+}
+nav ul li.nav-item {
+  text-align: center;
+  padding-top: 0.2em;
+  margin-bottom: 0.7em;
 }
 nav ul li.nav-item a {
   color: #212529;
@@ -35,73 +42,120 @@ nav ul li.nav-item a {
   list-style: none;
 }
 nav div.collapse ul.navbar-nav li.nav-item a.home:hover {
-  color: #FF432A;
+  color: color(bg-orange);
   transition: 0.4s;
 }
 nav div.collapse ul.navbar-nav li.nav-item a.shop:hover {
-  color: #FF432A;
+  color: color(bg-orange);
   transition: 0.4s;
 }
 nav div.collapse ul.navbar-nav li.nav-item a.about:hover {
-  color: #FF432A;
+  color: color(bg-orange);
   transition: 0.4s;
 }
 nav div.collapse ul.navbar-nav li.nav-item a.login:hover {
-  color: #FF432A;
+  color: color(bg-orange);
   transition: 0.4s;
 }
 
-div.search-container {
-  padding: 3em 1em;
-}
-div.search-container form input {
-  font-size: 12px;
-  width: 100%;
-}
-div.search-container form i.bi.bi-bag-check {
-  padding: 0 0.4em;
-  font-size: 1.4em;
-  align-items: center;
-}
-
 div.hero-container {
-  padding: 7em 1em;
+  padding: 8em 2em;
+  background: url(/img/hero-bg.svg);
+  height: 70vh;
+  min-width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-div.hero-container div.text-content h5 {
+div.hero-container div.left-content div.text-content h5 {
+  color: #858585;
   text-align: center;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
-  color: #6C6C6C;
 }
-div.hero-container div.text-content h1 {
+div.hero-container div.left-content div.text-content h1 {
+  color: #F8F9FA;
+  font-size: 38px;
   text-align: center;
-  font-size: 36px;
   font-weight: bold;
 }
-div.hero-container a.btn-dark {
-  align-items: center;
-  justify-content: center;
-  width: 40%;
-  margin: 2em auto;
-  padding: 0.8em;
-  border-radius: 0.7em;
-  display: flex;
-  font-weight: bold;
-  text-decoration: none;
-  text-align: center;
-}
-div.hero-container div.bg-hero img {
-  display: none;
-}
-
-div.store-info {
+div.hero-container div.left-content div.text-content p {
   padding-top: 2em;
-  display: none;
+  text-align: center;
+  color: #F8F9FA;
+}
+div.hero-container div.left-content a#btn-shopnow {
+  border-radius: 2px;
+  padding: 1em 1em;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-weight: bold;
 }
 
-p.shopCateg {
-  font-size: 14px;
+div.info-container {
   padding: 1em 2em;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  gap: 1em;
+  font-size: 12px;
+  margin: 0 auto;
+}
+div.info-container i {
+  font-size: 20px;
+}
+div.info-container h5 {
+  font-size: 12px;
+}
+div.info-container p {
+  color: #858585;
+  font-size: 12px;
+}
+
+div.search-container {
+  background: url(/img/bg-search-mob.svg);
+  height: 24vh;
+  min-width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 0 1em;
+}
+div.search-container div.search-bar {
+  padding-top: 2.4em;
+  justify-content: center;
+}
+div.search-container div.search-bar form {
+  border-radius: 7px;
+  background: #F8F9FA;
+  padding: 2em 1em;
+  justify-content: center;
+  align-items: center;
+}
+div.search-container div.search-bar form input {
+  border: solid #858585 1px;
+  border-radius: 12px;
+}
+div.search-container div.search-bar form label {
+  font-size: 14px;
+}
+div.search-container div.search-bar form button {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: space-between;
+  background: #D1A31A;
+  color: #F8F9FA;
+  font-weight: bold;
+  border-radius: 7px;
+}
+
+div.categories-container {
+  padding: 2em 2em;
+}
+div.categories-container h5 {
+  font-size: 16px;
+  font-weight: bold;
 }
 
 div.swiper {
@@ -112,31 +166,27 @@ div.swiper div.wrapper {
   padding-top: 4em;
 }
 div.swiper div.swiper-slide img {
-  width: 30%;
+  width: 60%;
   margin: auto;
   display: flex;
   justify-content: center;
 }
 div.swiper div.swiper-slide p {
-  margin-top: 1em;
+  margin-top: 2em;
   text-align: center;
   font-size: 14px;
 }
 
-div.dropdown {
-  margin-bottom: 4em;
-  display: flex;
-  justify-content: center;
-  font-size: 14px;
-}
-
 div.item-container {
-  display: flex;
+  padding: 0 2em;
+  display: grid;
   justify-content: center;
   flex-wrap: wrap;
   gap: 1em;
+  grid-template-columns: 1fr 1fr;
 }
 div.item-container div.card {
+  margin: 0;
   padding-top: 3em;
   margin-bottom: 4em;
 }
@@ -144,7 +194,7 @@ div.item-container div.card img {
   margin: auto;
   display: flex;
   justify-content: center;
-  width: 60%;
+  width: 30%;
 }
 div.item-container div.card h5 {
   font-size: 14px;
@@ -159,23 +209,26 @@ div.item-container div.card a {
 div.pagination-container {
   justify-content: center;
   display: flex;
-  margin-bottom: 12em;
+  margin-bottom: 7em;
 }
 
 div.about-container {
-  padding: 3em 1em;
-  background: #F2F2F2;
+  padding: 2em 2em;
+  background: #121212;
 }
 div.about-container h1 {
+  color: #F8F9FA;
   text-align: center;
   font-weight: bold;
 }
 div.about-container div.about-text {
+  color: #F8F9FA;
   padding-top: 4em;
   text-align: center;
   font-size: 12px;
 }
 div.about-container div.about-socials {
+  color: #F8F9FA;
   padding-top: 2em;
   display: flex;
   justify-content: center;
@@ -183,23 +236,19 @@ div.about-container div.about-socials {
   font-size: 1.4em;
 }
 
-@media screen and (min-width: 688px) {
-  div.hero-container div.left-content a.btn-dark {
-    align-items: center;
-    justify-content: center;
-    width: 30%;
-    margin: 2em auto;
-    padding: 1.4em;
-    border-radius: 0.7em;
-    display: flex;
-    font-weight: bold;
-    text-decoration: none;
-  }
-  div.dropdown {
-    display: flex;
-    justify-content: center;
+@media screen and (min-width: 550px) {
+  div.item-container div.card p {
     font-size: 14px;
   }
+  div.item-container div.card a {
+    padding: 0.7em;
+    font-size: 14px;
+  }
+  div.about-container p {
+    font-size: 14px;
+  }
+}
+@media screen and (min-width: 688px) {
   div.item-container {
     justify-content: center;
     align-items: center;
@@ -209,6 +258,9 @@ div.about-container div.about-socials {
   }
   div.item-container div.card {
     margin: auto;
+  }
+  div.swiper div.swiper-wrapper div.swiper-slide img {
+    width: 40%;
   }
 }
 @media screen and (min-width: 768px) {
@@ -225,7 +277,6 @@ div.about-container div.about-socials {
     margin: 0 auto;
     justify-content: center;
     align-items: center;
-    max-width: 1200px;
   }
   div.hero-container div.left-content div.text-content {
     text-align: center;
@@ -236,74 +287,28 @@ div.about-container div.about-socials {
   div.hero-container div.left-content div.text-content h1 {
     font-size: 46px;
   }
-  div.hero-container div.left-content a.btn-dark {
+  div.hero-container div.left-content div.text-content p {
+    font-size: 20px;
+  }
+  div.hero-container div.left-content a#btn-shopnow {
     align-items: center;
     justify-content: center;
-    width: 30%;
+    width: 20vmin;
     margin: 2em auto;
-    padding: 1.4em;
+    padding: 1.2em;
     border-radius: 0.7em;
     display: flex;
     font-weight: bold;
     text-decoration: none;
   }
-  div.hero-container div.right-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  div.info-container {
+    gap: 12em;
   }
-  div.hero-container div.right-content div.bg-hero img {
-    margin-top: 2em;
-    display: block;
-    width: 100%;
+  div.search-container div.search-bar {
+    margin: 0 4em;
   }
-  div.search-container input.form-control {
-    padding: 1em;
-  }
-  div.search-container a i.bi.bi-bag-check {
-    font-size: 1.7em;
-  }
-  div.dropdown {
-    padding: 0 2.4em;
-  }
-  div.store-info {
-    display: flex;
-    margin-bottom: 4em;
-    justify-content: center;
-    align-items: center;
-    padding: 3em 7em;
-  }
-  div.store-info div.info-container {
-    justify-content: space-between;
-    display: flex;
-  }
-  div.store-info div.info-container div.truck-container {
-    padding: 0 2em;
-    text-align: center;
-  }
-  div.store-info div.info-container div.truck-container i {
+  div.categories-container h5.shopCateg {
     font-size: 20px;
-  }
-  div.store-info div.info-container div.open-container {
-    padding: 0 2em;
-    text-align: center;
-  }
-  div.store-info div.info-container div.open-container i {
-    font-size: 20px;
-  }
-  div.store-info div.info-container div.loc-container {
-    padding: 0 2em;
-    text-align: center;
-  }
-  div.store-info div.info-container div.loc-container i {
-    font-size: 20px;
-  }
-  p.shopCateg {
-    font-size: 14px;
-    padding: 2em 3em;
-  }
-  div.item-container div.card div.body-card {
-    padding-top: 4em;
   }
   div.swiper div.swiper-wrapper div.swiper-slide img {
     width: 30%;
@@ -312,7 +317,8 @@ div.about-container div.about-socials {
     font-size: 18px;
   }
   div.item-container {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     justify-content: center;
     flex-wrap: wrap;
     gap: 1em;
@@ -344,93 +350,95 @@ div.about-container div.about-socials {
 @media screen and (min-width: 992px) {
   nav {
     padding: 0 1em;
-    display: flex;
     align-items: center;
-    justify-content: space-between;
   }
-  nav div.logo h1 {
-    font-size: 20px;
-    font-weight: bold;
+  nav a.navbar-brand {
+    width: 0;
   }
-  nav div.logo span.ent {
-    font-size: 16px;
-    letter-spacing: 5px;
+  nav ul.navbar-nav li.nav-item {
+    text-align: center;
+    align-items: center;
   }
-  nav ul li.nav-item a.btnRegister {
-    color: #FFFFFF;
-    border-radius: 0.4em;
-    padding: 0.6em;
-    background: #0d6efd;
-  }
-  nav ul li.nav-item a.btnRegister:hover {
-    background: #0853c4;
-    transition: 0.4s;
+  nav ul.navbar-nav i {
+    font-size: 26px;
   }
   nav div.collapse ul.navbar-nav {
     margin-left: auto;
   }
   nav div.collapse ul.navbar-nav li.nav-item a {
-    font-size: 16px;
+    font-size: 20px;
     margin-left: 2em;
   }
-  div.hero-container div.left-content a.btn-dark {
-    width: 20%;
-    padding: 1.4em;
+  div.hero-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas: "left-content right-content";
+  }
+  div.hero-container div.left-content {
+    grid-area: "left-content";
+  }
+  div.hero-container div.left-content div.text-content h5 {
+    text-align: left;
+    font-size: 24px;
+  }
+  div.hero-container div.left-content div.text-content h1 {
+    text-align: left;
+    font-size: 38px;
+  }
+  div.hero-container div.left-content div.text-content p {
+    font-size: 18px;
+    text-align: left;
+  }
+  div.hero-container div.left-content div.col.text-center {
+    display: flex;
+    left: 0;
+    float: left;
+  }
+  div.info-container {
+    gap: 12em;
+  }
+  div.info-container h5 {
+    font-size: 16px;
+  }
+  div.info-container p {
+    font-size: 16px;
   }
   div.search-container {
-    width: 50%;
-    margin: auto;
+    height: 37vh;
   }
-  div.search-container input.form-control {
+  div.search-container div.search-bar {
+    padding: 5.4em 7em;
+  }
+  div.search-container div.search-bar form label {
+    font-size: 18px;
+  }
+  div.search-container div.search-bar form input {
     padding: 1em;
   }
-  div.search-container a i.bi.bi-bag-check {
-    font-size: 2em;
+  div.search-container button {
+    padding: 0 2em;
+    font-size: 20px;
   }
   p.shopCateg {
     font-size: 18px;
     font-weight: 500;
   }
-  div.dropdown {
-    padding: 0 3em;
+  div.item-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
 @media screen and (min-width: 1200px) {
   nav {
     padding: 0 5em;
   }
-  div.search-container {
-    padding: 2em 5em;
-  }
   div.hero-container {
     padding: 4em 5em;
     display: flex;
     max-width: 1400px;
     margin: 0 auto;
-    margin-bottom: 4em;
     justify-content: left;
     align-items: center;
-  }
-  div.hero-container div.left-content div.text-content {
-    max-width: 1500px;
-    text-align: left;
-  }
-  div.hero-container div.left-content div.text-content h5 {
-    text-align: left;
-    font-size: 26px;
-  }
-  div.hero-container div.left-content div.text-content h1 {
-    text-align: left;
-    font-size: 46px;
-  }
-  div.hero-container div.left-content a.btn-dark {
-    display: inline-block;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    width: 40%;
-    padding: 1em;
-    font-weight: bold;
   }
   div.hero-container div.right-content {
     margin: 0 auto;
@@ -438,23 +446,33 @@ div.about-container div.about-socials {
     justify-content: center;
     align-items: center;
   }
-  div.hero-container div.right-content div.bg-hero img {
-    display: flex;
-    justify-content: right;
-    display: flex;
+  div.info-container {
+    padding: 2em;
+    gap: 17em;
   }
-  p.shopCateg {
-    font-weight: 500;
-    padding: 0 6em;
-    font-size: 16px;
+  div.info-container h5 {
+    font-size: 20px;
+  }
+  div.info-container p {
+    font-size: 20px;
+  }
+  div.search-container div.search-bar form label {
+    font-size: 20px;
+  }
+  div.search-container div.search-bar form input {
+    font-size: 20px;
+    padding: 1em;
+  }
+  div.categories-container h5.shopCateg {
+    padding: 0 2em;
+    font-weight: 700;
+    font-size: 26px;
     margin-bottom: 2em;
-  }
-  div.dropdown {
-    padding: 3em 6em;
   }
   div.swiper div.swiper-wrapper div.swiper-slide {
     border-radius: 1em;
     padding-top: 2em;
+    margin-bottom: 3em;
   }
   div.swiper div.swiper-wrapper div.swiper-slide img {
     width: 20%;
@@ -462,20 +480,13 @@ div.about-container div.about-socials {
   div.swiper div.swiper-wrapper div.swiper-slide p {
     font-size: 18px;
   }
-  div.swiper div.swiper-button-next {
-    padding: 0 7em;
-  }
-  div.swiper div.swiper-button-prev {
-    padding: 0 7em;
-  }
   div.item-container {
     padding: 3em 6em;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
   div.about-container div.about-text p {
-    padding: 0 12em;
-    font-size: 16px;
+    font-size: 20px;
   }
 }
 @media screen and (min-width: 1280px) {
@@ -502,33 +513,55 @@ div.about-container div.about-socials {
     font-size: 20px;
     padding: 0 5em;
   }
-  div.item-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-  }
   div.item-container div.card div.card-body img {
     margin: auto;
     justify-content: center;
     width: 10%;
   }
   div.item-container div.card div.card-body h5 {
-    font-size: 18px;
+    font-size: 24px;
   }
   div.item-container div.card div.card-body p {
-    font-size: 14px;
+    font-size: 20px;
   }
   div.item-container div.card div.card-body a {
-    font-size: 12px;
+    font-size: 20px;
+  }
+  div.about-container div.about-text p {
+    padding: 0px;
+    font-size: 20px;
   }
 }
 @media screen and (min-width: 1390px) {
+  nav {
+    padding: 0 12em;
+  }
   div.hero-container {
-    max-width: 1280;
-    padding: 4em 2em;
+    padding-top: 4em;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+  }
+  div.hero-container div.left-content {
+    padding: 0 8em;
+  }
+  div.search-container {
+    height: 50vmin;
+  }
+  div.search-container div.search-bar {
+    margin: 0 12em;
+  }
+  div.search-container div.search-bar form input {
+    border: solid #858585 1px;
+    padding: 0.7em;
+  }
+  div.categories-container h5.shopCateg {
+    padding: 0 7em;
   }
   div.item-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding: 0 12em;
   }
   div.item-container div.card div.card-body img {
     margin: auto;
@@ -543,5 +576,8 @@ div.about-container div.about-socials {
   }
   div.item-container div.card div.card-body a {
     font-size: 14px;
+  }
+  div.about-container div.about-text p {
+    padding: 0 12em;
   }
 }/*# sourceMappingURL=index.css.map */

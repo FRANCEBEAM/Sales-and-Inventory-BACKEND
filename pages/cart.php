@@ -76,6 +76,7 @@ if (isset($_POST['remove'])){
   <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
   <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
   <link rel="stylesheet" href="../styles/cart.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
@@ -85,43 +86,58 @@ if (isset($_POST['remove'])){
 <body>
   <div class="main-container">
     <!--NAVIGATION-->
-                  <head>
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-                        <div class="container-fluid">
-                          <!--LOGO-->
-                          <a class="navbar-brand" href="#">  
-                            <div class="logo">
-                           <h1><span class="iconify" data-icon="ion:storefront"></span>
-                            R.J.<span style="color:#0094FF">AVANCEÑA</span></h1>
-                            <span class="ent">ENTERPRISES</span>
-                              </div>
-                           </a>
-                
-                           <!--NAVBAR TOGGLE-->
-                           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                          </button>
-                
-                          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                              <ul class="navbar-nav navbar-nav-scroll" style="--bs-scroll-height: 200px;">
-                                  <li class="nav-item">
-                                    <a class="home" aria-current="page" href="/pages/home.php">Home</a>
-                                  </li>
-                                    <li class="nav-item dropdown">
-                                        <a class="dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <b><?php echo $fetch_info['fullname'] ?></b>
-                                         </a>
-                                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                            <li><a class="dropdown-item" href="/pages/profile.php">Profile</a></li>
-                                            <li><a class="dropdown-item" href="/pages/account.php">Account</a></li>
-                                            <li><a class="dropdown-item" href="/index.php">Logout</a></li>
-                                      </ul>
-                                    </li>
-                              </ul>
-                            </div>
-                        </div>
-                      </nav>
-                </head>
+  <head>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img src="/img/avancena logo.svg" alt=""></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+          <ul class="navbar-nav me-auto my-2 my-lg-0" style="--bs-scroll-height: 100px;">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/pages/home.php">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="#">Shop</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="#">About</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                <b><?php echo $fetch_info['fullname'] ?></b>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                  <li><a class="dropdown-item" href="/pages/profile.php">Profile</a></li>
+                  <li><a class="dropdown-item" href="/pages/account.php">Account</a></li>
+                  <li><a class="dropdown-item" href="/index.php">Logout</a></li>
+                </ul>
+              </li>
+
+            <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+            <a href='../pages/cart.php'>
+            <i class="fa-solid fa-bag-shopping"></i>
+                  </i>
+                  </a>
+                    <?php
+                          if (isset($_SESSION['cart'])){
+                              $count = count($_SESSION['cart']);
+                              echo "<span id='cart_count'>$count</span>";
+                          }else{
+                              echo "<span id='cart_count' class='text-warning bg-light'>0</span>";
+                          }
+                      ?>
+            </li>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+</head>
                 <div class="cartList-container mt-5">
                     <table class="table">
                       <thead>

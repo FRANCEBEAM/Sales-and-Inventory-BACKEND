@@ -150,48 +150,26 @@ div.main-container{
 
 //NAVIGATION SECTION
 nav{
- padding: 0 1em;
- display: flex;
+    padding: 0 1em;
     align-items: center;
-    justify-content: space-between;
-    div.logo{
-       
-       h1{
-        font-size: 20px;
-        font-weight: bold;
-       }
-       span.ent{
-        font-size: 16px;
-        letter-spacing: 5px;
-       }
-    }
 
-    ul{
+    ul.navbar-nav{
         li.nav-item{
-            a.btnRegister{
-                color: #FFFFFF;
-                border-radius: .4em;
-                padding: .6em;
-                background: #0d6efd;
-            }
-            a.btnRegister:hover{
-                background: #0853c4;
-              
-                transition: 0.4s;
-            }
+            text-align: center;
+            align-items: center;
         }
     }
 
     div.collapse{
         ul.navbar-nav{
-            margin-left: auto;
             li.nav-item a{
-                font-size: 16px;
+                font-size: 20px;
                 margin-left: 2em;
             }
           }
          }
        }
+
 
     //PROFILE CONTAINER
     div.profile-container{

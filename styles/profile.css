@@ -93,33 +93,14 @@ div.main-container form button {
 @media screen and (min-width: 992px) {
   nav {
     padding: 0 1em;
-    display: flex;
     align-items: center;
-    justify-content: space-between;
   }
-  nav div.logo h1 {
-    font-size: 20px;
-    font-weight: bold;
-  }
-  nav div.logo span.ent {
-    font-size: 16px;
-    letter-spacing: 5px;
-  }
-  nav ul li.nav-item a.btnRegister {
-    color: #FFFFFF;
-    border-radius: 0.4em;
-    padding: 0.6em;
-    background: #0d6efd;
-  }
-  nav ul li.nav-item a.btnRegister:hover {
-    background: #0853c4;
-    transition: 0.4s;
-  }
-  nav div.collapse ul.navbar-nav {
-    margin-left: auto;
+  nav ul.navbar-nav li.nav-item {
+    text-align: center;
+    align-items: center;
   }
   nav div.collapse ul.navbar-nav li.nav-item a {
-    font-size: 16px;
+    font-size: 20px;
     margin-left: 2em;
   }
   div.profile-container form {

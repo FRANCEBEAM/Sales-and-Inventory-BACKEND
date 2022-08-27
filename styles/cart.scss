@@ -39,16 +39,6 @@ nav{
     -webkit-box-shadow: -1px 6px 59px -35px rgba(41,41,41,0.75);
     -moz-box-shadow: -1px 6px 59px -35px rgba(41,41,41,0.75);
     padding: 0 1em;
-    div.logo{
-       h1{
-        font-size: 16px;
-        font-weight: bold;
-       }
-       span.ent{
-        font-size: 12px;
-        letter-spacing: 5px;
-       }
-    }
 
     ul{
         li.nav-item{
@@ -168,19 +158,6 @@ div.foot-container{
 
 
 @media screen and (min-width: 768px){
-  nav{
-      div.logo{
-      h1{
-          font-size: 20px;
-          font-weight: bold;
-      }
-      span.ent{
-          font-size: 18px;
-          letter-spacing: 5px;
-      }
-      }
-  }
-
   table{
       td input{
           font-size: 14px;
@@ -234,48 +211,27 @@ div.foot-container{
 
 //NAVIGATION SECTION
 nav{
- padding: 0 1em;
- display: flex;
+    padding: 0 1em;
     align-items: center;
-    justify-content: space-between;
-    div.logo{
-       
-       h1{
-        font-size: 20px;
-        font-weight: bold;
-       }
-       span.ent{
-        font-size: 16px;
-        letter-spacing: 5px;
-       }
-    }
 
-    ul{
+    ul.navbar-nav{
         li.nav-item{
-            a.btnRegister{
-                color: #FFFFFF;
-                border-radius: .4em;
-                padding: .6em;
-                background: #0d6efd;
-            }
-            a.btnRegister:hover{
-                background: #0853c4;
-              
-                transition: 0.4s;
-            }
+            text-align: center;
+            align-items: center;
         }
     }
 
     div.collapse{
         ul.navbar-nav{
-            margin-left: auto;
             li.nav-item a{
-                font-size: 16px;
+                font-size: 20px;
                 margin-left: 2em;
             }
           }
          }
        }
+
+
 }
 
 // LAPTOP VIEW 1200
@@ -285,7 +241,7 @@ nav{
         padding: 0 5em;
     }
 
-    @media screen and (min-width: 1200px){
+    @media screen and (min-width: 1280px){
       div.cartList-container {
         padding: 0 5em;
           table{
