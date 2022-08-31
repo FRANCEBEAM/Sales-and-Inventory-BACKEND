@@ -1,6 +1,6 @@
 
 <?php 
-error_reporting(0);
+// error_reporting(0);
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;

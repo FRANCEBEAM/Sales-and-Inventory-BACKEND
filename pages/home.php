@@ -1,6 +1,7 @@
 <?php require_once "../config/controllerUserData.php"; ?>
 
 <?php 
+session_start();
 $email = $_SESSION['email'];
 $password = $_SESSION['password'];
 if($email != false && $password != false){
@@ -24,43 +25,41 @@ if($email != false && $password != false){
 
 
 //FOR CART SECTION
-require_once "../config/cartComponent.php";
-require_once "../config/controllerCartData.php";
+// require_once "../config/cartComponent.php";
+// require_once "../config/controllerCartData.php";
 
 
-$database = new productlist("rjavancena", "productlist");
+// $database = new productlist("rjavancena", "productlist");
 
-if(isset($_POST['add'])){
+// if(isset($_POST['add'])){
     // print_r($_POST['productid']);
-  if(isset($_SESSION['cart'])){
+//   if(isset($_SESSION['cart'])){
 
-        $item_array_id = array_column($_SESSION['cart'], "productid");
+//         $item_array_id = array_column($_SESSION['cart'], "productid");
 
-        if(in_array($_POST['productid'], $item_array_id)){
-            echo "<script>alert('Product is already added in the cart..!')</script>";
-            echo "<script>window.location = '../pages/home.php'</script>";
-        }else{
+//         if(in_array($_POST['productid'], $item_array_id)){
+//             echo "<script>alert('Product is already added in the cart..!')</script>";
+//             echo "<script>window.location = '../pages/home.php'</script>";
+//         }else{
 
-            $count = count($_SESSION['cart']);
-            $item_array = array(
-                'productid' => $_POST['productid']
-            );
+//             $count = count($_SESSION['cart']);
+//             $item_array = array(
+//                 'productid' => $_POST['productid']
+//             );
 
-            $_SESSION['cart'][$count] = $item_array;
-        }
+//             $_SESSION['cart'][$count] = $item_array;
+//         }
 
-    }else{
-      $item_array = array(
-        'productid' => $_POST['productid']
-        );
+//     }else{
+//       $item_array = array(
+//         'productid' => $_POST['productid']
+//         );
 
-        // Create new session variable
-        $_SESSION['cart'][0] = $item_array;
-        print_r($_SESSION['cart']);
-        }
-}
-
-
+//         // Create new session variable
+//         $_SESSION['cart'][0] = $item_array;
+//         print_r($_SESSION['cart']);
+//         }
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -73,6 +72,7 @@ if(isset($_POST['add'])){
     <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="/styles/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css' />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
@@ -101,7 +101,7 @@ if(isset($_POST['add'])){
           </ul>
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
-                <a class="dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" class="fullname">
                 <b><?php echo $fetch_info['fullname'] ?></b>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
@@ -245,24 +245,54 @@ if(isset($_POST['add'])){
       <div class="swiper-pagination"></div>
     </div>
           
-    <!--ITEM LIST SECTION-->
-      <div class="item-container" id="item-list">
-      <?php 
 
-// component(productname: "Dual TIG/MMA with Welding Mask", productprice: 749, productimage: "../img/item1.png");
+  <!-- Displaying Products Start -->
+  <div class="container">
+    <div id="message"></div>
+    <div class="row mt-2 pb-3">
+      <?php
+  			include '../config/--configure.php';
+  			$stmt = $conn->prepare('SELECT * FROM inventory');
+  			$stmt->execute();
+  			$result = $stmt->get_result();
+  			while ($row = $result->fetch_assoc()):
+  		?>
+      <div class="col-sm-6 col-md-4 col-lg-3 mb-2">
+        <div class="card-deck">
+          <div class="card p-2 border-secondary mb-2">
+            <img src="<?= $row['image_file'] ?>" class="card-img-top" height="250">
+            <div class="card-body p-1">
+              <h4 class="card-title text-center text-info"><?= $row['product'] ?></h4>
+              <h5 class="card-text text-center text-danger"><i class="fa-solid fa-peso-sign"></i>&nbsp;&nbsp;<?= number_format($row['price'],2) ?>/-</h5>
 
-// component(productname: "BOYSEN Semi - Gloss Latex", productprice: 432, productimg: "../img/item2.png");
-
-// component(productname: "ELECTRIC JIGSAW", productprice: 800, productimg: "../img/item3.png");
-
-// component(productname: "Davies Sun & Rain", productprice: 1299, productimg: "../img/item4.png");
-
-        $result = $database->getData();
-        while ($row = mysqli_fetch_assoc($result)){
-            component($row['productname'], $row['productprice'], $row['productimage'], $row['id']);
-        }
-        ?>
+            </div>
+            <div class="card-footer p-1">
+              <form action="" class="form-submit">
+                <div class="row p-2">
+                  <div class="col-md-6 py-1 pl-4">
+                    <b>Quantity : </b>
+                  </div>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control quantity" value="<?= $row['quantity'] ?>">
+                  </div>
+                </div>
+                <input type="hidden" class="pid" value="<?= $row['id'] ?>">
+                <input type="hidden" class="product" value="<?= $row['product'] ?>">
+                <input type="hidden" class="price" value="<?= $row['price'] ?>">
+                <input type="hidden" class="image_file" value="<?= $row['image_file'] ?>">
+                <input type="hidden" class="serialnumber" value="<?= $row['serialnumber'] ?>">
+                <button class="btn btn-info btn-block addItemBtn"><i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Add to
+                  cart</button>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
+      <?php endwhile; ?>
+    </div>
+  </div>
+  <!-- Displaying Products End -->
+
 
     <!--PAGINATION-->
     <div class="pagination-container">
@@ -298,12 +328,64 @@ if(isset($_POST['add'])){
 </div>
 
 <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js'></script>
  <!-- Initialize Swiper -->
  <script src="/js/app.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script>
   AOS.init();
 </script>
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    // Send product details in the server
+    $(".addItemBtn").click(function(e) {
+      e.preventDefault();
+      var $form = $(this).closest(".form-submit");
+      var id = $form.find(".id").val();
+      var product = $form.find(".product").val();
+      var price = $form.find(".price").val();
+      var image_file = $form.find(".image_file").val();
+      var serialnumber = $form.find(".serialnumber").val();
+
+      var quantity = $form.find(".quantity").val();
+
+      $.ajax({
+        url: '/config/--action.php',
+        method: 'post',
+        data: {
+          id: id,
+          product: product,
+          price: price,
+          quantity: quantity,
+          image_file: image_file,
+          serialnumber: serialnumber
+        },
+        success: function(response) {
+          $("#message").html(response);
+          window.scrollTo(0, 0);
+          load_cart_item_number();
+        }
+      });
+    });
+
+    // Load total no.of items added in the cart and display in the navbar
+    load_cart_item_number();
+
+    function load_cart_item_number() {
+      $.ajax({
+        url: '/config/--action.php',
+        method: 'get',
+        data: {
+          cartItem: "cart_item"
+        },
+        success: function(response) {
+          $("#cart-item").html(response);
+        }
+      });
+    }
+  });
+  </script>
 </body>
 </html>

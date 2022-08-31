@@ -33,7 +33,7 @@ function cartElement($productimage, $productname, $productprice, $productid){
                     <div class=\"border rounded\">
                         <div class=\"row bg-white\">
                             <div class=\"col-md-3 pl-0\">
-                                <img src=$productimage alt=\"Image1\" class=\"img-fluid\">
+                                <img src=$productimage alt=\"Image1\" class=\"img-fluid w-50\">
                             </div>
                             <div class=\"col-md-6\">
                                 <h5 class=\"pt-2\">$productname</h5>
@@ -46,9 +46,9 @@ function cartElement($productimage, $productname, $productprice, $productid){
                             </div>
                             <div class=\"col-md-3 py-5\">
                                 <div>
-                                    <button type=\"button\" class=\"btn bg-light border rounded-circle\"><i class=\"fas fa-minus\"></i></button>
-                                    <input type=\"text\" value=\"1\" class=\"form-control w-25 d-inline\">
-                                    <button type=\"button\" class=\"btn bg-light border rounded-circle\"><i class=\"fas fa-plus\"></i></button>
+                                    <button type=\"button\" class=\"btn bg-light border rounded-circle\" id= \"btnminus\">-</button>
+                                    <input type=\"text\" value=\"1\" class=\"form-control w-25 d-inline\" id= \"inputQty\">
+                                    <button type=\"button\" class=\"btn bg-light border rounded-circle\" id= \"btnplus\">+</button>
                                 </div>
                             </div>
                         </div>

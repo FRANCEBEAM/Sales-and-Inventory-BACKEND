@@ -53,34 +53,15 @@ nav{
         }
     }
 
-
-    div.collapse{
-       ul.navbar-nav{
-        li.nav-item{
-            a.home:hover{
-                color: color(bg-orange);
-                transition: 0.4s;
-            }
-            a.shop:hover{
-                color: color(bg-orange);
-                transition: 0.4s;
-            }
-            a.about:hover{
-                color: color(bg-orange);
-                transition: 0.4s;
-            }
-            a.login:hover{
-                color: color(bg-orange);
-                transition: 0.4s;
-            }
-           }
+    a.navbar-brand{
+        width: 50%;
+        img{
+          max-width: 176px;
         }
+      }
+    
+}
 
-    }
-}
-img{
-    max-width: 70%;
-}
 //TABLE
 div.cartList-container{
     padding: 0 1em;
@@ -90,7 +71,7 @@ table{
       justify-content: center;
       align-items: center;
       p{
-          font-size: 12px;
+          font-size: 122px;
       }
   }
 
@@ -108,9 +89,14 @@ table{
       @extend .productName;
   }
   td i{
-    
       cursor: pointer;
   }
+    div.card{
+        img{
+            width: 20%;
+        }
+    }
+ 
 }
 
 //FOOTER OF TOTALS

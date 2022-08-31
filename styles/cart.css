@@ -29,25 +29,11 @@ nav ul li.nav-item a {
 nav ul li.nav-item ul {
   list-style: none;
 }
-nav div.collapse ul.navbar-nav li.nav-item a.home:hover {
-  color: #FF432A;
-  transition: 0.4s;
+nav a.navbar-brand {
+  width: 50%;
 }
-nav div.collapse ul.navbar-nav li.nav-item a.shop:hover {
-  color: #FF432A;
-  transition: 0.4s;
-}
-nav div.collapse ul.navbar-nav li.nav-item a.about:hover {
-  color: #FF432A;
-  transition: 0.4s;
-}
-nav div.collapse ul.navbar-nav li.nav-item a.login:hover {
-  color: #FF432A;
-  transition: 0.4s;
-}
-
-img {
-  max-width: 70%;
+nav a.navbar-brand img {
+  max-width: 176px;
 }
 
 div.cartList-container {
@@ -59,7 +45,7 @@ table td {
   align-items: center;
 }
 table td p {
-  font-size: 12px;
+  font-size: 122px;
 }
 table td input {
   font-size: 12px;
@@ -69,6 +55,9 @@ table td.productName, table td.productTotal, table td.productPrice {
 }
 table td i {
   cursor: pointer;
+}
+table div.card img {
+  width: 20%;
 }
 
 div.foot-container {

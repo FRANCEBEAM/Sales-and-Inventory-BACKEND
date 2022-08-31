@@ -14,4 +14,19 @@ var swiper = new Swiper('.swiper', {
     },
   });
 
-//LETS CREATE SMOOTH SCROLL DOWN
+//LETS CREATE BUTTON QUANTITY FOR CART
+// const minusButton = document.querySelector('#btnminus');
+// const plusButton = document.querySelector('#btnplus');
+// const inputField = document.querySelector('#inputQty');
+
+// minusButton.addEventListener('click', event => {
+//   event.preventDefault();
+//   const currentValue = Number(inputField.value) || 0;
+//   inputField.value = currentValue - 1;
+// });
+
+// plusButton.addEventListener('click', event => {
+//   event.preventDefault();
+//   const currentValue = Number(inputField.value) || 0;
+//   inputField.value = currentValue + 1;
+// });

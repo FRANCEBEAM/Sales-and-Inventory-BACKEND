@@ -43,27 +43,27 @@ if($email != false && $password != false){
 ?>
 
 <?php
+  // session_start();
 //CART SECTION
-require_once ("../config/cartComponent.php");
-require_once ("../config/controllerCartData.php");
+// require_once ("../config/cartComponent.php");
+// require_once ("../config/controllerCartData.php");
 
 
-$db = new productlist("rjavancena", "productlist");
+// $db = new productlist("rjavancena", "productlist");
 
 
-if (isset($_POST['remove'])){
-  if ($_GET['action'] == 'remove'){
-      foreach ($_SESSION['cart'] as $key => $value){
-          if($value["productid"] == $_GET['id']){
-              unset($_SESSION['cart'][$key]);
-              echo "<script>alert('Product has been Removed...!')</script>";
-          }
-      }
-  }
-}
+// if (isset($_POST['remove'])){
+//   if ($_GET['action'] == 'remove'){
+//       foreach ($_SESSION['cart'] as $key => $value){
+//           if($value["productid"] == $_GET['id']){
+//               unset($_SESSION['cart'][$key]);
+//               echo "<script>alert('Product has been Removed...!')</script>";
+//           }
+//       }
+//   }
+// }
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -74,7 +74,7 @@ if (isset($_POST['remove'])){
   <title>My cart</title> 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
   <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
-  <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css' />
   <link rel="stylesheet" href="../styles/cart.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" />
@@ -107,7 +107,7 @@ if (isset($_POST['remove'])){
           </ul>
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
-                <a class="dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" class="fullname">
                 <b><?php echo $fetch_info['fullname'] ?></b>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
@@ -138,65 +138,88 @@ if (isset($_POST['remove'])){
       </div>
     </nav>
 </head>
-                <div class="cartList-container mt-5">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <td scope="col">PRODUCT DETAILS</td>
-                      
-                          <td scope="col">QUANTITY</td>
-                          <td scope="col">PRICE</td>
-                          <td scope="col">TOTAL</td>
-                          <td scope="col"></td>
-                        </tr>
-                      </thead>
 
-        <?php
-                  $total = 0;
-                      if (isset($_SESSION['cart'])){
-                          $productid = array_column($_SESSION['cart'], 'productid');
-
-                          $result = $db->getData();
-                          while ($row = mysqli_fetch_assoc($result)){
-                              foreach ($productid as $id){
-                                  if ($row['id'] == $id){
-                                      cartElement($row['productimage'], $row['productname'],$row['productprice'], $row['id']);
-                                      $total = $total + (int)$row['productprice'];
-                                  }
-                              }
-                          }
-                      }else{
-                          echo "<h5>Cart is Empty</h5>";
-                      }
-
-        ?>
-                    </table>
-
-                  <div class="foot-container mt-5">
-                      <div class="total-container">
-                          <h1>Total items:</h1>
-                          <?php
-                            if (isset($_SESSION['cart'])){
-                                $count  = count($_SESSION['cart']);
-                                echo "<p>$count items</p>";
-                            }else{
-                                echo "<h6>0 items</h6>";
-                            }
-                        ?>
-                      </div>
-
-                          <div class="subtotal-container ">
-                              <h1>Subtotal:</h1>
-                              <p>$<?php echo $total; ?></p>
-                          </div>
-
-                          <div class="checkout-container"> 
-                            <a class="btn btn-dark" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Checkout</a>
-                            <i class="bi bi-bag-check"></i>
-                          </div>
-                  </div>
+<!-- CART LIST CONTENT -->
+  <div class="cartList-container mt-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div style="display:<?php if (isset($_SESSION['showAlert'])) {
+    echo $_SESSION['showAlert'];
+  } else {
+    echo 'none';
+  } unset($_SESSION['showAlert']); ?>" class="alert alert-success alert-dismissible mt-3">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong><?php if (isset($_SESSION['message'])) {
+    echo $_SESSION['message'];
+  } unset($_SESSION['showAlert']); ?></strong>
+          </div>
+          <div class="table-responsive mt-2">
+            <table class="table table-bordered table-striped text-center">
+              <thead>
+                <tr>
+                  <td colspan="7">
+                    <h4 class="text-center text-info m-0">Products in your cart!</h4>
+                  </td>
+                </tr>
+                <tr>
+                  <th>ID</th>
+                  <th>Image</th>
+                  <th>Product</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>Total Price</th>
+                  <th>
+                    <a href="../config/--action.php?clear=all" class="badge-danger badge p-1" onclick="return confirm('Are you sure want to clear your cart?');"><i class="fas fa-trash"></i>&nbsp;&nbsp;Clear Cart</a>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                  require '../config/--configure.php';
+                  $stmt = $conn->prepare('SELECT * FROM cart');
+                  $stmt->execute();
+                  $result = $stmt->get_result();
+                  $grand_total = 0;
+                  while ($row = $result->fetch_assoc()):
+                ?>
+                <tr>
+                <td><?= $row['id'] ?></td>
+                <input type="hidden" class="pid" value="<?= $row['id'] ?>">
+                  <td><img src="<?= $row['image_file'] ?>" width="50"></td>
+                  <td><?= $row['product'] ?></td>
+                  <td>
+                    <i class="fa-solid fa-peso-sign"></i>&nbsp;&nbsp;<?= number_format($row['price'],2); ?>
+                  </td>
+                  <input type="hidden" class="pprice" value="<?= $row['price'] ?>">
+                  <td>
+                    <input type="number" class="form-control itemQty" id="itemQty" value="<?= $row['qty'] ?>" style="width:75px;">
+                  </td>
+                  <td><i class="fa-solid fa-peso-sign"></i></i>&nbsp;&nbsp;<?= number_format($row['total_price'],2); ?></td>
+                  <td>
+                    <a href="../config/--action.php?remove=<?= $row['id'] ?>" class="text-danger lead" onclick="return confirm('Are you sure want to remove this item?');"><i class="fas fa-trash-alt"></i></a>
+                  </td>
+                </tr>
+                <?php $grand_total += $row['total_price']; ?>
+                <?php endwhile; ?>
+                <tr>
+                  <td colspan="3">
+                    <a href="index.php" class="btn btn-success"><i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Continue
+                      Shopping</a>
+                  </td>
+                  <td colspan="2"><b>Sub Total</b></td>
+                  <td><b><i class="fa-solid fa-peso-sign"></i>&nbsp;&nbsp;<?= number_format($grand_total,2); ?></b></td>
+                  <td>
+                    <a href="checkout.php" class="btn btn-info <?= ($grand_total > 1) ? '' : 'disabled'; ?>"><i class="far fa-credit-card"></i>&nbsp;&nbsp;Checkout</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
-      </div>
+    </div>
+   </div>
 
     <!-- MODAL -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -241,10 +264,53 @@ if (isset($_POST['remove'])){
     </div>
   </div>
 </div>
-
+        <script src="/js/app.js"></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
       <script>
         AOS.init();
       </script>
+      <script type="text/javascript">
+  $(document).ready(function() {
+
+    // Change the item quantity
+    $("#itemQty").on('change', function() {
+      var $el = $(this).closest('tr');
+      var pid = $el.find(".pid").val();
+      var pprice = $el.find(".pprice").val();
+      var qty = $el.find("#itemQty").val();
+      location.reload(true);
+      $.ajax({
+        url: '/config/--action.php',
+        method: 'post',
+        cache: false,
+        data: {
+          qty: qty,
+          pid: pid,
+          pprice: pprice
+        },
+        success: function(response) {
+          console.log(response);
+        }
+      });
+    });
+
+    // Load total no.of items added in the cart and display in the navbar
+    load_cart_item_number();
+
+    function load_cart_item_number() {
+      $.ajax({
+        url: '/config/--action.php',
+        method: 'get',
+        data: {
+          cartItem: "cart_item"
+        },
+        success: function(response) {
+          $("#cart-item").html(response);
+        }
+      });
+    }
+  });
+  </script>
 </body>
 </html>

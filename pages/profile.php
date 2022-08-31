@@ -79,7 +79,6 @@ if($email != false && $password != false){
             <li class="nav-item dropdown">
             <a href='../pages/cart.php'>
             <i class="fa-solid fa-bag-shopping"></i>
-                  </i>
                   </a>
                     <?php
                           if (isset($_SESSION['cart'])){
