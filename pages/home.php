@@ -1,7 +1,7 @@
 <?php require_once "../config/controllerUserData.php"; ?>
 
 <?php 
-session_start();
+// session_start();
 $email = $_SESSION['email'];
 $password = $_SESSION['password'];
 if($email != false && $password != false){
@@ -114,17 +114,7 @@ if($email != false && $password != false){
             <ul class="navbar-nav">
             <li class="nav-item dropdown">
             <a href='../pages/cart.php'>
-            <i class="fa-solid fa-bag-shopping"></i>
-                  </i>
-                  </a>
-                    <?php
-                          if (isset($_SESSION['cart'])){
-                              $count = count($_SESSION['cart']);
-                              echo "<span id='cart_count'>$count</span>";
-                          }else{
-                              echo "<span id='cart_count' class='text-warning bg-light'>0</span>";
-                          }
-                      ?>
+            <i class="fas fa-shopping-cart"></i> <span id="cart-item" class="badge badge-danger"></span>
             </li>
             </li>
           </ul>
@@ -276,7 +266,7 @@ if($email != false && $password != false){
                     <input type="number" class="form-control quantity" value="<?= $row['quantity'] ?>">
                   </div>
                 </div>
-                <input type="hidden" class="pid" value="<?= $row['id'] ?>">
+                <input type="hidden" class="id" value="<?= $row['id'] ?>">
                 <input type="hidden" class="product" value="<?= $row['product'] ?>">
                 <input type="hidden" class="price" value="<?= $row['price'] ?>">
                 <input type="hidden" class="image_file" value="<?= $row['image_file'] ?>">

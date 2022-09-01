@@ -3,10 +3,9 @@ session_start();
 require '--configure.php';
 
 // Add products into the cart table
-if (isset($_POST['product'])) {
+if (isset($_POST['id'])) {
+	$id = $_POST['id'];
 	$email = $_SESSION['email']; //getting this email using session
-	// $username = $_POST['username'];
-	// $email = $_POST['email'];
 	$product = $_POST['product']; // product name from db
 	$price = $_POST['price']; // product price
 	$image_file = $_POST['image_file']; // product image
@@ -15,7 +14,7 @@ if (isset($_POST['product'])) {
 
 	$total_price = $price * $quantity;
 
-	$stmt = $conn->prepare('SELECT serialnumber FROM cart WHERE email=?');
+	$stmt = $conn->prepare("SELECT serialnumber FROM cart WHERE serialnumber=? and email = '$email'");
 	$stmt->bind_param('s', $serialnumber);
 	$stmt->execute();
 	$res = $stmt->get_result();
@@ -23,8 +22,8 @@ if (isset($_POST['product'])) {
 	$code = $r['serialnumber'] ?? '';
 
 	if (!$code) {
-		$query = $conn->prepare('INSERT INTO cart (product, price, image_file, qty ,total_price, email) VALUES (?,?,?,?,?,?)');
-		$query->bind_param('ssssss', $product, $price, $image_file, $quantity, $total_price, $email);
+		$query = $conn->prepare('INSERT INTO cart (email, product, price, image_file, qty ,total_price, serialnumber) VALUES (?,?,?,?,?,?,?)');
+		$query->bind_param('sssssss', $email, $product, $price, $image_file, $quantity, $total_price, $serialnumber);
 		$query->execute();
 
 		echo '<div class="alert alert-success alert-dismissible mt-2">
@@ -39,10 +38,10 @@ if (isset($_POST['product'])) {
 	}
 }
 
-
 // Get no.of items available in the cart table
 if (isset($_GET['cartItem']) && isset($_GET['cartItem']) == 'cart_item') {
-	$stmt = $conn->prepare('SELECT * FROM cart');
+	$email = $_SESSION['email']; //getting this email using session
+	$stmt = $conn->prepare("SELECT * FROM cart WHERE email = '$email'");
 	$stmt->execute();
 	$stmt->store_result();
 	$rows = $stmt->num_rows;
@@ -50,31 +49,41 @@ if (isset($_GET['cartItem']) && isset($_GET['cartItem']) == 'cart_item') {
 	echo $rows;
 }
 
-// Set total price of the product in the cart table
-if (isset($_POST['qty'])) {
-	$quantity = $_POST['qty'];
-	$id = $_POST['id'];
-	$price = $_POST['price'];
-
-	$tprice = $quantity * $price;
-
-	$stmt = $conn->prepare('UPDATE cart SET qty=?, total_price=? WHERE id=?');
-	$stmt->bind_param('isi', $qty, $tprice, $id);
-	$stmt->execute();
-}
-
-
 	// Remove single items from cart
 	if (isset($_GET['remove'])) {
 	  $id = $_GET['remove'];
-
-	  $stmt = $conn->prepare('DELETE FROM cart WHERE id=?');
+		$email = $_SESSION['email']; //getting this email using session
+	  $stmt = $conn->prepare("DELETE FROM cart WHERE id=? and email = '$email'");
 	  $stmt->bind_param('i',$id);
 	  $stmt->execute();
 
 	  $_SESSION['showAlert'] = 'block';
 	  $_SESSION['message'] = 'Item removed from the cart!';
 	  header('location:../pages/cart.php');
+	}
+
+		// Remove all items at once from cart
+		if (isset($_GET['clear'])) {
+			$email = $_SESSION['email']; //getting this email using session
+			$stmt = $conn->prepare("DELETE FROM cart WHERE email = '$email'");
+			$stmt->execute();
+			$_SESSION['showAlert'] = 'block';
+			$_SESSION['message'] = 'All Item removed from the cart!';
+			header('location:../pages/cart.php');
+		}
+
+
+	// Set total price of the product in the cart table
+	if (isset($_POST['qty'])) {
+	  $qty = $_POST['qty'];
+	  $id = $_POST['id'];
+	  $price = $_POST['price'];
+
+	  $tprice = $qty * $price;
+
+	  $stmt = $conn->prepare('UPDATE cart SET qty=?, total_price=? WHERE id=?');
+	  $stmt->bind_param('isi',$qty,$tprice,$pid);
+	  $stmt->execute();
 	}
 
 

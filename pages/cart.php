@@ -177,7 +177,7 @@ if($email != false && $password != false){
               <tbody>
                 <?php
                   require '../config/--configure.php';
-                  $stmt = $conn->prepare('SELECT * FROM cart');
+                  $stmt = $conn->prepare("SELECT * FROM `cart` WHERE email = '$email'");
                   $stmt->execute();
                   $result = $stmt->get_result();
                   $grand_total = 0;
@@ -185,13 +185,13 @@ if($email != false && $password != false){
                 ?>
                 <tr>
                 <td><?= $row['id'] ?></td>
-                <input type="hidden" class="pid" value="<?= $row['id'] ?>">
+                <input type="hidden" class="id" value="<?= $row['id'] ?>">
                   <td><img src="<?= $row['image_file'] ?>" width="50"></td>
                   <td><?= $row['product'] ?></td>
                   <td>
                     <i class="fa-solid fa-peso-sign"></i>&nbsp;&nbsp;<?= number_format($row['price'],2); ?>
                   </td>
-                  <input type="hidden" class="pprice" value="<?= $row['price'] ?>">
+                  <input type="hidden" class="price" value="<?= $row['price'] ?>">
                   <td>
                     <input type="number" class="form-control itemQty" id="itemQty" value="<?= $row['qty'] ?>" style="width:75px;">
                   </td>
@@ -276,8 +276,8 @@ if($email != false && $password != false){
     // Change the item quantity
     $("#itemQty").on('change', function() {
       var $el = $(this).closest('tr');
-      var pid = $el.find(".pid").val();
-      var pprice = $el.find(".pprice").val();
+      var id = $el.find(".pid").val();
+      var price = $el.find(".pprice").val();
       var qty = $el.find("#itemQty").val();
       location.reload(true);
       $.ajax({
@@ -286,8 +286,8 @@ if($email != false && $password != false){
         cache: false,
         data: {
           qty: qty,
-          pid: pid,
-          pprice: pprice
+          id: pid,
+          price: pprice
         },
         success: function(response) {
           console.log(response);
