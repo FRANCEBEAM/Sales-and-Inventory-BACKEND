@@ -1,7 +1,6 @@
 <?php require_once "../config/controllerUserData.php"; ?>
 
 <?php 
-// session_start();
 $email = $_SESSION['email'];
 $password = $_SESSION['password'];
 if($email != false && $password != false){
@@ -22,44 +21,6 @@ if($email != false && $password != false){
 }else{
     header('Location: signin.php');
 }
-
-
-//FOR CART SECTION
-// require_once "../config/cartComponent.php";
-// require_once "../config/controllerCartData.php";
-
-
-// $database = new productlist("rjavancena", "productlist");
-
-// if(isset($_POST['add'])){
-    // print_r($_POST['productid']);
-//   if(isset($_SESSION['cart'])){
-
-//         $item_array_id = array_column($_SESSION['cart'], "productid");
-
-//         if(in_array($_POST['productid'], $item_array_id)){
-//             echo "<script>alert('Product is already added in the cart..!')</script>";
-//             echo "<script>window.location = '../pages/home.php'</script>";
-//         }else{
-
-//             $count = count($_SESSION['cart']);
-//             $item_array = array(
-//                 'productid' => $_POST['productid']
-//             );
-
-//             $_SESSION['cart'][$count] = $item_array;
-//         }
-
-//     }else{
-//       $item_array = array(
-//         'productid' => $_POST['productid']
-//         );
-
-//         // Create new session variable
-//         $_SESSION['cart'][0] = $item_array;
-//         print_r($_SESSION['cart']);
-//         }
-// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,9 +31,8 @@ if($email != false && $password != false){
     <title>R.J. Avancena</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
-    <link rel="stylesheet" href="/styles/index.css">
+    <link rel="stylesheet" href="/styles/home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css' />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
@@ -112,19 +72,17 @@ if($email != false && $password != false){
               </li>
 
             <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-            <a href='../pages/cart.php'>
-            <i class="fas fa-shopping-cart"></i> <span id="cart-item" class="badge badge-danger"></span>
-            </li>
+            <li class="nav-item dropdown"><a href='../pages/cart.php'><i class="fas fa-shopping-cart"></i><span id="cart-item" class="badge bg-danger"></span></a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
 </head>
-
     <!--HERO SECTION-->
+    <div id="message"></div>
     <div class="hero-container" id="home">
+
       <div class="left-content">
         <div class="text-content">
             <h5 data-aos="fade-right" data-aos-duration="1000">Good Tools for Good Works</h5>
@@ -237,50 +195,33 @@ if($email != false && $password != false){
           
 
   <!-- Displaying Products Start -->
-  <div class="container">
-    <div id="message"></div>
-    <div class="row mt-2 pb-3">
-      <?php
+  <div class="item-container" id="item-list">
+  <?php
   			include '../config/--configure.php';
   			$stmt = $conn->prepare('SELECT * FROM inventory');
   			$stmt->execute();
   			$result = $stmt->get_result();
   			while ($row = $result->fetch_assoc()):
   		?>
-      <div class="col-sm-6 col-md-4 col-lg-3 mb-2">
-        <div class="card-deck">
-          <div class="card p-2 border-secondary mb-2">
-            <img src="<?= $row['image_file'] ?>" class="card-img-top" height="250">
-            <div class="card-body p-1">
-              <h4 class="card-title text-center text-info"><?= $row['product'] ?></h4>
-              <h5 class="card-text text-center text-danger"><i class="fa-solid fa-peso-sign"></i>&nbsp;&nbsp;<?= number_format($row['price'],2) ?>/-</h5>
+  <div class="mb-5 card">
+    <img src="/img/image 1.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title mt-2"><b><i class="fa-solid fa-peso-sign"></i>&nbsp;&nbsp;<?= number_format($row['price'],2) ?></b></h5>
+      <p class="card-text mt-2"><?= $row['product'] ?></p>
 
-            </div>
-            <div class="card-footer p-1">
-              <form action="" class="form-submit">
-                <div class="row p-2">
-                  <div class="col-md-6 py-1 pl-4">
-                    <b>Quantity : </b>
-                  </div>
-                  <div class="col-md-6">
-                    <input type="number" class="form-control quantity" value="<?= $row['quantity'] ?>">
-                  </div>
-                </div>
-                <input type="hidden" class="id" value="<?= $row['id'] ?>">
-                <input type="hidden" class="product" value="<?= $row['product'] ?>">
-                <input type="hidden" class="price" value="<?= $row['price'] ?>">
-                <input type="hidden" class="image_file" value="<?= $row['image_file'] ?>">
-                <input type="hidden" class="serialnumber" value="<?= $row['serialnumber'] ?>">
-                <button class="btn btn-info btn-block addItemBtn"><i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Add to
-                  cart</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <?php endwhile; ?>
+      <form action="" class="form-submit">
+      <input type="hidden" class="form-control quantity" value="50">
+      <input type="hidden" class="id" value="<?= $row['id'] ?>">
+      <input type="hidden" class="product" value="<?= $row['product'] ?>">
+      <input type="hidden" class="price" value="<?= $row['price'] ?>">
+      <input type="hidden" class="image_file" value="<?= $row['image_file'] ?>">
+      <input type="hidden" class="serialnumber" value="<?= $row['serialnumber'] ?>">
+      <a href="#" class="btn btn-primary mt-4 d-md-block addItemBtn">Add to cart</a>
+      </form>
     </div>
   </div>
+  <?php endwhile; ?>
+</div>
   <!-- Displaying Products End -->
 
 
@@ -319,7 +260,6 @@ if($email != false && $password != false){
 
 <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js'></script>
  <!-- Initialize Swiper -->
  <script src="/js/app.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>

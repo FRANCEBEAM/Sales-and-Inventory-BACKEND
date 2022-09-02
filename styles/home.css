@@ -58,6 +58,10 @@ nav div.collapse ul.navbar-nav li.nav-item a.login:hover {
   transition: 0.4s;
 }
 
+div#message #messageAlert {
+  padding: 2em 1em;
+}
+
 div.hero-container {
   padding: 8em 2em;
   background: url(/img/hero-bg.svg);
@@ -204,14 +208,8 @@ div.item-container div.item-container div.card img {
   justify-content: center;
   width: 30%;
 }
-div.item-container div.item-container div.card h5 {
-  font-size: 14px;
-}
-div.item-container div.item-container div.card p {
-  font-size: 12px;
-}
-div.item-container div.item-container div.card a {
-  font-size: 12px;
+div.item-container div.item-container div.card div.card-body {
+  text-align: center;
 }
 
 div.pagination-container {
@@ -261,24 +259,16 @@ div.about-container div.about-socials {
     justify-content: center;
     align-items: center;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     padding: 0 2em;
-  }
-  div.item-container div.card {
-    margin: auto;
   }
   div.swiper div.swiper-wrapper div.swiper-slide img {
     width: 40%;
   }
 }
 @media screen and (min-width: 768px) {
-  nav div.logo h1 {
-    font-size: 20px;
-    font-weight: bold;
-  }
-  nav div.logo span.ent {
-    font-size: 18px;
-    letter-spacing: 5px;
+  div#message #messageAlert {
+    padding: 2em 2em;
   }
   div.hero-container {
     width: 100%;
@@ -382,6 +372,9 @@ div.about-container div.about-socials {
     font-size: 20px;
     margin-left: 2em;
   }
+  div#message #messageAlert {
+    padding: 0 1em;
+  }
   div.hero-container {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -445,6 +438,9 @@ div.about-container div.about-socials {
   nav {
     padding: 0 5em;
   }
+  div#message #messageAlert {
+    padding: 2em 5em;
+  }
   div.hero-container {
     padding: 4em 5em;
     display: flex;
@@ -503,15 +499,6 @@ div.about-container div.about-socials {
   }
 }
 @media screen and (min-width: 1280px) {
-  nav a.navbar-brand h1 {
-    font-size: 22px;
-  }
-  nav a.navbar-brand span.ent {
-    font-size: 20px;
-  }
-  nav div.collapse ul li.nav-item a.nav-link {
-    font-size: 18px;
-  }
   div.hero-container {
     padding-top: 4em;
   }
@@ -548,6 +535,9 @@ div.about-container div.about-socials {
 @media screen and (min-width: 1390px) {
   nav {
     padding: 0 12em;
+  }
+  div#message #messageAlert {
+    padding: 2em 12em;
   }
   div.hero-container {
     padding-top: 4em;
@@ -593,4 +583,4 @@ div.about-container div.about-socials {
   div.about-container div.about-text p {
     padding: 0 12em;
   }
-}/*# sourceMappingURL=index.css.map */
+}/*# sourceMappingURL=home.css.map */

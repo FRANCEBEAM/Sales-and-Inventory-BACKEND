@@ -21,49 +21,8 @@ if($email != false && $password != false){
     header('Location: signin.php');
 }
 
-
-// //CART SECTION
-// require_once ("../config/cartComponent.php");
-// require_once ("../config/controllerCartData.php");
-
-
-// $db = new productlist("rjavancena", "productlist");
-
-
-// if (isset($_POST['remove'])){
-//   if ($_GET['action'] == 'remove'){
-//       foreach ($_SESSION['cart'] as $key => $value){
-//           if($value["productid"] == $_GET['id']){
-//               unset($_SESSION['cart'][$key]);
-//               echo "<script>alert('Product has been Removed...!')</script>";
-//           }
-//       }
-//   }
-// }
 ?>
 
-<?php
-  // session_start();
-//CART SECTION
-// require_once ("../config/cartComponent.php");
-// require_once ("../config/controllerCartData.php");
-
-
-// $db = new productlist("rjavancena", "productlist");
-
-
-// if (isset($_POST['remove'])){
-//   if ($_GET['action'] == 'remove'){
-//       foreach ($_SESSION['cart'] as $key => $value){
-//           if($value["productid"] == $_GET['id']){
-//               unset($_SESSION['cart'][$key]);
-//               echo "<script>alert('Product has been Removed...!')</script>";
-//           }
-//       }
-//   }
-// }
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -86,140 +45,90 @@ if($email != false && $password != false){
 <body>
   <div class="main-container">
     <!--NAVIGATION-->
-  <head>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="/img/avancena logo.svg" alt=""></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarScroll">
-          <ul class="navbar-nav me-auto my-2 my-lg-0" style="--bs-scroll-height: 100px;">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/pages/home.php">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">Shop</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">About</a>
-            </li>
-          </ul>
-          <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-                <a class="dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" class="fullname">
-                <b><?php echo $fetch_info['fullname'] ?></b>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                  <li><a class="dropdown-item" href="/pages/profile.php">Profile</a></li>
-                  <li><a class="dropdown-item" href="/pages/account.php">Account</a></li>
-                  <li><a class="dropdown-item" href="/index.php">Logout</a></li>
-                </ul>
+    <head>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"><img src="/img/avancena logo.svg" alt=""></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav me-auto my-2 my-lg-0" style="--bs-scroll-height: 100px;">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/pages/home.php">Home</a>
               </li>
-
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#">Shop</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#">About</a>
+              </li>
+            </ul>
             <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-            <a href='../pages/cart.php'>
-            <i class="fa-solid fa-bag-shopping"></i>
-                  </i>
+              <li class="nav-item dropdown">
+                  <a class="dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" class="fullname">
+                  <b>Joe Sassy</b>
                   </a>
-                    <?php
-                          if (isset($_SESSION['cart'])){
-                              $count = count($_SESSION['cart']);
-                              echo "<span id='cart_count'>$count</span>";
-                          }else{
-                              echo "<span id='cart_count' class='text-warning bg-light'>0</span>";
-                          }
-                      ?>
-            </li>
-            </li>
-          </ul>
+                  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                    <li><a class="dropdown-item" href="/pages/profile.php">Profile</a></li>
+                    <li><a class="dropdown-item" href="/pages/account.php">Account</a></li>
+                    <li><a class="dropdown-item" href="/index.php">Logout</a></li>
+                  </ul>
+                </li>
+  
+              <ul class="navbar-nav">
+              <li class="nav-item dropdown"><a href='../pages/cart.php'><i class="fas fa-shopping-cart"></i><span id="cart-item" class="badge bg-danger"></span></a>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </nav>
-</head>
+      </nav>
+  </head>
 
 <!-- CART LIST CONTENT -->
-  <div class="cartList-container mt-5">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-10">
-          <div style="display:<?php if (isset($_SESSION['showAlert'])) {
-    echo $_SESSION['showAlert'];
-  } else {
-    echo 'none';
-  } unset($_SESSION['showAlert']); ?>" class="alert alert-success alert-dismissible mt-3">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <strong><?php if (isset($_SESSION['message'])) {
-    echo $_SESSION['message'];
-  } unset($_SESSION['showAlert']); ?></strong>
-          </div>
-          <div class="table-responsive mt-2">
-            <table class="table table-bordered table-striped text-center">
-              <thead>
-                <tr>
-                  <td colspan="7">
-                    <h4 class="text-center text-info m-0">Products in your cart!</h4>
-                  </td>
-                </tr>
-                <tr>
-                  <th>ID</th>
-                  <th>Image</th>
-                  <th>Product</th>
-                  <th>Price</th>
-                  <th>Quantity</th>
-                  <th>Total Price</th>
-                  <th>
-                    <a href="../config/--action.php?clear=all" class="badge-danger badge p-1" onclick="return confirm('Are you sure want to clear your cart?');"><i class="fas fa-trash"></i>&nbsp;&nbsp;Clear Cart</a>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php
-                  require '../config/--configure.php';
-                  $stmt = $conn->prepare("SELECT * FROM `cart` WHERE email = '$email'");
-                  $stmt->execute();
-                  $result = $stmt->get_result();
-                  $grand_total = 0;
-                  while ($row = $result->fetch_assoc()):
-                ?>
-                <tr>
-                <td><?= $row['id'] ?></td>
-                <input type="hidden" class="id" value="<?= $row['id'] ?>">
-                  <td><img src="<?= $row['image_file'] ?>" width="50"></td>
-                  <td><?= $row['product'] ?></td>
-                  <td>
-                    <i class="fa-solid fa-peso-sign"></i>&nbsp;&nbsp;<?= number_format($row['price'],2); ?>
-                  </td>
-                  <input type="hidden" class="price" value="<?= $row['price'] ?>">
-                  <td>
-                    <input type="number" class="form-control itemQty" id="itemQty" value="<?= $row['qty'] ?>" style="width:75px;">
-                  </td>
-                  <td><i class="fa-solid fa-peso-sign"></i></i>&nbsp;&nbsp;<?= number_format($row['total_price'],2); ?></td>
-                  <td>
-                    <a href="../config/--action.php?remove=<?= $row['id'] ?>" class="text-danger lead" onclick="return confirm('Are you sure want to remove this item?');"><i class="fas fa-trash-alt"></i></a>
-                  </td>
-                </tr>
-                <?php $grand_total += $row['total_price']; ?>
-                <?php endwhile; ?>
-                <tr>
-                  <td colspan="3">
-                    <a href="index.php" class="btn btn-success"><i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Continue
-                      Shopping</a>
-                  </td>
-                  <td colspan="2"><b>Sub Total</b></td>
-                  <td><b><i class="fa-solid fa-peso-sign"></i>&nbsp;&nbsp;<?= number_format($grand_total,2); ?></b></td>
-                  <td>
-                    <a href="checkout.php" class="btn btn-info <?= ($grand_total > 1) ? '' : 'disabled'; ?>"><i class="far fa-credit-card"></i>&nbsp;&nbsp;Checkout</a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+<div class="cartList-container mt-5">
+
+    <?php
+        require '../config/--configure.php';
+        $stmt = $conn->prepare("SELECT * FROM `cart` WHERE email = '$email'");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $grand_total = 0;
+        while ($row = $result->fetch_assoc()):
+    ?>
+
+  <div class="card mb-2">
+    <div class="img-container">
+          <img src="/img/image 1.jpg" alt="">
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"><?= $row['product'] ?></h5>
+      <p class="card-text"><i class="fa-solid fa-peso-sign"></i>&nbsp;&nbsp;<?= number_format($row['price'],2); ?></p>
+
+      <div class="qty-container">
+        <div class="btn btn-outline-dark value-button" id="decrease" onclick="decreaseValue()" value="Decrease Value"><i class="fa-sharp fa-solid fa-minus"></i></div>
+        <input type="number" class="form-control itemQty" id="itemQty" value="<?= $row['qty'] ?>">
+        <div class="btn btn-dark value-button" id="increase" onclick="increaseValue()" value="Increase Value"><i class="fa-sharp fa-solid fa-plus"></i></div>
+      </div>
+
+      <div class="card-foot">
+        <h5 class="card-title total"><b>Total:&nbsp;&nbsp;</b><?= number_format($row['total_price'],2); ?></h5>
+        <a href="../config/--action.php?remove=<?= $row['id'] ?>" class="text-danger lead" onclick="return confirm('Are you sure want to remove this item?');"><i class="bi bi-trash3-fill text-danger removeBtn"></i></a>
+        
       </div>
     </div>
-   </div>
+  </div>
+  <?php $grand_total += $row['total_price']; ?>
+  <?php endwhile; ?>
+  <div class="total-container">
+    <h5 class="sub-total"><b>Subtotal:&nbsp;&nbsp;</b><i class="fa-solid fa-peso-sign"></i><?= number_format($grand_total,2); ?></h5>
+    <a href="checkout.php" class="btn btn-success mt-4 mb-5 <?= ($grand_total > 1) ? '' : 'disabled'; ?>"><b>CHECKOUT</b>&nbsp;&nbsp;<svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12.8377 8.01561H1.63281C1.38689 8.01561 1.1875 8.215 1.1875 8.46092V10.539C1.1875 10.785 1.38689 10.9844 1.63281 10.9844H12.8377V12.6936C12.8377 13.4871 13.797 13.8844 14.3581 13.3234L17.5517 10.1298C17.8995 9.78194 17.8995 9.21803 17.5517 8.87024L14.3581 5.67664C13.797 5.11558 12.8377 5.51295 12.8377 6.30642V8.01561V8.01561Z" fill="white"/>
+      </svg>
+      
+      </a>
+  </div>
+</div>
 
     <!-- MODAL -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -312,5 +221,7 @@ if($email != false && $password != false){
     }
   });
   </script>
+
+  <script src="/js/quantity.js"></script>
 </body>
 </html>

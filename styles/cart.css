@@ -39,105 +39,96 @@ nav a.navbar-brand img {
 div.cartList-container {
   padding: 0 1em;
 }
-
-table td {
+div.cartList-container div.total-container {
+  margin-top: 7em;
+}
+div.cartList-container div.total-container h5.sub-total {
+  font-size: 20px;
+}
+div.cartList-container div.total-container a {
+  padding: 0.7em;
+}
+div.cartList-container div.total-container a i {
+  width: 20px;
+}
+div.cartList-container div.card {
+  background: white;
+  border-radius: 12px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
   justify-content: center;
   align-items: center;
 }
-table td p {
-  font-size: 122px;
+div.cartList-container div.card img {
+  width: 100%;
 }
-table td input {
+div.cartList-container div.card div.card-body {
+  align-items: center;
+  padding: 0;
+  text-align: left;
+}
+div.cartList-container div.card div.card-body h5 {
+  padding-top: 0.8em;
+  font-weight: 600;
+  font-size: 14px;
+}
+div.cartList-container div.card div.card-body p {
+  padding-top: 0.4em;
+  color: #6F6F6F;
   font-size: 12px;
 }
-table td.productName, table td.productTotal, table td.productPrice {
-  font-size: 12px;
+div.cartList-container div.card div.card-body div.qty-container {
+  margin-top: 2em;
+  display: flex;
 }
-table td i {
+div.cartList-container div.card div.card-body div.qty-container input#itemQty {
+  text-align: center;
+  width: 60px;
+  border: none;
+  -moz-appearance: textfield;
+}
+div.cartList-container div.card div.card-body div.qty-container div.value-button {
+  align-items: center;
+  display: flex;
+  justify-content: center;
   cursor: pointer;
+  width: 14%;
+  padding: 0.2em;
 }
-table div.card img {
-  width: 20%;
+div.cartList-container div.card div.card-body div.qty-container div.value-button i {
+  font-size: 12px;
 }
-
-div.foot-container {
-  padding: 0 1em;
-  margin-top: 3em;
-}
-div.foot-container div.total-container {
-  display: flex;
-}
-div.foot-container div.total-container p {
-  padding: 0 1em;
-}
-div.foot-container div.total-container h1 {
-  font-weight: 600;
-  font-size: 18px;
-}
-div.foot-container div.subtotal-container {
-  margin-top: 1.4em;
-  display: flex;
-}
-div.foot-container div.subtotal-container p {
-  padding: 0 1em;
-}
-div.foot-container div.subtotal-container h1 {
-  font-weight: 600;
-  font-size: 18px;
-}
-div.foot-container div.checkout-container {
-  margin-top: 1.4em;
-  display: flex;
-}
-div.foot-container div.checkout-container a.btn.btn-dark {
-  align-items: center;
-  justify-content: center;
-}
-div.foot-container div.checkout-container i.bi.bi-bag-check {
-  padding: 0 1em;
-  align-items: center;
+div.cartList-container div.card div.card-body div.card-foot {
   display: flex;
   justify-content: space-between;
-  font-size: 22px;
+  align-items: center;
+}
+div.cartList-container div.card div.card-body div.card-foot h5.total {
+  font-size: 16px;
+}
+div.cartList-container div.card div.card-body div.card-foot i.removeBtn {
+  padding: 0 0.4em;
+  font-size: 26px;
 }
 
 @media screen and (min-width: 768px) {
-  table td input {
-    font-size: 14px;
+  div.cartList-container div.card div.img-container img {
+    width: 60%;
   }
-  table td p {
-    font-size: 14px;
+  div.cartList-container div.card div.card-body h5 {
+    font-size: 20px;
   }
-  table td.productPrice {
-    font-size: 14px;
+  div.cartList-container div.card div.card-body p {
+    font-size: 16px;
   }
-  table td.productTotal {
-    font-size: 14px;
+  div.cartList-container div.card div.card-body div.qty-container div.value-button {
+    max-width: 40px;
   }
-  div.foot-container {
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    grid-template-columns: 1fr 2fr 1fr;
+  div.cartList-container div.card div.card-body div.card-foot {
+    padding-top: 2em;
   }
-  div.foot-container div.total-container {
-    margin: 0;
-  }
-  div.foot-container div.total-container h1 {
-    font-size: 18px;
-    font-weight: 600;
-  }
-  div.foot-container div.subtotal-container {
-    margin: 0;
-  }
-  div.foot-container div.subtotal-container h1 {
-    font-size: 18px;
-    font-weight: 600;
-  }
-  div.foot-container div.checkout-container {
-    margin: 0;
-    align-items: center;
-    justify-content: center;
+  div.cartList-container div.card div.card-body div.card-foot h5 {
+    font-size: 20px;
   }
 }
 @media screen and (min-width: 992px) {
@@ -145,58 +136,133 @@ div.foot-container div.checkout-container i.bi.bi-bag-check {
     padding: 0 1em;
     align-items: center;
   }
+  nav a.navbar-brand {
+    width: 0;
+  }
   nav ul.navbar-nav li.nav-item {
     text-align: center;
     align-items: center;
+  }
+  nav ul.navbar-nav i {
+    font-size: 26px;
+  }
+  nav div.collapse ul.navbar-nav {
+    margin-left: auto;
   }
   nav div.collapse ul.navbar-nav li.nav-item a {
     font-size: 20px;
     margin-left: 2em;
   }
+  div.cartList-container div.card {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+  }
+  div.cartList-container div.card div.img-container {
+    width: 20%;
+  }
+  div.cartList-container div.card div.card-body {
+    padding: 1em;
+  }
+  div.cartList-container div.card div.card-body h5 {
+    padding: 0;
+    font-size: 18px;
+    margin-bottom: 0px;
+  }
+  div.cartList-container div.card div.card-body p {
+    font-size: 16px;
+    padding-top: 0px;
+    margin-bottom: 0px;
+  }
+  div.cartList-container div.card div.card-body div.qty-container {
+    margin-top: 0px;
+    align-items: center;
+    justify-content: center;
+  }
+  div.cartList-container div.card div.card-body div.qty-container div.value-button {
+    padding: 0.8em;
+    max-width: 40px;
+  }
+  div.cartList-container div.card div.card-body div.card-foot {
+    gap: 3em;
+    padding-top: 0px;
+    margin-bottom: 0px;
+  }
+  div.cartList-container div.card div.card-body div.card-foot h5 {
+    font-size: 20px;
+    margin-bottom: 0px;
+  }
 }
 @media screen and (min-width: 1200px) {
-  nav {
+  nav div.container-fluid {
     padding: 0 5em;
+  }
+  div.cartList-container {
+    padding: 0 6em;
+  }
+  div.cartList-container div.card div.img-container {
+    width: 14%;
+  }
+  div.cartList-container div.card div.card-body h5 {
+    font-size: 20px;
+  }
+  div.cartList-container div.card div.card-body p {
+    font-size: 20px;
+  }
+  div.cartList-container div.card div.card-body div.card-foot h5.total {
+    font-size: 20px;
   }
 }
-@media screen and (min-width: 1200px) and (min-width: 1280px) {
-  div.cartList-container {
+@media screen and (min-width: 1280px) {
+  nav div.collapse ul li.nav-item a.nav-link {
+    font-size: 18px;
+  }
+  div.hero-container {
+    padding-top: 4em;
+  }
+  div.hero-container div.left-content div.text-content h1 {
+    font-size: 70px;
+  }
+  div.hero-container div.left-content a.btn-dark {
+    width: 30%;
+    padding: 1em;
+  }
+  p.shopCateg {
+    font-size: 20px;
     padding: 0 5em;
   }
-  div.cartList-container table thead td {
+  div.item-container button.btnModal img {
+    max-width: 100%;
+  }
+  div.item-container button.btnModal h5 {
+    font-size: 22px;
+  }
+  div.item-container button.btnModal p {
     font-size: 20px;
   }
-  div.cartList-container table tbody tr.item {
+  div.item-container div.modal-card div.modal-content div.modal-header h5 {
+    font-size: 22px;
+  }
+  div.item-container div.modal-card div.modal-content div.modal-body img {
+    max-width: 100%;
+  }
+  div.item-container div.modal-card div.modal-content div.modal-body div.col h5 {
+    font-size: 22px;
+  }
+  div.item-container div.modal-card div.modal-content div.modal-body div.col p {
     font-size: 20px;
   }
-  div.cartList-container table tbody tr.item td {
-    font-size: 20px;
+  div.item-container div.modal-card div.modal-content div.modal-body label.labelQty {
+    margin-top: 3em;
   }
-  div.cartList-container table tbody tr.item p {
-    font-size: 20px;
+}
+@media screen and (min-width: 1390px) {
+  nav div.container-fluid {
+    padding: 0 12em;
   }
-  div.cartList-container table tbody tr.item input {
-    font-size: 20px;
-  }
-  div.cartList-container div.foot-container {
-    display: grid;
-  }
-  div.cartList-container div.foot-container div.total-container {
-    font-size: 20px;
-  }
-  div.cartList-container div.foot-container div.total-container h1 {
-    font-size: 20px;
-  }
-  div.cartList-container div.foot-container div.subtotal-container {
-    font-size: 20px;
-  }
-  div.cartList-container div.foot-container div.subtotal-container h1 {
-    font-size: 20px;
-  }
-  div.cartList-container div.foot-container div.checkout-container a {
-    font-size: 20px;
-  }
-  div.cartList-container div.foot-container div.checkout-container i.bi.bi-bag-check {
-    font-size: 30px;
+  div.cartList-container {
+    padding: 0 13em;
   }
 }/*# sourceMappingURL=cart.css.map */
