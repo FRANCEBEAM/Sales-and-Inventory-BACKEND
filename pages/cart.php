@@ -55,10 +55,10 @@ if($email != false && $password != false){
           <div class="collapse navbar-collapse" id="navbarScroll">
             <ul class="navbar-nav me-auto my-2 my-lg-0" style="--bs-scroll-height: 100px;">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/pages/home.php">Home</a>
+                <a class="nav-link" aria-current="page" href="/pages/home.php">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">Shop</a>
+                <a class="nav-link active" aria-current="page" href="/pages/shop">Shop</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="#">About</a>
