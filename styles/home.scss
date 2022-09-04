@@ -692,8 +692,16 @@ div.hero-container{
 
 // DESKTOP VIEW 1280
 @media screen and (min-width: 1280px){
-//NAVIGATION
-
+  //NAVIGATION
+  nav{
+    div.collapse ul{
+        li.nav-item{
+            a.nav-link{
+                font-size: 18px;
+            }
+        }
+    }
+}
 
 
     //HERO SECTION

@@ -9,7 +9,7 @@
 }
 
 $colors:(
-    bg-body: #FFFFFF,
+    bg-body: #F8F9FA,
     bg-gray: #F2F2F2,
     bg-orange: #FF432A,
     bg-blue: #0094FF,
@@ -23,10 +23,14 @@ $font: 'Poppins', sans-serif;
     @return map-get($colors, $color-name);
 }
 
+body{
+  font-family: $font;
+  background: $bg-body;
+}
+
 
 div.main-container{
     background: color(bg-body);
-    font-family: $font;
 }
 
 html{

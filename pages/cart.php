@@ -58,7 +58,7 @@ if($email != false && $password != false){
                 <a class="nav-link" aria-current="page" href="/pages/home.php">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/pages/shop">Shop</a>
+                <a class="nav-link active" aria-current="page" href="/pages/shop.php">Shop</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="#">About</a>
@@ -113,7 +113,7 @@ if($email != false && $password != false){
 
       <div class="card-foot">
         <h5 class="card-title total"><b>Total:&nbsp;&nbsp;</b><?= number_format($row['total_price'],2); ?></h5>
-        <a href="../config/--action.php?remove=<?= $row['id'] ?>" class="text-danger lead" onclick="return confirm('Are you sure want to remove this item?');"><i class="bi bi-trash3-fill text-danger removeBtn"></i></a>
+        <a href="../config/--action.php?remove=<?= $row['id'] ?>" class="text-danger btnRemove" onclick="deletedata(<?php echo $row['id'];?>)"><i class="bi bi-trash3-fill text-danger removeBtn"></i></a>
         
       </div>
     </div>
@@ -130,49 +130,8 @@ if($email != false && $password != false){
   </div>
 </div>
 
-    <!-- MODAL -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Checkout</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">PRODUCT NAME</th>
-              <th scope="col">QTY</th>
-              <th scope="col">PRICE</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Boysen Glow White</td>
-              <td>102</td>
-              <td>₱749</td>
-            </tr>
-            <tr>         
-              <td>Boysen Glow White</td>
-              <td>102</td>
-              <td>₱749</td>
-            </tr>
-            <tr>         
-              <td>Boysen Glow White</td>
-              <td>102</td>
-              <td>₱749</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Confirm order</button>
-      </div>
-    </div>
-  </div>
-</div>
+<script src="/js/sweetalert2.all.min.js"></script>
+<link rel="stylesheet" href='/styles/sweetalert2.min.css' media="screen" />
         <script src="/js/app.js"></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
@@ -180,7 +139,28 @@ if($email != false && $password != false){
         AOS.init();
       </script>
       <script type="text/javascript">
+
   $(document).ready(function() {
+
+
+    $(".btnRemove").on('click', function(e) {
+        e.preventDefault();
+
+        const href = $(this).attr('href')
+
+        Swal.fire({
+        title: 'Remove from the cart?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Remove'
+      }).then((result) => {
+        if (result.value) {
+            document.location.href = href;
+        }
+      })
+    });
 
     // Change the item quantity
     $("#itemQty").on('change', function() {
@@ -220,6 +200,8 @@ if($email != false && $password != false){
       });
     }
   });
+
+
   </script>
 
   <script src="/js/quantity.js"></script>

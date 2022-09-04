@@ -499,6 +499,9 @@ div.about-container div.about-socials {
   }
 }
 @media screen and (min-width: 1280px) {
+  nav div.collapse ul li.nav-item a.nav-link {
+    font-size: 18px;
+  }
   div.hero-container {
     padding-top: 4em;
   }

@@ -29,7 +29,7 @@ if (isset($_POST['id'])) {
 		echo '				
 		<script>
 		Swal.fire({
-			position: "top-end",
+			position: "top-start",
 			icon: "success",
 			title: "Item added to your cart",
 			showConfirmButton: false,
@@ -40,7 +40,7 @@ if (isset($_POST['id'])) {
 		echo '
 				<script>
 				Swal.fire({
-					position: "top-end",
+					position: "top-start",
 					icon: "info",
 					title: "Item already added to your cart",
 					showConfirmButton: false,
@@ -64,6 +64,7 @@ if (isset($_GET['cartItem']) && isset($_GET['cartItem']) == 'cart_item') {
 
 	// Remove single items from cart
 	if (isset($_GET['remove'])) {
+
 	  $id = $_GET['remove'];
 		$email = $_SESSION['email']; //getting this email using session
 	  $stmt = $conn->prepare("DELETE FROM cart WHERE id=? and email = '$email'");
@@ -73,6 +74,7 @@ if (isset($_GET['cartItem']) && isset($_GET['cartItem']) == 'cart_item') {
 	  $_SESSION['showAlert'] = 'block';
 	  $_SESSION['message'] = 'Item removed from the cart!';
 	  header('location:../pages/cart.php');
+		
 	}
 
 		// Remove all items at once from cart
