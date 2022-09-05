@@ -1,4 +1,4 @@
-<?php require_once "../config/controllerUserData.php"; ?>
+<?php require_once "./config/controllerUserData.php"; ?>
 <?php 
 $email = $_SESSION['email'];
 if($email == false){
@@ -14,17 +14,17 @@ if($email == false){
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container mt-5">
+    <div class="container">
         <div class="row">
             <div class="col-md-4 offset-md-4 form">
-                <form action="/pages/resetCode.php" method="POST" autocomplete="off">
+                <form action="./otp.php" method="POST" autocomplete="off">
                     <h2 class="text-center">Code Verification</h2>
 
                       <!--SHOW SUCCESS/ERROR VALIDATION-->
                     <?php 
                     if(isset($_SESSION['info'])){
                         ?>
-                        <div class="alert alert-success text-center" style="padding: 0.4rem 0.4rem">
+                        <div class="alert alert-success text-center">
                             <?php echo $_SESSION['info']; ?>
                         </div>
                         <?php
@@ -44,12 +44,12 @@ if($email == false){
                     }
                     ?>
 
-                      <!--RESET OTP-->
+                      <!--ENTER VERIFICATION CODE-->
                     <div class="form-group">
-                        <input class="form-control" type="number" name="otp" placeholder="Enter code" required>
+                        <input class="form-control" type="number" name="otp" placeholder="Enter verification code" required>
                     </div>
                     <div class="form-group">
-                        <input class="form-control button" type="submit" name="check-reset-otp" value="Submit">
+                        <input class="form-control button" type="submit" name="check" value="Submit">
                     </div>
                 </form>
             </div>

@@ -11,7 +11,7 @@ use PHPMailer\PHPMailer\Exception;
 // require '../vendor/autoload.php';
 
 session_start();
-require "../config/connect.php";
+require "./config/connect.php";
 $username ="";
 $email = "";
 $fullname = "";
@@ -47,7 +47,7 @@ if(isset($_POST['signup'])){
 
         if($data_check){
           //Load Composer's autoloader
-            require '../vendor/autoload.php';
+          require '../vendor/autoload.php';
             $mail = new PHPMailer;
 
             $mail->isSMTP();
@@ -71,7 +71,7 @@ if(isset($_POST['signup'])){
                 $_SESSION['info'] = $info;
                 $_SESSION['email'] = $email;
                 $_SESSION['password'] = $password;
-                header('location: otp.php');
+                header('location: ./otp.php');
                 exit();
             }else{
                 $errors['otp-error'] = "Failed while sending code!";
@@ -159,7 +159,7 @@ if(isset($_POST['signup'])){
 
             if($run_query){
                 //Load Composer's autoloader
-                require '../vendor/autoload.php';
+                require './vendor/autoload.php';
                 $mail = new PHPMailer;
 
                 $mail->isSMTP();
@@ -266,7 +266,7 @@ if (isset($_POST["btnSave"])) {
 //IF USERS WANTS TO CHANGE THEIR PASSWORD
 $user_id = $_SESSION["email"];
 // Connect with database
-include "../config/connect.php";
+// include "config/connect.php";
 
 $passChange = "";
 // This will be called once form is submitted

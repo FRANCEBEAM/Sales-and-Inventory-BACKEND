@@ -1,18 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>R.J. Avancena</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
-    <link rel="stylesheet" href="/styles/index.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+  <?php include './pages/customer/--header.php' ?>
+  <link rel="stylesheet" href="assets/css/index.css">
+  <title>R.J. Avancena</title>
 </head>
 <body>
   <div class="main-container">
@@ -20,7 +11,7 @@
   <head>
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="/img/avancena logo.svg" alt=""></a>
+        <a class="navbar-brand" href="#"><img src="assets/img/avancena logo.svg" alt=""></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -31,7 +22,7 @@
               <a class="nav-link active" aria-current="page" href="#home">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">Shop</a>
+              <a class="nav-link" aria-current="page" href="/pages/customer/shop.php">Shop</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="#">About</a>
@@ -44,12 +35,12 @@
                 <i class="fa-solid fa-user"></i>
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                <li><a class="dropdown-item" href="/pages/signin.php">Sign in</a></li>
-                <li><a class="dropdown-item" href="/pages/signup.php">Sign up</a></li>
+                <li><a class="dropdown-item" href="/pages/customer/signin.php">Sign in</a></li>
+                <li><a class="dropdown-item" href="/pages/customer/signup.php">Sign up</a></li>
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/pages/signin.php"><i class="fa-solid fa-bag-shopping"></i></i></a>
+              <a class="nav-link" aria-current="page" href="/pages/customer/signin.php"><i class="fa-solid fa-bag-shopping"></i></i></a>
             </li>
           </ul>
         </div>
@@ -129,39 +120,39 @@
     <div class="swiper">
       <div class="swiper-wrapper">   
         <div class="swiper-slide">
-          <img src="img/toolshammer.svg" width="50%">
+          <img src="assets/img/toolshammer.svg" width="50%">
           <p>Hand Tools</p>
         </div>
         <div class="swiper-slide">
-          <img src="img/welding.svg">
+          <img src="assets/img/welding.svg">
           <p>welding Equipment</p>
         </div>
         <div class="swiper-slide">
-          <img src="img/paint.svg">
+          <img src="assets/img/paint.svg">
           <p>Paints</p>
         </div>
         <div class="swiper-slide">
-          <img src="img/brickwall.svg">
+          <img src="assets/img/brickwall.svg">
           <p>Cements</p>
         </div>
         <div class="swiper-slide">
-          <img src="img/wood.svg">
+          <img src="assets/img/wood.svg">
           <p>Woods</p>
         </div>
         <div class="swiper-slide">
-          <img src="img/cutting.svg">
+          <img src="assets/img/cutting.svg">
           <p>Cutting Tools</p>
         </div>
         <div class="swiper-slide">
-          <img src="img/drill.svg">
+          <img src="assets/img/drill.svg">
           <p>Power Tools</p>
         </div>
         <div class="swiper-slide">
-          <img src="img/steel.svg">
+          <img src="assets/img/steel.svg">
           <p>Structural Steel</p>
         </div>
         <div class="swiper-slide">
-          <img src="img/measure.svg">
+          <img src="assets/img/measure.svg">
           <p>Measure Tools</p>
         </div>
       </div>
@@ -172,7 +163,7 @@
     <!--ITEM LIST SECTION-->
       <div class="item-container" id="item-list">
         <div class="card">
-          <img src="/img/image 1.jpg" class="card-img-top" alt="...">
+          <img src="assets/img/image 1.jpg" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title mt-2"><b>₱749</b></h5>
             <p class="card-text mt-2">Dual TIG/MMA with Welding Mask</p>
@@ -181,7 +172,7 @@
         </div>
 
         <div class="card">
-          <img src="/img/image 1.jpg" class="card-img-top" alt="...">
+          <img src="assets//img/image 1.jpg" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title mt-2"><b>₱749</b></h5>
             <p class="card-text mt-2">Dual TIG/MMA with Welding Mask</p>
@@ -190,7 +181,7 @@
         </div>
 
         <div class="card">
-          <img src="/img/image 1.jpg" class="card-img-top" alt="...">
+          <img src="assets//img/image 1.jpg" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title mt-2"><b>₱749</b></h5>
             <p class="card-text mt-2">Dual TIG/MMA with Welding Mask</p>
@@ -199,7 +190,7 @@
         </div>
 
         <div class="card">
-          <img src="/img/image 1.jpg" class="card-img-top" alt="...">
+          <img src="assets//img/image 1.jpg" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title mt-2"><b>₱749</b></h5>
             <p class="card-text mt-2">Dual TIG/MMA with Welding Mask</p>
@@ -208,7 +199,7 @@
         </div>
 
         <div class="card">
-          <img src="/img/image 1.jpg" class="card-img-top" alt="...">
+          <img src="assets//img/image 1.jpg" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title mt-2"><b>₱749</b></h5>
             <p class="card-text mt-2">Dual TIG/MMA with Welding Mask</p>
@@ -217,7 +208,7 @@
         </div>
 
         <div class="card">
-          <img src="/img/image 1.jpg" class="card-img-top" alt="...">
+          <img src="assets//img/image 1.jpg" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title mt-2"><b>₱749</b></h5>
             <p class="card-text mt-2">Dual TIG/MMA with Welding Mask</p>
@@ -226,7 +217,7 @@
         </div>
 
         <div class="card">
-          <img src="/img/image 1.jpg" class="card-img-top" alt="...">
+          <img src="assets/img/image 1.jpg" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title mt-2"><b>₱749</b></h5>
             <p class="card-text mt-2">Dual TIG/MMA with Welding Mask</p>
@@ -235,7 +226,7 @@
         </div>
 
         <div class="card">
-          <img src="/img/image 1.jpg" class="card-img-top" alt="...">
+          <img src="assets/img/image 1.jpg" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title mt-2"><b>₱749</b></h5>
             <p class="card-text mt-2">Dual TIG/MMA with Welding Mask</p>
@@ -245,7 +236,7 @@
       </div>
 
     <!--PAGINATION-->
-    <div class="pagination-container">
+    <div class="pagination-container mt-5">
       <ul class="pagination">
         <li class="page-item disabled">
           <span class="page-link">Previous</span>
@@ -262,7 +253,7 @@
   </div>
 
     <!--ABOUT SECTION-->
-    <div class="about-container" id="about-section">
+    <div class="about-container mt-5" id="about-section">
       <h1>ABOUT</h1>
 
       <div class="about-text">
@@ -277,13 +268,6 @@
     </div>
 </div>
 
-<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-
- <!-- Initialize Swiper -->
- <script src="/js/app.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-<script>
-  AOS.init();
-</script>
+<?php include './pages/customer/--footer.php'?>
 </body>
 </html>

@@ -1,11 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css");
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
 nav {
   box-shadow: -1px 6px 59px -35px rgba(41, 41, 41, 0.75);
   -webkit-box-shadow: -1px 6px 59px -35px rgba(41, 41, 41, 0.75);
@@ -45,26 +39,47 @@ nav div.collapse ul.navbar-nav li.nav-item a.login:hover {
   transition: 0.4s;
 }
 
-div.main-container div.form-container {
-  padding: 0 1em;
+div.main-container {
+  background: #FFFFFF;
+  height: 100%;
 }
-div.main-container div.form-container div.tabimg-container {
+
+div.form-container {
+  padding: 2em 1em;
+}
+div.form-container div.left-content img {
+  max-width: 400px;
+  margin: auto;
+  display: block;
+  justify-content: center;
+  align-items: center;
+}
+div.form-container div.left-content div.hello-welcome {
   display: none;
 }
-div.main-container div.form-container div.left-content {
-  padding-top: 3em;
-}
-div.main-container div.form-container div.right-content h1 {
+div.form-container div.left-content h1 {
+  text-align: center;
   font-weight: 700;
+  font-size: 28px;
 }
-div.main-container div.form-container div.right-content p {
+div.form-container div.left-content p {
+  margin-top: 1em;
+  font-size: 18px;
+  padding: 0 2em;
   text-align: center;
 }
-div.main-container div.form-container div.right-content form label {
+div.form-container div.right-content h1 {
+  display: none;
+}
+div.form-container div.right-content p {
+  display: none;
+}
+div.form-container div.right-content form label {
+  font-size: 18px;
   font-weight: 700;
 }
-div.main-container div.form-container div.right-content form p {
-  margin-bottom: 3em;
+div.form-container div.right-content form input {
+  border-radius: 7px;
 }
 
 @media screen and (min-width: 912px) {
@@ -90,11 +105,12 @@ div.main-container div.form-container div.right-content form p {
     margin-left: 2em;
   }
   div.main-container {
+    background-image: linear-gradient(to right, #2882FF, #4160CB);
     height: 100vh;
-    background: #DDDDDD;
   }
   div.form-container {
-    margin-top: 3em;
+    height: 80vh;
+    padding: 5em 3em;
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
@@ -103,23 +119,15 @@ div.main-container div.form-container div.right-content form p {
     padding: 1em;
     background: #E6E7E6;
   }
-  div.form-container div.left-content div.tabimg-container {
+  div.form-container div.left-content div.hello-welcome {
     display: block;
   }
-  div.form-container div.left-content div.tabimg-container img {
-    display: block;
-    margin: auto;
-    justify-content: center;
-    align-items: center;
-  }
-  div.form-container div.left-content div.tabimg-container h1 {
+  div.form-container div.left-content div.hello-welcome h1 {
     text-align: center;
     margin-top: 1em;
     font-size: 20px;
-    font-weight: 700;
   }
-  div.form-container div.left-content div.tabimg-container p {
-    text-align: center;
+  div.form-container div.left-content div.hello-welcome p {
     font-size: 18px;
   }
   div.form-container div.left-content div.sign-mob {
@@ -136,19 +144,23 @@ div.main-container div.form-container div.right-content form p {
   div.form-container div.right-content form {
     padding: 0 1em;
   }
-  div.form-container div.right-content form label.userLabel {
-    margin-top: 3em;
-  }
   div.form-container div.right-content form h1 {
-    display: none;
+    margin-top: 1em;
+    font-size: 20px;
+    display: block;
+    font-weight: 700;
   }
   div.form-container div.right-content form p {
-    display: none;
+    font-size: 18px;
+    display: block;
   }
 }
 @media screen and (min-width: 1200px) {
   nav {
     padding: 0 5em;
+  }
+  nav div.collapse ul li.nav-item a.nav-link {
+    font-size: 20px;
   }
   div.main-container div.form-container {
     padding: 5em 6em;
@@ -172,14 +184,14 @@ div.main-container div.form-container div.right-content form p {
   }
 }
 @media screen and (min-width: 1490px) {
-  nav {
+  nav div.container-fluid {
     padding: 0 12em;
   }
   div.main-container {
-    height: 100%;
+    height: 100vh;
   }
   div.main-container div.form-container {
-    padding: 1em 22em;
+    padding: 4em 22em;
   }
   div.main-container div.form-container div.left-content h1 {
     margin-top: 2em;
@@ -187,4 +199,4 @@ div.main-container div.form-container div.right-content form p {
   div.main-container div.form-container div.right-content h1 {
     margin-top: 2.2em;
   }
-}/*# sourceMappingURL=signup.css.map */
+}/*# sourceMappingURL=signin.css.map */

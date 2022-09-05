@@ -73,7 +73,7 @@ if (isset($_GET['cartItem']) && isset($_GET['cartItem']) == 'cart_item') {
 
 	  $_SESSION['showAlert'] = 'block';
 	  $_SESSION['message'] = 'Item removed from the cart!';
-	  header('location:../pages/cart.php');
+		header('location:\pages\customer\cart.php');
 		
 	}
 

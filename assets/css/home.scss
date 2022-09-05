@@ -80,10 +80,16 @@ nav{
     }
 }
 
+div#message{
+  #messageAlert{
+    padding: 2em 1em;
+  }
+}
+
 //HERO SECTION
 div.hero-container{
     padding: 8em 2em;
-    background: url(/img/hero-bg.svg);
+    background: url(/assets/img/hero-bg.svg);
     height: 70vh;
     min-width:100%;
     background-repeat: no-repeat;
@@ -145,7 +151,7 @@ div.info-container{
 
 //SEARCH BAR
 div.search-container{
-  background: url(/img/bg-search-mob.svg);
+  background: url(/assets/img/bg-search-mob.svg);
   height: 24vh;
   min-width:100%;
   background-repeat: no-repeat;
@@ -238,20 +244,16 @@ div.item-container{
             margin: 0;
               padding-top: 3em;
               margin-bottom: 4em;
+            
               img{
                   margin: auto;
                   display: flex;
                   justify-content: center;
                   width: 30%;
               }
-              h5{
-                  font-size: 14px;
-              }
-              p{
-                  font-size: 12px;
-              }
-              a{
-                  font-size: 12px;
+
+              div.card-body{
+                  text-align: center;
               }
           }
       }
@@ -315,12 +317,9 @@ div.about-container{
       justify-content: center;
       align-items: center;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
       padding: 0 2em;
 
-      div.card{
-        margin: auto;
-      }
     }
 
     // SWIPER
@@ -339,17 +338,10 @@ div.about-container{
 // TABLET VIEW 768
 @media screen and (min-width: 768px){
     //NAVIGATION SECTION
-    nav{
-        div.logo{
-        h1{
-            font-size: 20px;
-            font-weight: bold;
-        }
-        span.ent{
-            font-size: 18px;
-            letter-spacing: 5px;
-        }
-        }
+    div#message{
+      #messageAlert{
+        padding: 2em 2em;
+      }
     }
 
     //HERO SECTION
@@ -519,6 +511,12 @@ nav{
          }
        }
 
+       div#message{
+        #messageAlert{
+          padding: 0 1em;
+        }
+      }
+
        //HERO CONTENT
        div.hero-container{
         display: grid;
@@ -596,6 +594,12 @@ nav{
 //Navigation
 nav{
     padding: 0 5em;
+}
+
+div#message{
+  #messageAlert{
+    padding: 2em 5em;
+  }
 }
 
 //HERO SECTION
@@ -688,25 +692,17 @@ div.hero-container{
 
 // DESKTOP VIEW 1280
 @media screen and (min-width: 1280px){
-//NAVIGATION
-    nav{
-        a.navbar-brand{
-            h1{
-                font-size: 22px;
-            }
-            span.ent{
+  //NAVIGATION
+  nav{
+    div.collapse ul{
+        li.nav-item{
+            a.nav-link{
                 font-size: 20px;
             }
         }
-
-        div.collapse ul{
-            li.nav-item{
-                a.nav-link{
-                    font-size: 18px;
-                }
-            }
-        }
     }
+}
+
 
     //HERO SECTION
     div.hero-container{
@@ -767,14 +763,15 @@ div.hero-container{
 @media screen and (min-width: 1390px){
     // NAVIGATION
     nav{
-        padding: 0 12em;
-        // ul{
-        //     li.nav-item{
-        //         i{
-        //             font-size: 24px;
-        //         }
-        //     }
-        // }
+        div.container-fluid{
+          padding: 0 12em;
+        }
+      }
+
+    div#message{
+      #messageAlert{
+        padding: 2em 12em;
+      }
     }
     //HERO SECTION
     div.hero-container{
