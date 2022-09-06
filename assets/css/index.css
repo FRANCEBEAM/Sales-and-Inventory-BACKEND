@@ -407,6 +407,9 @@ div.about-container div.about-socials {
     left: 0;
     float: left;
   }
+  div.hero-container div.left-content div.col.text-center a#btn-shopnow {
+    margin: 0;
+  }
   div.info-container {
     gap: 12em;
   }

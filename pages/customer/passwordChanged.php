@@ -1,4 +1,4 @@
-<?php require_once "../config/controllerUserData.php"; ?>
+<?php require_once "./config/controllerUserData.php"; ?>
 <?php
 if($_SESSION['info'] == false){
     header('Location: signin.php');  
@@ -29,7 +29,7 @@ if($_SESSION['info'] == false){
             ?>
 
               <!--FORM FOR LOGIN-->
-                <form action="/pages/signin.php" method="POST">
+                <form action="./signin.php" method="POST">
                     <div class="form-group">
                         <input class="form-control button btn btn-primary" type="submit" name="login-now" value="Login Now">
                     </div>

@@ -1,4 +1,4 @@
-<?php require_once "../config/controllerUserData.php"; ?>
+<?php require_once "./config/controllerUserData.php"; ?>
 <?php 
 $email = $_SESSION['email'];
 if($email == false){
@@ -17,7 +17,7 @@ if($email == false){
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-4 offset-md-4 form">
-                <form action="/pages/newPassword.php" method="POST" autocomplete="off">
+                <form action="./newPassword.php" method="POST" autocomplete="off">
                     <h2 class="text-center">New Password</h2>
 
                       <!--SHOW SUCCESS/ERROR VALIDATION-->

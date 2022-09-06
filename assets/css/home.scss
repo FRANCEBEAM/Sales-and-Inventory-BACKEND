@@ -118,7 +118,7 @@ div.hero-container{
       a#btn-shopnow{
         border-radius: 2px;
         padding: 1em 1em;
-        margin: auto;
+        // margin: auto;
         justify-content: center;
        align-items: center;
        text-align: center;
@@ -347,7 +347,7 @@ div.about-container{
     //HERO SECTION
     div.hero-container{
         width: 100%;
-        margin: 0 auto;
+        // margin: 0 auto;
         justify-content: center;
         align-items: center;
         // max-width: 1200px;
@@ -538,8 +538,11 @@ nav{
             }
             div.col.text-center{
                 display: flex;
-                left: 0;
+                justify-content: flex-start;
                 float: left;
+                a#btn-shopnow{
+                    margin: 0;
+                }
             }
            
         }

@@ -90,7 +90,6 @@ div.hero-container div.left-content div.text-content p {
 div.hero-container div.left-content a#btn-shopnow {
   border-radius: 2px;
   padding: 1em 1em;
-  margin: auto;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -272,7 +271,6 @@ div.about-container div.about-socials {
   }
   div.hero-container {
     width: 100%;
-    margin: 0 auto;
     justify-content: center;
     align-items: center;
   }
@@ -397,8 +395,11 @@ div.about-container div.about-socials {
   }
   div.hero-container div.left-content div.col.text-center {
     display: flex;
-    left: 0;
+    justify-content: flex-start;
     float: left;
+  }
+  div.hero-container div.left-content div.col.text-center a#btn-shopnow {
+    margin: 0;
   }
   div.info-container {
     gap: 12em;

@@ -87,7 +87,7 @@ if($email != false && $password != false){
         <div class="col text-center">
         <a data-aos="fade-left"
         id="btn-shopnow"
-        data-aos-duration="400" class="btn btn-primary mt-5" href="#item-list">Shop Now <i class="fa-solid fa-cart-shopping"></i></a>
+        data-aos-duration="400" class="btn btn-primary mt-5" href="./shop.php">Shop Now <i class="fa-solid fa-cart-shopping"></i></a>
         </div>
       </div>
 
