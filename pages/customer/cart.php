@@ -86,7 +86,7 @@ if($email != false && $password != false){
         $grand_total = 0;
         while ($row = $result->fetch_assoc()):
     ?>
-
+<form id="frm<?php echo $row['id']?>">
   <div class="card mb-2">
     <div class="img-container">
           <img src="assets/img/image 1.jpg" alt="">
@@ -95,17 +95,23 @@ if($email != false && $password != false){
       <h5 class="card-title"><?= $row['product'] ?></h5>
       <p class="card-text"><i class="fa-solid fa-peso-sign"></i>&nbsp;&nbsp;<?= number_format($row['price'],2); ?></p>
 
+    
       <div class="qty-container">
+    
         <div class="btn btn-outline-dark value-button" id="decrease" onclick="decreaseValue()" value="Decrease Value"><i class="fa-sharp fa-solid fa-minus"></i></div>
         <input type="number" class="form-control itemQty" id="itemQty" value="<?= $row['qty'] ?>">
+        <input type="number" class="form-control itemQty" id="itemQty" name="qty" onchange="updcart(<?php echo $row['id']; ?>)"onkeyup="updcart(<?php echo $row['id']; ?>)">
         <div class="btn btn-dark value-button" id="increase" onclick="increaseValue()" value="Increase Value"><i class="fa-sharp fa-solid fa-plus"></i></div>
+    
       </div>
+
 
       <div class="card-foot">
         <h5 class="card-title total"><b>Total:&nbsp;&nbsp;</b><?= number_format($row['total_price'],2); ?></h5>
         <a href="./config/--action.php?remove=<?= $row['id'] ?>" class="text-danger btnRemove" onclick="deletedata(<?php echo $row['id'];?>)"><i class="bi bi-trash3-fill text-danger removeBtn"></i></a>
       </div>
     </div>
+    </form>
 
   </div>
   <?php $grand_total += $row['total_price']; ?>
@@ -193,10 +199,7 @@ if($email != false && $password != false){
 
 <?php include './--footer.php'?>
   <script type="text/javascript">
-
   $(document).ready(function() {
-
-
     $(".btnRemove").on('click', function(e) {
         e.preventDefault();
 
@@ -298,14 +301,13 @@ function load_cart_item_number() {
 //         }
 //       })
 //     )
-
 $('#modalOrder').on('hidden.bs.modal', function () {
  location.reload();
 })
 
-    
   });
   </script>
+
 
   <script src="/js/quantity.js"></script>
 </body>
