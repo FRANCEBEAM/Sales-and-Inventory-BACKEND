@@ -8,20 +8,15 @@
     box-sizing: border-box;
 }
 
-$colors:(
-    bg-body: #F8F9FA,
-    bg-gray: #F2F2F2,
-    bg-orange: #FF432A,
-    bg-blue: #0094FF,
-    bg-font: #212529
-  
-);
+$bg-body: #F2F2F2;
+$bg-head: #4656F5;
+$gray-font: #adb5bd;
+$black-font: #212529;
+$white-font: #fff;
 
 $font: 'Poppins', sans-serif;
 
-@function color($color-name){
-    @return map-get($colors, $color-name);
-}
+
 
 body{
   font-family: $font;
@@ -141,7 +136,37 @@ div.cartList-container{
       }
       }
     }
+}
 
+div.modal-dialog{
+  div.modal-content{
+    div.modal-header{
+      h5{
+        font-size: 22px;
+      }
+    }
+    div.modal-body{
+      div#order{
+        div.displayOrder{
+          border: #888888 solid 1px;
+          border-radius: 7px;
+        }
+        h4{
+          font-size: 22px;
+          font-weight: 600;
+        }
+        h5{
+          text-align: left;
+          font-size: 16px;
+        }
+      }
+      form{
+        padding-top: 3em;
+
+    
+      }
+    }
+  }
 }
 
 

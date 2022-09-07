@@ -101,5 +101,58 @@ if (isset($_GET['cartItem']) && isset($_GET['cartItem']) == 'cart_item') {
 	  $stmt->execute();
 	}
 
+	// Checkout and save customer info in the orders table
+	if (isset($_POST['action']) && isset($_POST['action']) == 'order') {
+	  $fullname = $_POST['fullname'];
+	  $email = $_POST['email'];
+	  $phone = $_POST['phone'];
+	  $products = $_POST['products'];
+	  $grand_total = $_POST['grand_total'];
+	  $address = $_POST['address'];
+	  $paymentmode = $_POST['paymentmode'];
 
+	  $data = '';
+
+	  $stmt = $conn->prepare('INSERT INTO orders (fullname,email,phone,address,paymentmode,products,amountpaid)VALUES(?,?,?,?,?,?,?)');
+	  $stmt->bind_param('sssssss',$fullname,$email,$phone,$address,$paymentmode,$products,$grand_total);
+	  $stmt->execute();
+	  $stmt2 = $conn->prepare("DELETE FROM cart WHERE email = '$email'");
+	  $stmt2->execute();
+		
+	  $data .= '<div class="text-center">
+								<h2 class="text-success">Thank you for order</h2>
+								<h4 class="text-light rounded p-2">Items Purchased : ' . $products . '</h4>
+								<p>Name : ' . $fullname . '</p>
+								<p>Email : ' . $email . '</p>
+								<p>Phone : ' . $phone . '</p>
+								<h4>Total Amount Paid : ' . number_format($grand_total,2) . '</h4>
+								<h4>Payment Mode : ' . $paymentmode . '</h4>
+								<script>
+								Swal.fire({
+									icon: "success",
+									title: "Order Successfully",
+									showConfirmButton: false,
+									timer: 1500
+								})
+								</script>
+						  </div>';
+
+		// $data = '<script>
+		// Swal.fire({
+		// 	position: "top-start",
+		// 	icon: "success",
+		// 	title: "Item added to your cart",
+		// 	showConfirmButton: false,
+		// 	timer: 1500
+		// }      ,$.ajax({
+    //     success: function(response) {
+    //       load_cart_item_number();
+    //     }
+    //   })
+    // )
+		// </script>';
+
+	  echo $data;
+
+	}
 ?>

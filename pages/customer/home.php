@@ -67,6 +67,7 @@ if($email != false && $password != false){
             <li class="nav-item dropdown"><a href='./cart.php'><i class="fas fa-shopping-cart"></i><span id="cart-item" class="badge bg-danger"></span></a>
             </li>
           </ul>
+</ul>
         </div>
       </div>
     </nav>

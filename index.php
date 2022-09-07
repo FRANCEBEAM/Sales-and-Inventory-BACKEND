@@ -11,7 +11,7 @@ session_start();
 </head>
 <body>
   <div class="main-container">
-      <!--NAVIGATION-->
+<!--NAVIGATION-->
   <head>
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
       <div class="container-fluid">
@@ -44,7 +44,7 @@ session_start();
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/pages/customer/signin.php"><i class="fa-solid fa-bag-shopping"></i></i></a>
+              <a class="nav-link" aria-current="page" href="/pages/customer/signin.php"><i class="fas fa-shopping-cart"></i></a>
             </li>
           </ul>
         </div>
@@ -164,80 +164,36 @@ session_start();
       <div class="swiper-pagination"></div>
     </div>
           
-    <!--ITEM LIST SECTION-->
+
+        <!-- Displaying Products Start -->
       <div class="item-container" id="item-list">
-        <div class="card">
-          <img src="assets/img/image 1.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title mt-2"><b>₱749</b></h5>
-            <p class="card-text mt-2">Dual TIG/MMA with Welding Mask</p>
-            <a href="#" class="btn btn-primary mt-3">Add to cart</a>
-          </div>
-        </div>
+        <?php
+            include './pages/customer/config/--configure.php';
+            $stmt = $conn->prepare('SELECT * FROM inventory');
+            $stmt->execute();
+            $result = $stmt->get_result();
+            while ($row = $result->fetch_assoc()):
+          ?>
+        <div class="mb-5 card">
+        <img src="assets/img/image 1.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title mt-2"><b><i class="fa-solid fa-peso-sign"></i>&nbsp;&nbsp;<?= number_format($row['price'],2) ?></b></h5>
+          <p class="card-text mt-2"><?= $row['product'] ?></p>
 
-        <div class="card">
-          <img src="assets//img/image 1.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title mt-2"><b>₱749</b></h5>
-            <p class="card-text mt-2">Dual TIG/MMA with Welding Mask</p>
-            <a href="#" class="btn btn-primary mt-3">Add to cart</a>
-          </div>
+          <form action="" class="form-submit">
+          <input type="hidden" class="form-control quantity" value="50">
+          <input type="hidden" class="id" value="<?= $row['id'] ?>">
+          <input type="hidden" class="product" value="<?= $row['product'] ?>">
+          <input type="hidden" class="price" value="<?= $row['price'] ?>">
+          <input type="hidden" class="image_file" value="<?= $row['image_file'] ?>">
+          <input type="hidden" class="serialnumber" value="<?= $row['serialnumber'] ?>">
+          <a href="/pages/customer/signin.php" class="btn btn-primary mt-4 d-md-block addItemBtn">Add to cart</a>
+          </form>
         </div>
-
-        <div class="card">
-          <img src="assets//img/image 1.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title mt-2"><b>₱749</b></h5>
-            <p class="card-text mt-2">Dual TIG/MMA with Welding Mask</p>
-            <a href="#" class="btn btn-primary mt-3">Add to cart</a>
-          </div>
         </div>
-
-        <div class="card">
-          <img src="assets//img/image 1.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title mt-2"><b>₱749</b></h5>
-            <p class="card-text mt-2">Dual TIG/MMA with Welding Mask</p>
-            <a href="#" class="btn btn-primary mt-3">Add to cart</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="assets//img/image 1.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title mt-2"><b>₱749</b></h5>
-            <p class="card-text mt-2">Dual TIG/MMA with Welding Mask</p>
-            <a href="#" class="btn btn-primary mt-3">Add to cart</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="assets//img/image 1.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title mt-2"><b>₱749</b></h5>
-            <p class="card-text mt-2">Dual TIG/MMA with Welding Mask</p>
-            <a href="#" class="btn btn-primary mt-3">Add to cart</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="assets/img/image 1.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title mt-2"><b>₱749</b></h5>
-            <p class="card-text mt-2">Dual TIG/MMA with Welding Mask</p>
-            <a href="#" class="btn btn-primary mt-3">Add to cart</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="assets/img/image 1.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title mt-2"><b>₱749</b></h5>
-            <p class="card-text mt-2">Dual TIG/MMA with Welding Mask</p>
-            <a href="#" class="btn btn-primary mt-3">Add to cart</a>
-          </div>
-        </div>
+        <?php endwhile; ?>
       </div>
+  <!-- Displaying Products End -->
 
     <!--PAGINATION-->
     <div class="pagination-container mt-5">

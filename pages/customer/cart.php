@@ -76,6 +76,7 @@ if($email != false && $password != false){
 
 <!-- CART LIST CONTENT -->
 <div class="cartList-container mt-5">
+  <h4 class="fw-bold mt-5 mb-5">My cart</h4>
 
     <?php
         require '../customer/config/--configure.php';
@@ -103,19 +104,89 @@ if($email != false && $password != false){
       <div class="card-foot">
         <h5 class="card-title total"><b>Total:&nbsp;&nbsp;</b><?= number_format($row['total_price'],2); ?></h5>
         <a href="./config/--action.php?remove=<?= $row['id'] ?>" class="text-danger btnRemove" onclick="deletedata(<?php echo $row['id'];?>)"><i class="bi bi-trash3-fill text-danger removeBtn"></i></a>
-        
       </div>
     </div>
+
   </div>
   <?php $grand_total += $row['total_price']; ?>
   <?php endwhile; ?>
   <div class="total-container">
     <h5 class="sub-total"><b>Subtotal:&nbsp;&nbsp;</b><i class="fa-solid fa-peso-sign"></i><?= number_format($grand_total,2); ?></h5>
-    <a href="checkout.php" class="btn btn-success mt-4 mb-5 <?= ($grand_total > 1) ? '' : 'disabled'; ?>"><b>CHECKOUT</b>&nbsp;&nbsp;<svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <a href="./checkout.php" class="btn btn-success mt-4 mb-5 <?= ($grand_total > 1) ? '' : 'disabled'; ?>" data-bs-toggle="modal" data-bs-target="#modalOrder"><b>CHECKOUT</b>&nbsp;&nbsp;<svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M12.8377 8.01561H1.63281C1.38689 8.01561 1.1875 8.215 1.1875 8.46092V10.539C1.1875 10.785 1.38689 10.9844 1.63281 10.9844H12.8377V12.6936C12.8377 13.4871 13.797 13.8844 14.3581 13.3234L17.5517 10.1298C17.8995 9.78194 17.8995 9.21803 17.5517 8.87024L14.3581 5.67664C13.797 5.11558 12.8377 5.51295 12.8377 6.30642V8.01561V8.01561Z" fill="white"/>
       </svg>
-      
-      </a>
+    </a>
+
+<!-- Modal -->
+<div class="modal fade" id="modalOrder" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<?php
+	require './config/--configure.php';
+
+	$grand_total = 0;
+	$allItems = '';
+	$items = [];
+
+	$sql = "SELECT CONCAT(product, '(',qty,')') AS ItemQty, total_price FROM cart where email = '$email'";
+	$stmt = $conn->prepare($sql);
+	$stmt->execute();
+	$result = $stmt->get_result();
+	while ($row = $result->fetch_assoc()) {
+	  $grand_total += $row['total_price'];
+	  $items[] = $row['ItemQty'];
+	}
+	$allItems = implode(', ', $items);
+?>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Checkout Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="" id="order">
+         <h4 class="text-center text-success p-2 mb-5">Confirm your orders and details</h4>
+         <div class="p-3 mb-2 text-center displayOrder">
+          <h5><b>Products: </b><?= $allItems; ?></h5>
+          <h5 class="mt-3"><b>Total Amount: </b><?=number_format($grand_total,2) ?></h5>
+        </div>
+        <form action="" method="post" id="placeOrder">
+          <input type="hidden" name="products" value="<?= $allItems; ?>">
+          <input type="hidden" name="grand_total" value="<?= $grand_total; ?>">
+          <div class="form-group">
+          <label class="form-label">Full Name:</label>
+            <input type="text" name="fullname" class="form-control" placeholder="Enter Name" value='<?php echo $fetch_info['fullname'] ?>'>
+          </div>
+          <div class="form-group">
+          <label class="form-label">Email:</label>
+            <input type="email" name="email" class="form-control" placeholder="Enter Email" value='<?php echo $fetch_info['email'] ?>'>
+          </div>
+          <div class="form-group">
+          <label class="form-label">Phone Number:</label>
+            <input type="tel" name="phone" class="form-control" placeholder="Enter Phone" value='<?php echo $fetch_info['phone'] ?>' required>
+          </div>
+          <div class="form-group">
+          <label class="form-label">Address:</label>
+            <textarea name="address" class="form-control" rows="3" cols="10" placeholder="Enter Delivery Address Here..."><?php echo $fetch_info['address'] ?></textarea>
+          </div>
+          <h6 class="text-center lead mt-5 fw-bold">Select Payment Mode</h6>
+          <div class="form-group">
+            <select name="paymentmode" class="form-control mt-3">
+              <option value="cod"></i>Cash On Delivery</option>
+              <option value="walkin">Walk-In</option>
+              <option value="cards">Debit/Credit Card</option>
+            </select>
+          </div>
+          <div class="modal-footer">
+          <input type="submit" name="submit" value="Confirm Order" class="btn btn-primary btn-lg mb-3 btn-block">
+        <button type="button" class="btn btn-secondary btn-lg  btn-block" data-bs-dismiss="modal">Close</button>
+      </div>
+        </form>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
   </div>
 </div>
 
@@ -182,6 +253,57 @@ if($email != false && $password != false){
         }
       });
     }
+
+    // Sending Form data to the server
+    $("#placeOrder").submit(function(e) {
+      e.preventDefault(); 
+
+      $.ajax({
+        url: '/pages/customer/config/--action.php',
+        method: 'post',
+        data: $('form').serialize() + "&action=order",
+        success: function(response) {
+          $("#order").html(response);
+          window.scrollTo(0, 0);
+          load_cart_item_number();
+        }
+      });
+    });
+
+    load_cart_item_number();
+
+function load_cart_item_number() {
+  $.ajax({
+    url: '/pages/customer/config/--action.php',
+    method: 'get',
+    data: {
+      cartItem: "cart_item"
+    },
+    success: function(response) {
+      $("#cart-item").html(response);
+    }
+  });
+}
+
+// Swal.fire({
+// 			position: "top-start",
+// 			icon: "success",
+// 			title: "Item added to your cart",
+// 			showConfirmButton: false,
+// 			timer: 1500
+// 		}      ,$.ajax({
+//         success: function(response) {
+//           $("#order").html(response);
+//           load_cart_item_number();
+//         }
+//       })
+//     )
+
+$('#modalOrder').on('hidden.bs.modal', function () {
+ location.reload();
+})
+
+    
   });
   </script>
 

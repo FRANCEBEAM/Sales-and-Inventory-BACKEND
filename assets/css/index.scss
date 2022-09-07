@@ -80,6 +80,12 @@ nav{
     }
 }
 
+div#message{
+  #messageAlert{
+    padding: 2em 1em;
+  }
+}
+
 //HERO SECTION
 div.hero-container{
     padding: 8em 2em;
@@ -112,7 +118,7 @@ div.hero-container{
       a#btn-shopnow{
         border-radius: 2px;
         padding: 1em 1em;
-        margin: auto;
+        // margin: auto;
         justify-content: center;
        align-items: center;
        text-align: center;
@@ -238,20 +244,16 @@ div.item-container{
             margin: 0;
               padding-top: 3em;
               margin-bottom: 4em;
+            
               img{
                   margin: auto;
                   display: flex;
                   justify-content: center;
                   width: 30%;
               }
-              h5{
-                  font-size: 14px;
-              }
-              p{
-                  font-size: 12px;
-              }
-              a{
-                  font-size: 12px;
+
+              div.card-body{
+                  text-align: center;
               }
           }
       }
@@ -315,12 +317,9 @@ div.about-container{
       justify-content: center;
       align-items: center;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
       padding: 0 2em;
 
-      div.card{
-        margin: auto;
-      }
     }
 
     // SWIPER
@@ -339,23 +338,16 @@ div.about-container{
 // TABLET VIEW 768
 @media screen and (min-width: 768px){
     //NAVIGATION SECTION
-    nav{
-        div.logo{
-        h1{
-            font-size: 20px;
-            font-weight: bold;
-        }
-        span.ent{
-            font-size: 18px;
-            letter-spacing: 5px;
-        }
-        }
+    div#message{
+      #messageAlert{
+        padding: 2em 2em;
+      }
     }
 
     //HERO SECTION
     div.hero-container{
         width: 100%;
-        margin: 0 auto;
+        // margin: 0 auto;
         justify-content: center;
         align-items: center;
         // max-width: 1200px;
@@ -519,6 +511,12 @@ nav{
          }
        }
 
+       div#message{
+        #messageAlert{
+          padding: 0 1em;
+        }
+      }
+
        //HERO CONTENT
        div.hero-container{
         display: grid;
@@ -540,7 +538,7 @@ nav{
             }
             div.col.text-center{
                 display: flex;
-                left: 0;
+                justify-content: flex-start;
                 float: left;
                 a#btn-shopnow{
                     margin: 0;
@@ -599,6 +597,12 @@ nav{
 //Navigation
 nav{
     padding: 0 5em;
+}
+
+div#message{
+  #messageAlert{
+    padding: 2em 5em;
+  }
 }
 
 //HERO SECTION
@@ -691,8 +695,8 @@ div.hero-container{
 
 // DESKTOP VIEW 1280
 @media screen and (min-width: 1280px){
-//NAVIGATION
-nav{
+  //NAVIGATION
+  nav{
     div.collapse ul{
         li.nav-item{
             a.nav-link{
@@ -701,6 +705,7 @@ nav{
         }
     }
 }
+
 
     //HERO SECTION
     div.hero-container{
@@ -762,8 +767,14 @@ nav{
     // NAVIGATION
     nav{
         div.container-fluid{
-            padding: 0 12em;
-          }
+          padding: 0 12em;
+        }
+      }
+
+    div#message{
+      #messageAlert{
+        padding: 2em 12em;
+      }
     }
     //HERO SECTION
     div.hero-container{

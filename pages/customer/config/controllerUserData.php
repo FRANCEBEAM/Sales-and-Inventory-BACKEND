@@ -47,7 +47,7 @@ if(isset($_POST['signup'])){
 
         if($data_check){
           //Load Composer's autoloader
-            require './vendor/autoload.php';
+            require 'vendor/autoload.php';
             $mail = new PHPMailer;
 
             $mail->isSMTP();
@@ -56,17 +56,17 @@ if(isset($_POST['signup'])){
             $mail->SMTPAuth=true;
             $mail->SMTPSecure='tls';
 
-            $mail->Username = 'donpapichulo2.8@gmail.com'; 
-            $mail->Password = 'jzblakfsldyxokip'; 
+            $mail->Username = 'beefsassy2.8@gmail.com'; 
+            $mail->Password = 'bnugdfwfkpyamfyz'; 
 
-            $mail->setFrom('donpapichulo2.8@gmail.com', 'OTP Verification');
+            $mail->setFrom('beefsassy2.8@gmail.com', 'OTP Verification');
             $mail->addAddress($_POST["email"]);
 
             $mail->isHTML(true);
             $mail->Subject="Your code verification";
             $mail->Body="<p>Dear user, </p> <h3>Your verify OTP code is $code <br></h3>";
 
-            if($mail->send($email, $subject, $message, $sender)){
+            if($mail->send($email)){
                 $info = "We've sent a verification code to your email - $email";
                 $_SESSION['info'] = $info;
                 $_SESSION['email'] = $email;
@@ -159,7 +159,7 @@ if(isset($_POST['signup'])){
 
             if($run_query){
                 //Load Composer's autoloader
-                require './vendor/autoload.php';
+                require 'vendor/autoload.php';
                 $mail = new PHPMailer;
 
                 $mail->isSMTP();
@@ -244,7 +244,7 @@ if(isset($_POST['signup'])){
     }
 
     //IF USERS WANTS TO UPDATE PROFILE
-    $success = "";
+$success = "";
 if (isset($_POST["btnSave"])) {
     $phone = mysqli_real_escape_string($con, $_POST["phone"]);
     $address = mysqli_real_escape_string($con, $_POST["address"]);
@@ -256,6 +256,7 @@ if (isset($_POST["btnSave"])) {
     $result = mysqli_query($con, $sql);
     if ($result) {
         $success = 'Profile updated successfully';
+
 
     } else {
         echo "<script>alert('Profile can not Updated.');</script>";
@@ -292,7 +293,9 @@ if (isset($_POST["btnChange"]))
 				$sql = "UPDATE usertable SET password = '" . password_hash($newpass, PASSWORD_DEFAULT) . "' WHERE email = '".$user_id."'";
 				mysqli_query($con, $sql);
 
-				$passChange = "<div class='alert alert-success'>Password has been changed.</div>.";
+				$passChange = "
+                <div class='alert alert-success'>Password has been changed.</div>.
+                ";
      
     }
     else

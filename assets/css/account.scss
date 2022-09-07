@@ -8,24 +8,18 @@
     box-sizing: border-box;
 }
 
-$colors:(
-    bg-body: #FFFFFF,
-    bg-gray: #F2F2F2,
-    bg-orange: #FF432A,
-    bg-blue: #0094FF,
-    bg-font: #212529
-  
-);
+$bg-body: #F2F2F2;
+$bg-head: #4656F5;
+$gray-font: #adb5bd;
+$black-font: #212529;
+$white-font: #fff;
 
 $font: 'Poppins', sans-serif;
 
-@function color($color-name){
-    @return map-get($colors, $color-name);
-}
 
 
 div.main-container{
-    background: color(bg-body);
+    background: $bg-body;
     font-family: $font;
 }
 
@@ -39,30 +33,25 @@ nav{
     -webkit-box-shadow: -1px 6px 59px -35px rgba(41,41,41,0.75);
     -moz-box-shadow: -1px 6px 59px -35px rgba(41,41,41,0.75);
     padding: 0 1em;
-    div.logo{
-       h1{
-        font-size: 16px;
-        font-weight: bold;
-       }
-       span.ent{
-        font-size: 12px;
-        letter-spacing: 5px;
-       }
+    a.navbar-brand{
+      width: 50%;
+      img{
+        max-width: 176px;
+      }
     }
 
-    ul{
+    ul{     
         li.nav-item{
+          text-align: center;
+          padding-top: .2em;
+          margin-bottom: .7em;
             a{  
-                color: #212529;
+                 color: #212529;
                 text-decoration: none;
-                list-style: none;
-            }
-            ul{
                 list-style: none;
             }
         }
     }
-
 
     div.collapse{
        ul.navbar-nav{
@@ -89,61 +78,95 @@ nav{
     }
 }
 
-//FULLNAME AND EMAIL
 div.main-container{
-    padding:  4em 1em;
-    h1.profileInfo{
-        text-align: center;
-        margin-bottom: 4em;
-        font-weight: bold;
-    }
-    div.profname-container{
-        text-align: center;
-        margin-bottom: 4em;
-    }
-    div.profile-container{
-        form{
-                font-size: 16px;
+    padding: 5em 1em;
+
+    div.form-container{
+      div.left-content{
+        div.left-head{
+          padding: 1.7em;
+          background: $bg-head;
+          text-align: center;
+          align-items: center;
+          justify-content: center;
+          color: $white-font;
         }
-    }
-    form{
-        div.detail-container{
-            h2{
-                font-size: 20px;
-            }
+        div.img-container{
+          img{
+            display: none;
+          }
+        }
+      }
+      div.right-content{
+        div.right-head{
+          padding: 2em;
+          align-items: center;
+          text-align: center;
+
+          h1{
+              font-weight: 600;
+          }
+          p{
+            align-items: center;
+            text-align: center;
+            font-size: 14px;
+        }
+        }
+        div.form-content{
+          margin-bottom: 7em;
+          h1{
+            font-size: 20px;
+           font-weight: normal;
+          }
+          input{
+            background: #D9D9D9;
+            border-radius: 7px;
         }
         button{
-            padding: .6em;
-            width: 100%;
+          width: 100%;
         }
+        }
+      }
     }
-
 }
-
 
 // TABLET VIEW 768
 @media screen and (min-width: 768px){
-
-    //NAVIGATION SECTION
-    nav{
-        div.logo{
-        h1{
-            font-size: 20px;
-            font-weight: bold;
-        }
-        span.ent{
-            font-size: 18px;
-            letter-spacing: 5px;
+  div.main-container{
+    div.form-container{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      div.left-content{
+        div.left-head{
+          h1{
+            font-size: 22px;
+          }
+          p{
+            font-size: 14px;
           }
         }
-    }
-
-    //PROFILE CONTAINER
-    div.profile-container{
-        form{
-            padding: 0 6em;
+        div.img-container{
+          img{
+            display: block;
+            width: 100%;
+          }
         }
+      }
+      div.right-content{
+        div.right-head{
+          h1{
+            font-size: 22px;
+          }
+          p{
+            font-size: 14px;
+          }
+        }
+        form{
+          padding: 0 2em;
+        }
+      }
     }
+  }
 }
 
 @media screen and (min-width: 992px){
@@ -152,16 +175,24 @@ div.main-container{
 nav{
     padding: 0 1em;
     align-items: center;
-
+    a.navbar-brand{
+        width: 0;
+    }
     ul.navbar-nav{
         li.nav-item{
             text-align: center;
             align-items: center;
         }
     }
-
+    ul.navbar-nav{
+        i{
+            font-size: 26px;
+        }
+    }
+  
     div.collapse{
         ul.navbar-nav{
+            margin-left: auto;
             li.nav-item a{
                 font-size: 20px;
                 margin-left: 2em;
@@ -170,54 +201,115 @@ nav{
          }
        }
 
+       div.main-container{
 
-    //PROFILE CONTAINER
-    div.profile-container{
-        form{
-            padding: 0 10em;
+        div.form-container{
+          div.left-content{
+            h1{
+              font-size: 26px;
+            }
+          }
+          div.right-content{
+            div.right-head{
+              h1{
+                font-size: 26px;
+              }
+            }
+            form{
+            padding: 1.8em;
+            h1{
+                font-size: 24px;
+            }
+            p{
+                font-size: 16px;
+            }
+          }
+          }
         }
     }
 }
 
 // LAPTOP VIEW 1200
 @media screen and(min-width: 1200px){
-
-
-    //Navigation
     nav{
-        padding: 0 5em;
+        div.container-fluid{
+          padding: 0 5em;
         }
+      }
 
-            //PROFILE CONTAINER
-    div.profile-container{
-        form{
-          padding: 0 20%;
-            
+ div.main-container{
+
+        div.form-container{
+        padding: 0 5em;
+          div.left-content{
+            h1{
+              font-size: 26px;
+            }
+          }
+          div.right-content{
+            div.right-head{
+              h1{
+                font-size: 26px;
+              }
+            }
+            form{
+              div.card{
+                  padding: 1.8em;
+                  h1{
+                      font-size: 24px;
+                  }
+                  p{
+                      font-size: 16px;
+                  }
+              }
+              button{
+                  width: 50%;
+              }
+          }
+          }
+        }
+    }
+}
+
+// DESKTOP VIEW 1280
+@media screen and (min-width: 1280px){
+//NAVIGATION
+    nav{
+        div.collapse ul{
+            li.nav-item{
+                a.nav-link{
+                    font-size: 20px;
+                }
+            }
         }
     }
 
 }
 
-// DESKTOP VIEW 1280
-@media screen and (min-width: 1280px){
-
-//NAVIGATION
+@media screen and (min-width: 1390px){
     nav{
-        a.navbar-brand{
-            h1{
-                font-size: 22px;
-            }
-            span.ent{
-                font-size: 20px;
-            }
+        div.container-fluid{
+          padding: 0 12em;
         }
+      }
 
-        div.collapse ul{
-            li.nav-item{
-                a.nav-link{
-                    font-size: 18px;
-                }
+      div.main-container{
+        padding: 5em 10em;
+
+          div.form-container{
+            padding: 0 4em;
+            form{ 
+              padding: 1.8em;
+              h1{
+                  font-size: 24px;
+              }
+              p{
+                  font-size: 16px;
+              }
             }
-        }
-    }
+          }
+      }
+
+
+
 }

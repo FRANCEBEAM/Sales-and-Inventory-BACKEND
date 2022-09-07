@@ -6,9 +6,13 @@
   box-sizing: border-box;
 }
 
-div.main-container {
-  background: #FFFFFF;
+body {
   font-family: "Poppins", sans-serif;
+  background: #F2F2F2;
+}
+
+div.main-container {
+  background: color(bg-body);
 }
 
 html {
@@ -109,6 +113,25 @@ div.cartList-container div.card div.card-body div.card-foot h5.total {
 div.cartList-container div.card div.card-body div.card-foot i.removeBtn {
   padding: 0 0.4em;
   font-size: 26px;
+}
+
+div.modal-dialog div.modal-content div.modal-header h5 {
+  font-size: 22px;
+}
+div.modal-dialog div.modal-content div.modal-body div#order div.displayOrder {
+  border: #888888 solid 1px;
+  border-radius: 7px;
+}
+div.modal-dialog div.modal-content div.modal-body div#order h4 {
+  font-size: 22px;
+  font-weight: 600;
+}
+div.modal-dialog div.modal-content div.modal-body div#order h5 {
+  text-align: left;
+  font-size: 16px;
+}
+div.modal-dialog div.modal-content div.modal-body form {
+  padding-top: 3em;
 }
 
 @media screen and (min-width: 768px) {
@@ -217,7 +240,7 @@ div.cartList-container div.card div.card-body div.card-foot i.removeBtn {
 }
 @media screen and (min-width: 1280px) {
   nav div.collapse ul li.nav-item a.nav-link {
-    font-size: 18px;
+    font-size: 20px;
   }
   div.hero-container {
     padding-top: 4em;
