@@ -5,6 +5,7 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <?php include './pages/customer/--header.php' ?>
   <link rel="stylesheet" href="assets/css/index.css">
   <title>R.J. Avancena</title>
@@ -101,18 +102,14 @@ session_start();
               <form class="">
                 <label class="mb-2">Enter a product that you want to search</label>
                 <div class="d-flex">
-                <input class="form-control me-1" type="search" placeholder="Search" aria-label="Search">
-                
+                <input class="form-control me-1" type="search" id="search" placeholder="Search" aria-label="Search">
                 <button class="btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button> 
-                <!-- <a href="/pages/signin.php">
-                    <i class="bi bi-bag-check"></i>
-                </a> -->
               </div>
               <label class="mt-2 fw-bold">Popular: </label>
               </form>
             </div>
-            
           </div>
+          <div id="result"></div>
 
   
    <!--CATEGORIES SECTION-->
@@ -120,7 +117,6 @@ session_start();
      <h5 class="shopCateg" id="shop-categories">Shop by categories:</h5>
    </div>
 
-   
     <div class="swiper">
       <div class="swiper-wrapper">   
         <div class="swiper-slide">
@@ -160,20 +156,39 @@ session_start();
           <p>Measure Tools</p>
         </div>
       </div>
-
       <div class="swiper-pagination"></div>
     </div>
           
 
         <!-- Displaying Products Start -->
       <div class="item-container" id="item-list">
-        <?php
-            include './pages/customer/config/--configure.php';
-            $stmt = $conn->prepare('SELECT * FROM inventory');
-            $stmt->execute();
-            $result = $stmt->get_result();
-            while ($row = $result->fetch_assoc()):
-          ?>
+      <?php
+      #SPECIFY FIRST THE DATABASE
+  			include './pages/customer/config/--configure.php';
+
+        #START OF OUR PAGINATION FUNCTION
+        if (isset($_GET['page_no']) && $_GET['page_no']!="") {
+          $page_no = $_GET['page_no'];
+          } else {
+            $page_no = 1;
+                }
+        $total_records_per_page = 16;
+        $offset = ($page_no-1) * $total_records_per_page;
+        $previous_page = $page_no - 1;
+        $next_page = $page_no + 1;
+        $adjacents = "2"; 
+
+        $result_count = mysqli_query($conn,"SELECT COUNT(*) As total_records FROM `inventory`");
+        $total_records = mysqli_fetch_array($result_count);
+        $total_records = $total_records['total_records'];
+        $total_no_of_pages = ceil($total_records / $total_records_per_page);
+        $second_last = $total_no_of_pages - 1; // total page minus 1
+
+  			$stmt = $conn->prepare("SELECT * FROM inventory");
+  			$stmt->execute();
+  			$result = $stmt->get_result();
+  			while ($row = $result->fetch_assoc()):
+  		?>
         <div class="mb-5 card">
         <img src="assets/img/image 1.jpg" class="card-img-top" alt="...">
         <div class="card-body">
@@ -195,22 +210,8 @@ session_start();
       </div>
   <!-- Displaying Products End -->
 
-    <!--PAGINATION-->
-    <div class="pagination-container mt-5">
-      <ul class="pagination">
-        <li class="page-item disabled">
-          <span class="page-link">Previous</span>
-        </li>
-        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-        <li class="page-item" aria-current="page">
-          <span class="page-link">2</span>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#">Next</a>
-        </li>
-      </ul>
-  </div>
+  <!--PAGINATION-->
+    <?php include './pages/customer/config/--pagination.php'?>
 
     <!--ABOUT SECTION-->
     <div class="about-container mt-5" id="about-section">
@@ -229,5 +230,31 @@ session_start();
 </div>
 
 <?php include './pages/customer/--footer.php'?>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+  $("#search").keyup(function(){
+        var input = $(this).val();
+        if(input !=""){
+            $.ajax({
+              url: "/pages/customer/config/livesearch.php",
+              method: "POST",
+              data:{input:input},
+
+              success:function(data){
+                $("#result").html(data);
+              }
+            });
+        }else{
+          $("#result").css("display","none");
+        }
+    });
+  });
+
+
+
+
+</script>
 </body>
 </html>

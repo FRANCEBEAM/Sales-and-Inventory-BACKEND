@@ -1,27 +1,5 @@
 <?php require_once "./config/controllerUserData.php"; ?>
 
-<?php 
-$email = $_SESSION['email'];
-$password = $_SESSION['password'];
-if($email != false && $password != false){
-    $sql = "SELECT * FROM usertable WHERE email = '$email'";
-    $run_Sql = mysqli_query($con, $sql);
-    if($run_Sql){
-        $fetch_info = mysqli_fetch_assoc($run_Sql);
-        $status = $fetch_info['status'];
-        $code = $fetch_info['code'];
-        if($status == "verified"){
-            if($code != 0){
-                header('Location: resetCode.php');
-            }
-        }else{
-            header('Location: otp.php');
-        }
-    }
-}else{
-    header('Location: signin.php');
-}
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,130 +7,40 @@ if($email != false && $password != false){
     <?php include './--header.php'?>
     <title>Shop</title>
     <link rel="stylesheet" href="/assets/css/home.css">
+    <!-- <link rel="stylesheet" href="/assets/css/bootstrap.min.css"> -->
 </head>
 <body>
   <div class="main-container">
-      <!--NAVIGATION-->
-  <head>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="/assets/img/avancena logo.svg" alt=""></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarScroll">
-          <ul class="navbar-nav me-auto my-2 my-lg-0" style="--bs-scroll-height: 100px;">
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="./home.php">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="./shop.php">Shop</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">About</a>
-            </li>
-          </ul>
-          <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-                <a class="dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" class="fullname">
-                <b><?php echo $fetch_info['fullname'] ?></b>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                  <li><a class="dropdown-item" href="./profile.php">Profile</a></li>
-                  <li><a class="dropdown-item" href="./account.php">Account</a></li>
-                  <li><a class="dropdown-item" href="./logout.php">Logout</a></li>
-                </ul>
-              </li>
-
-            <ul class="navbar-nav">
-            <li class="nav-item dropdown"><a href='./cart.php'><i class="fas fa-shopping-cart"></i><span id="cart-item" class="badge bg-danger"></span></a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-</head>
-    <!--HERO SECTION-->
-    <div id="message"></div>
-
-   <!--CATEGORIES SECTION-->
-   <div class="categories-container">
-     <h5 class="shopCateg" id="shop-categories">Shop by categories:</h5>
-   </div>
-
-   
-    <div class="swiper">
-      <div class="swiper-wrapper">   
-        <div class="swiper-slide">
-          <img src="/assets/img/toolshammer.svg" width="50%">
-          <p>Hand Tools</p>
-        </div>
-        <div class="swiper-slide">
-          <img src="/assets/img/welding.svg">
-          <p>welding Equipment</p>
-        </div>
-        <div class="swiper-slide">
-          <img src="/assets/img/paint.svg">
-          <p>Paints</p>
-        </div>
-        <div class="swiper-slide">
-          <img src="/assets/img/brickwall.svg">
-          <p>Cements</p>
-        </div>
-        <div class="swiper-slide">
-          <img src="/assets/img/wood.svg">
-          <p>Woods</p>
-        </div>
-        <div class="swiper-slide">
-          <img src="/assets/img/cutting.svg">
-          <p>Cutting Tools</p>
-        </div>
-        <div class="swiper-slide">
-          <img src="/assets/img/drill.svg">
-          <p>Power Tools</p>
-        </div>
-        <div class="swiper-slide">
-          <img src="/assets/img/steel.svg">
-          <p>Structural Steel</p>
-        </div>
-        <div class="swiper-slide">
-          <img src="/assets/img/measure.svg">
-          <p>Measure Tools</p>
-        </div>
-      </div>
-
-      <div class="swiper-pagination"></div>
-    </div>
-          
 
   <!-- Displaying Products Start -->
-  <div class="item-container" id="item-list">
+  <div class="item-container mt-5" id="item-list">
   <?php
-      #SPECIFY FIRST THE DATABASE
   			include './config/--configure.php';
 
-        #START OF OUR PAGINATION FUNCTION
         if (isset($_GET['page_no']) && $_GET['page_no']!="") {
           $page_no = $_GET['page_no'];
           } else {
             $page_no = 1;
                 }
+
         $total_records_per_page = 16;
         $offset = ($page_no-1) * $total_records_per_page;
-        $previous_page = $page_no - 1;
-        $next_page = $page_no + 1;
-        $adjacents = "2"; 
+      $previous_page = $page_no - 1;
+      $next_page = $page_no + 1;
+      $adjacents = "2"; 
 
-        $result_count = mysqli_query($con,"SELECT COUNT(*) As total_records FROM `inventory`");
-        $total_records = mysqli_fetch_array($result_count);
-        $total_records = $total_records['total_records'];
+      $result_count = mysqli_query($con,"SELECT COUNT(*) As total_records FROM `inventory`");
+      $total_records = mysqli_fetch_array($result_count);
+      $total_records = $total_records['total_records'];
         $total_no_of_pages = ceil($total_records / $total_records_per_page);
-        $second_last = $total_no_of_pages - 1; // total page minus 1
+      $second_last = $total_no_of_pages - 1; // total page minus 1
 
-  			$stmt = $conn->prepare("SELECT * FROM inventory");
+  			$stmt = $conn->prepare("SELECT * FROM inventory LIMIT $offset, $total_records_per_page");
   			$stmt->execute();
+       
   			$result = $stmt->get_result();
   			while ($row = $result->fetch_assoc()):
+
   		?>
   <div class="mb-5 card">
     <img src="assets/img/image 1.jpg" class="card-img-top" alt="...">
@@ -175,8 +63,7 @@ if($email != false && $password != false){
 </div>
   <!-- Displaying Products End -->
 
-
-    <!--PAGINATION-->
+<!--PAGINATION-->
 <div class="pagination-container">
 <ul class="pagination justify-content-center">
 	<li  class="page-item"<?php if($page_no <= 1){ echo "disabled"; } ?>>
@@ -246,6 +133,7 @@ if($email != false && $password != false){
     <?php if($page_no < $total_no_of_pages){
 		echo "<li class='page-item'><a class='page-link' href='?page_no=$total_no_of_pages'>Last &rsaquo;&rsaquo;</a></li>";
 		} ?>
+
   </ul>
 </div>
 
