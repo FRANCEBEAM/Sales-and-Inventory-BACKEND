@@ -86,7 +86,9 @@ div.cartList-container div.card div.card-body div.qty-container {
   display: flex;
 }
 div.cartList-container div.card div.card-body div.qty-container input#itemQty {
-  width: 60px;
+  text-align: center;
+  width: 67px;
+  -moz-appearance: textfield;
 }
 div.cartList-container div.card div.card-body div.qty-container div.value-button {
   align-items: center;

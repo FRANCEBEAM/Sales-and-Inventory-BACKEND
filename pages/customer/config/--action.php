@@ -91,10 +91,10 @@ if (isset($_GET['cartItem']) && isset($_GET['cartItem']) == 'cart_item') {
 	// Set total price of the product in the cart table
 	if (isset($_POST['qty'])) {
 	  $qty = $_POST['qty'];
-	  $id = $_POST['id'];
-	  $price = $_POST['price'];
+	  // $id = $_POST['id'];
+	  // $price = $_POST['price'];
 
-	  $tprice = $qty * $price;
+	  // $tprice = $qty * $price;
 
 	  $stmt = $conn->prepare('UPDATE cart SET qty=?, total_price=? WHERE id=?');
 	  $stmt->bind_param('isi',$qty,$tprice,$pid);
@@ -125,8 +125,8 @@ if (isset($_GET['cartItem']) && isset($_GET['cartItem']) == 'cart_item') {
 								<p>Name : ' . $fullname . '</p>
 								<p>Email : ' . $email . '</p>
 								<p>Phone : ' . $phone . '</p>
-								<h4>Total Amount Paid : ' . number_format($grand_total,2) . '</h4>
-								<h4>Payment Mode : ' . $paymentmode . '</h4>
+								<div class="mt-4 mb-3"><b>Total Amount Paid :<i class="fa-solid fa-peso-sign"></i></b>' . number_format($grand_total,2) . '</div>
+								<div><b>Payment Mode : </b>' . $paymentmode . '</div>
 								<script>
 								Swal.fire({
 									icon: "success",

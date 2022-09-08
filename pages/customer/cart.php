@@ -75,18 +75,20 @@ if($email != false && $password != false){
   </head>
 
 <!-- CART LIST CONTENT -->
-<div class="cartList-container mt-5">
+<div class="cartList-container mt-5" id="cartcart">
   <h4 class="fw-bold mt-5 mb-5">My cart</h4>
 
     <?php
         require '../customer/config/--configure.php';
+        $grand_total = 0;
         $stmt = $conn->prepare("SELECT * FROM `cart` WHERE email = '$email'");
         $stmt->execute();
         $result = $stmt->get_result();
-        $grand_total = 0;
+
         while ($row = $result->fetch_assoc()):
+        $grand_total = $grand_total+($row['qty']*$row['price']);
+
     ?>
-<form id="frm<?php echo $row['id']?>">
   <div class="card mb-2">
     <div class="img-container">
           <img src="assets/img/image 1.jpg" alt="">
@@ -96,25 +98,19 @@ if($email != false && $password != false){
       <p class="card-text"><i class="fa-solid fa-peso-sign"></i>&nbsp;&nbsp;<?= number_format($row['price'],2); ?></p>
 
     
-      <div class="qty-container">
-    
-        <div class="btn btn-outline-dark value-button" id="decrease" onclick="decreaseValue()" value="Decrease Value"><i class="fa-sharp fa-solid fa-minus"></i></div>
-        <input type="number" class="form-control itemQty" id="itemQty" value="<?= $row['qty'] ?>">
-        <input type="number" class="form-control itemQty" id="itemQty" name="qty" onchange="updcart(<?php echo $row['id']; ?>)"onkeyup="updcart(<?php echo $row['id']; ?>)">
-        <div class="btn btn-dark value-button" id="increase" onclick="increaseValue()" value="Increase Value"><i class="fa-sharp fa-solid fa-plus"></i></div>
-    
-      </div>
-
+  <div class="qty-container">
+    <form id="frm<?php echo $row['id'] ?>">
+      <input type="hidden" name="cart_id" value="<?php  echo $row['id'];?>">
+        <input type="number" class="form-control itemQty" name="qty" id="itemQty" value="<?php echo $row['qty']; ?>" onchange="updcart(<?php echo $row['id'];  ?>)" onkeyup="updcart(<?php echo $row['id'];  ?>)">
+  </form>
+  </div>
 
       <div class="card-foot">
-        <h5 class="card-title total"><b>Total:&nbsp;&nbsp;</b><?= number_format($row['total_price'],2); ?></h5>
+        <h5 class="card-title total"><b>Total:&nbsp;&nbsp;</b><?= number_format($row['price']*$row['qty']); ?></h5>
         <a href="./config/--action.php?remove=<?= $row['id'] ?>" class="text-danger btnRemove" onclick="deletedata(<?php echo $row['id'];?>)"><i class="bi bi-trash3-fill text-danger removeBtn"></i></a>
       </div>
     </div>
-    </form>
-
   </div>
-  <?php $grand_total += $row['total_price']; ?>
   <?php endwhile; ?>
   <div class="total-container">
     <h5 class="sub-total"><b>Subtotal:&nbsp;&nbsp;</b><i class="fa-solid fa-peso-sign"></i><?= number_format($grand_total,2); ?></h5>
@@ -133,12 +129,14 @@ if($email != false && $password != false){
 	$allItems = '';
 	$items = [];
 
-	$sql = "SELECT CONCAT(product, '(',qty,')') AS ItemQty, total_price FROM cart where email = '$email'";
+	$sql = "SELECT CONCAT(product, '(',qty,')') AS ItemQty, total_price,qty,price FROM cart where email = '$email'";
+
 	$stmt = $conn->prepare($sql);
 	$stmt->execute();
 	$result = $stmt->get_result();
 	while ($row = $result->fetch_assoc()) {
-	  $grand_total += $row['total_price'];
+	  // $grand_total += $row['total_price'];
+    $grand_total = $grand_total+($row['qty']*$row['price']);
 	  $items[] = $row['ItemQty'];
 	}
 	$allItems = implode(', ', $items);
@@ -178,9 +176,9 @@ if($email != false && $password != false){
           <h6 class="text-center lead mt-5 fw-bold">Select Payment Mode</h6>
           <div class="form-group">
             <select name="paymentmode" class="form-control mt-3">
-              <option value="cod"></i>Cash On Delivery</option>
-              <option value="walkin">Walk-In</option>
-              <option value="cards">Debit/Credit Card</option>
+              <option value="Cash On Delivery"></i>Cash On Delivery</option>
+              <option value="Walk-in">Walk-In</option>
+              <option value="Debit/Credit Card">Debit/Credit Card</option>
             </select>
           </div>
           <div class="modal-footer">
@@ -196,8 +194,38 @@ if($email != false && $password != false){
   </div>
 </div>
 
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
 
 <?php include './--footer.php'?>
+
+
+<script>
+    function updcart(id){
+
+$.ajax({
+  url:'/pages/customer/updqty.php',
+  type:'POST',
+  data:$("#frm"+id).serialize(),
+  success:function(res){
+    location.reload(true);
+    // $("#cartcart").html(res);
+
+  }
+
+
+});
+
+}
+</script>
+
   <script type="text/javascript">
   $(document).ready(function() {
     $(".btnRemove").on('click', function(e) {
@@ -220,26 +248,26 @@ if($email != false && $password != false){
     });
 
     // Change the item quantity
-    $("#itemQty").on('change', function() {
-      var $el = $(this).closest('tr');
-      var id = $el.find(".pid").val();
-      var price = $el.find(".pprice").val();
-      var qty = $el.find("#itemQty").val();
-      location.reload(true);
-      $.ajax({
-        url: '/pages/customer/config/--action.php',
-        method: 'post',
-        cache: false,
-        data: {
-          qty: qty,
-          id: pid,
-          price: pprice
-        },
-        success: function(response) {
-          console.log(response);
-        }
-      });
-    });
+    // $("#itemQty").on('change', function() {
+    //   var $el = $(this).closest('tr');
+    //   var id = $el.find(".pid").val();
+    //   var price = $el.find(".pprice").val();
+    //   var qty = $el.find("#itemQty").val();
+    //   location.reload(true);
+    //   $.ajax({
+    //     url: '/pages/customer/config/--action.php',
+    //     method: 'post',
+    //     cache: false,
+    //     data: {
+    //       qty: qty,
+    //       id: pid,
+    //       price: pprice
+    //     },
+    //     success: function(response) {
+    //       console.log(response);
+    //     }
+    //   });
+    // });
 
     // Load total no.of items added in the cart and display in the navbar
     load_cart_item_number();
@@ -304,7 +332,6 @@ function load_cart_item_number() {
 $('#modalOrder').on('hidden.bs.modal', function () {
  location.reload();
 })
-
   });
   </script>
 

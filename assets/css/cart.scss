@@ -105,10 +105,10 @@ div.cartList-container{
           margin-top: 2em;
           display: flex;
           input#itemQty{
-              // text-align: center;
-              width: 60px;
+              text-align: center;
+              width: 67px;
               // border: none;
-              // -moz-appearance: textfield;
+              -moz-appearance: textfield;
           }
           div.value-button{
             align-items: center;
