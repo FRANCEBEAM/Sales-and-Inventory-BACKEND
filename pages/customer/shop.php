@@ -72,8 +72,21 @@ if($email != false && $password != false){
       </div>
     </nav>
 </head>
-    <!--HERO SECTION-->
     <div id="message"></div>
+
+    <div class="search-container">
+            <div class="search-bar">
+              <form action="./config/search.php" method="post">
+                <label class="mb-2">Enter a product that you want to search</label>
+                <div class="d-flex">
+                <input class="form-control me-1" type="text" name = "search" placeholder="Search" aria-label="Search">
+                
+                <button class="btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button> 
+              </div>
+              <label class="mt-2 fw-bold">Popular: </label>
+              </form>
+            </div>
+          </div>
 
    <!--CATEGORIES SECTION-->
    <div class="categories-container">

@@ -117,20 +117,6 @@ if($email != false && $password != false){
       </div>
     </div>
 
-        <!-- SEARCH BAR -->
-        <div class="search-container">
-            <div class="search-bar">
-              <form class="">
-                <label class="mb-2">Enter a product that you want to search</label>
-                <div class="d-flex">
-                <input class="form-control me-1" type="search" placeholder="Search" aria-label="Search">
-                
-                <button class="btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button> 
-              </div>
-              <label class="mt-2 fw-bold">Popular: </label>
-              </form>
-            </div>
-          </div>
 
     <!--ABOUT SECTION-->
     <div class="about-container" id="about-section">
