@@ -4,8 +4,7 @@
  <script src="/assets/js/quantity.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script src="/js/datepicker.js"></script>
-<script>
-  AOS.init();
-</script>
+<script>AOS.init();</script>
 <script src="/assets/js/sweetalert2.all.min.js"></script>
 <link rel="stylesheet" href='/assets/css/sweetalert2.min.css' media="screen" />
+<script src="/assets/js/addcart.js"></script>

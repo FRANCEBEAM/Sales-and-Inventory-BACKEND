@@ -136,56 +136,5 @@ if($email != false && $password != false){
 
 <?php include './--footer.php'?>
 
-<script type="text/javascript">
-  $(document).ready(function() {
-
-    // Send product details in the server
-    $(".addItemBtn").click(function(e) {
-      e.preventDefault();
-      var $form = $(this).closest(".form-submit");
-      var id = $form.find(".id").val();
-      var product = $form.find(".product").val();
-      var price = $form.find(".price").val();
-      var image_file = $form.find(".image_file").val();
-      var serialnumber = $form.find(".serialnumber").val();
-
-      var quantity = $form.find(".quantity").val();
-
-      $.ajax({
-        url: '/config/--action.php',
-        method: 'post',
-        data: {
-          id: id,
-          product: product,
-          price: price,
-          quantity: quantity,
-          image_file: image_file,
-          serialnumber: serialnumber
-        },
-        success: function(response) {
-          $("#message").html(response);
-          // window.scrollTo(0, 0);
-          load_cart_item_number();
-        }
-      });
-    });
-
-    // Load total no.of items added in the cart and display in the navbar
-    load_cart_item_number();
-
-    function load_cart_item_number() {
-      $.ajax({
-        url: '/pages/customer/config/--action.php',
-        method: 'get',
-        data: {
-          cartItem: "cart_item"
-        },
-        success: function(response) {
-          $("#cart-item").html(response);
-        }
-      });
-    }
-  });
-  </script>
 </body>
 </html>
